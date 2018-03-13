@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+# 数据库连接
+  datasource:
+    url: jdbc:mysql://39.108.74.138:3306/MyShop
+    username: root
+    password: zsygdsbWC
+    type: org.apache.commons.dbcp2.BasicDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:edu/scu/my_shop/mapper/*.xml
+  type-aliases-package: edu.scu.my_shop.mapper.model
