@@ -1,5 +1,8 @@
 server:
   port: 8080
+  servlet:
+    context-path: /MyShop
+
 spring:
 # 数据库连接
   datasource:
@@ -12,3 +15,4 @@ spring:
 mybatis:
   mapper-locations: classpath:edu/scu/my_shop/mapper/*.xml
   type-aliases-package: edu.scu.my_shop.mapper.model
+  
