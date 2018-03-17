@@ -11,7 +11,7 @@ spring:
 #      suffix: .html
 # 数据库连接
   datasource:
-    url: jdbc:mysql://111.230.15.168/myshop
+    url: jdbc:mysql://111.230.15.168/myshop?characterEncoding=utf8
     username: hzzone
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
