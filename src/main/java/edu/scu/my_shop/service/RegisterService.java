@@ -43,6 +43,10 @@ public class RegisterService {
             throw new RegisterException("用户名已经存在");
         }
 
+        //设置角色为普通用户
+        user.setRole(false);
+        //设置头像路径为
+        user.setHeadImg("./portrait.png");
         //将用户密码进行加密后，保存到数据库中
         user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
         userMapper.insert(user);

@@ -24,8 +24,9 @@ public class LoginController {
 
     @GetMapping("/loginpage")
     public String loginpage(){
-        System.out.println("true================");
-        return "login.html";
+
+        //登录界面
+        return "signup";
     }
 
 
