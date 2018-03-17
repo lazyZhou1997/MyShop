@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--class path: 本地MySQL JDBC驱动的绝对路径-->
+    <classPathEntry location="F:/Maven/repository/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar" />
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass = "com.mysql.jdbc.Driver"
+                        connectionURL = "jdbc:mysql://111.230.15.168/myshop"
+                        userId = "hzzone"
+                        password = "123456">
+            <!--忽略MySQL自带表-->
+            <property name="nullCatalogMeansCurrent" value="true" />
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!--targetProject: 项目的本地路径-->
+        <javaModelGenerator targetPackage="edu.scu.my_shop.entity" targetProject="F:/PDP/Hwadee/code/MyShop/src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="edu.scu.my_shop.mapper"  targetProject="F:/PDP/Hwadee/code/MyShop/src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="edu.scu.my_shop.dao"  targetProject="F:/PDP/Hwadee/code/MyShop/src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!--建立数据库中的表与类的映射关系-->
+        <table tableName="address" domainObjectName="Address"/>
+        <table tableName="first_category" domainObjectName="FirstCategory"/>
+        <table tableName="image" domainObjectName="Image"/>
+        <table tableName="message" domainObjectName="Message"/>
+        <table tableName="order" domainObjectName="Order"/>
+        <table tableName="order_item" domainObjectName="OrderItem"/>
+        <table tableName="product" domainObjectName="Product"/>
+        <table tableName="second_category" domainObjectName="SecondCategory"/>
+        <table tableName="user" domainObjectName="User"/>
+
+    </context>
+</generatorConfiguration>
