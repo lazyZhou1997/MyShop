@@ -1,9 +1,14 @@
 server:
   port: 8080
   servlet:
-    context-path: /MyShop
+    context-path: /
 
 spring:
+  mvc:
+    static-path-pattern: /**
+
+#      prefix: /
+#      suffix: .html
 # 数据库连接
   datasource:
     url: jdbc:mysql://111.230.15.168/myshop
