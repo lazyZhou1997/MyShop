@@ -20,7 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class UserServiceTest {
 
     @Autowired
-    private UserService userService;
+    private LoginService loginService;
 
     @Before
     public void before() throws Exception {
@@ -36,7 +36,7 @@ public class UserServiceTest {
     @Test
     public void testLogin() throws Exception {
 
-        userService.login();
+        loginService.login();
     }
 
 

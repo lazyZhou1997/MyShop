@@ -1,21 +1,19 @@
 package edu.scu.my_shop.service;
 
-import org.apache.ibatis.session.SqlSession;
+import edu.scu.my_shop.result.Result;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.transform.Result;
-
 @Service
-public class UserService {
+public class LoginService {
 
     @Autowired
-    private SqlSessionFactory sqlSessionFactory;
+    SqlSessionFactory sqlSessionFactory;
 
     public Result login(){
 
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        //获取
 
         return null;
     }
