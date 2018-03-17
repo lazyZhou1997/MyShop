@@ -6,9 +6,9 @@ server:
 spring:
 # 数据库连接
   datasource:
-    url: jdbc:mysql://39.108.74.138:3306/MyShop
-    username: root
-    password: zsygdsbWC
+    url: jdbc:mysql://111.230.15.168/myshop
+    username: hzzone
+    password: 123456
     type: org.apache.commons.dbcp2.BasicDataSource
     driver-class-name: com.mysql.jdbc.Driver
 
