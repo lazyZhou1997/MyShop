@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
 
-
     @GetMapping("/index")
     @ResponseBody
     public String login(){
@@ -15,6 +14,10 @@ public class LoginController {
         return "主页";
     }
 
+    /**
+     * 登录失败界面
+     * @return
+     */
     @PostMapping("/fail")
     @ResponseBody
     public String fail(){
@@ -22,11 +25,14 @@ public class LoginController {
     }
 
 
+    /**
+     * 登录界面，访问登录界面
+     * @return
+     */
     @GetMapping("/loginpage")
     public String loginpage(){
 
-        //登录界面
-        return "signup";
+        return "login";
     }
 
 

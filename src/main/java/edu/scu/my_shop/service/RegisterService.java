@@ -29,8 +29,8 @@ public class RegisterService {
     public void register(User user) {
 
         //如果传入user.user_id为空
-        if (null == user || null == user.getUserId()) {
-            throw new RegisterException("无效用户名");
+        if (null == user || null == user.getUserId()||null==user.getUserPassword()||null==user.getUserName()){
+            throw new RegisterException("无效输入");
 
         }
 

@@ -40,18 +40,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         // FIXME
-        // Spring security下csrf token的认证，开发时禁止
         http.csrf().disable();
 
-        http.authorizeRequests().antMatchers("/register",
+        http.authorizeRequests().antMatchers("/registerpage",
                 "/loginpage",
                 "/",
                 "/js/**",
                 "/fonts/**",
                 "/css/**",
                 "/images/**",
-                "/webjars/**").permitAll()//访问:/register 无需登录认证权限
-                .antMatchers("/fail").permitAll()//访问登录失败页面，无需任何权限
+                "/webjars/**",
+                "/fail").permitAll()//无需登录认证权限访问
                 .anyRequest().authenticated() //其他所有资源需要认证，登陆后访问
                 .antMatchers("/admin").hasAuthority("ADMIN") //登陆之后拥有"ADMIN"权限才能够访问，否则会出现“403”权限不足的提示
                 .and()
