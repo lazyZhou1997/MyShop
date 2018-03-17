@@ -3,9 +3,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dreamtour
-    username: root
-    password: zsgdsbWC1997
+    url:
+    username:
+    password:
 #自己的配置信息
 myProperties:
   pageSize: 10 #分页大小

@@ -1,5 +1,7 @@
 target/
-!.mvn/wrapper/maven-wrapper.jar
+mvnw
+mvnw.cmd
+.mvn/
 
 ### STS ###
 .apt_generated
@@ -22,3 +24,19 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+<<<<<<< HEAD
+
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!/.mvn/wrapper/maven-wrapper.jar
+=======
+>>>>>>> cea3bf4fee638059aa25ca5f05f2f9d1c90dce56
