@@ -3,6 +3,12 @@ server:
   servlet:
     context-path: /
 
+# path to save file(DO NOT ADD "/" AT THE END)
+# TODO: configure correct path
+image:
+  user-image-folder-path: F:/PDP/Hwadee/code/MyShop/src/main/resources/static/images/users
+  user-image-relate-path: /images/users
+
 spring:
   mvc:
     static-path-pattern: /**
