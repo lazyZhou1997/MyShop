@@ -43,6 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.authorizeRequests().antMatchers("/registerpage",
+                "/register",
                 "/loginpage",
                 "/",
                 "/js/**",

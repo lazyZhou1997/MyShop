@@ -4,6 +4,7 @@ import edu.scu.my_shop.entity.User;
 import edu.scu.my_shop.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -32,6 +33,7 @@ public class RegisterController {
      */
     @GetMapping("/registerpage")
     public String registerpage(){
+
 
         return "signup";
     }
