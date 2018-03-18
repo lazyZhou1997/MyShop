@@ -2,9 +2,12 @@ package edu.scu.my_shop.exceptionHandle;
 
 import edu.scu.my_shop.exception.RegisterException;
 import edu.scu.my_shop.result.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class ExceptionHandle {
 
+//    @Autowired
+//    private ModelMap map;
+
+
     /**
      * 注册相关的异常处理
      * @param reg
@@ -21,16 +28,11 @@ public class ExceptionHandle {
      * @return
      */
     @ExceptionHandler(RegisterException.class)
-    @ResponseBody
-    public Result rigesterExceptionHandle(HttpServletRequest reg, RegisterException e){
+    public ModelAndView rigesterExceptionHandle(HttpServletRequest reg, RegisterException e){
 
-        //构建异常处理结果
-        Result result = new Result();
-        result.setCode(e.getCode());
-        result.setMessage(e.getMessage());
-        result.setData(null);
-
-        //返回异常处理结果
-        return result;
+        ModelAndView mav = new ModelAndView();
+        mav.getModelMap().addAttribute("message",e.getMessage());//携带属性
+        mav.setViewName("signup");//返回页面
+        return mav;
     }
 }

@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Signup | E-Shopper</title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/css/prettyPhoto.css" rel="stylesheet">
-    <link href="/css/price-range.css" rel="stylesheet">
-    <link href="/css/animate.css" rel="stylesheet">
-	<link href="/css/main.css" rel="stylesheet">
-	<link href="/css/responsive.css" rel="stylesheet">
+    <title>用户信息修改 | 乐购</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/price-range.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet">
     <!--[if lt IE 9]>
-	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js "></script>
-	<script src="/js/html5shiv.js"></script>
-	<script src="/js/respond.min.js"></script>
-	<![endif]-->
-    <link rel="shortcut icon" href="/images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="/images/ico/apple-touch-icon-57-precomposed.png">
-
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 
 <body>
@@ -53,13 +51,13 @@
 				</div>
 			</div>
 		</div><!--/header_top-->
-
+		
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.html"><img src="/images/home/logo.png" alt="" /></a>
+							<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
 						</div>
 						<div class="btn-group pull-right">
 							<div class="btn-group">
@@ -72,7 +70,7 @@
 									<li><a href="">UK</a></li>
 								</ul>
 							</div>
-
+							
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
 									DOLLAR
@@ -88,18 +86,18 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="account" class="active"><i class="fa fa-user"></i> Account</a></li>
 								<li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
 								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								<li><a href="login.html" class="active"><i class="fa fa-lock"></i> Login</a></li>
+								<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div><!--/header-middle-->
-
+	
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
@@ -116,20 +114,20 @@
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="index.html">Home</a></li>
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-									<ul role="menu" class="sub-menu">
-										<li><a href="shop.html">Products</a></li>
-										<li><a href="product-details.html">Product Details</a></li>
-										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="cart.html">Cart</a></li>
-										<li><a href="login.html" class="active">Login</a></li>
-									</ul>
-								</li>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="shop.html">Products</a></li>
+										<li><a href="product-details.html">Product Details</a></li> 
+										<li><a href="checkout.html">Checkout</a></li> 
+										<li><a href="cart.html">Cart</a></li> 
+										<li><a href="login.html" class="active">Login</a></li> 
+                                    </ul>
+                                </li> 
 								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-									<ul role="menu" class="sub-menu">
-										<li><a href="blog.html">Blog List</a></li>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="blog.html">Blog List</a></li>
 										<li><a href="blog-single.html">Blog Single</a></li>
-									</ul>
-								</li>
+                                    </ul>
+                                </li> 
 								<li><a href="404.html">404</a></li>
 								<li><a href="contact-us.html">Contact</a></li>
 							</ul>
@@ -147,26 +145,52 @@
 	
 	<section id="form"><!--form-->
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-4"></div>
-				<div class="col-sm-4 fa-border">
-					<div class="signup-form "><!--sign up form-->
-						<h2>新用户注册</h2>
-						<form action="/register" method="post">
-							<input type="text" class="form-control" placeholder="用户名" name="userName"/>
-							<input type="email" class="form-control" placeholder="邮箱地址" name="userId"/>
-							<input type="password" class="form-control" placeholder="密  码" name="userPassword"/>
-							<input type="password" class="form-control" placeholder="确认密码" name="userPassword2"/>
- 							<button type="submit" class="btn btn-default" onclick="return checkUser()">注册</button>
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a href="index.html">主页</a></li>
+                    <li class="active">用户</li>
+                </ol>
+            </div>
+			<div class="row fa-border">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<div class="login-form"><!--login form-->
+						<h2>用户信息修改</h2>
+						<form action="#">
+                            <div>
+                                <label>头像</label>
+							<image src="images/head/boy.jpg" class="img-responsive img-circle center-block" height="100" width="100"/>
+                            </div>
+                            <div>
+                                <label>用户名</label>
+							<input type="text" class="form-control" placeholder="用户名" />
+                            </div>
+                            <div>
+                                <label>邮箱</label>
+                                <input type="text" class="form-control" placeholder="用户名" />
+                            </div>
+                            <div>
+                                <label>生日</label>
+                                <input type="date" class="form-control" placeholder="生日" />
+                            </div>
+                            <div>
+                                <label>密码</label>
+                                <input type="text" class="form-control" placeholder="密码" />
+                            </div>
+                            <div>
+                                <label>确认密码</label>
+                                <input type="text" class="form-control" placeholder="确认密码" />
+                            </div>
+							<button type="submit" class="btn btn-default">保存</button>
 						</form>
-					</div><!--/sign up form-->
+					</div><!--/login form-->
 				</div>
-				<div class="col-sm-4"></div>
+				<div class="col-sm-3"></div>
 			</div>
 		</div>
 	</section><!--/form-->
 	
-
+	
 	<footer id="footer"><!--Footer-->
 		<div class="footer-top">
 			<div class="container">
@@ -182,7 +206,7 @@
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="/images/home/iframe1.png" alt="" />
+										<img src="images/home/iframe1.png" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
@@ -197,7 +221,7 @@
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="/images/home/iframe2.png" alt="" />
+										<img src="images/home/iframe2.png" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
@@ -212,7 +236,7 @@
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="/images/home/iframe3.png" alt="" />
+										<img src="images/home/iframe3.png" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
@@ -227,7 +251,7 @@
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="/images/home/iframe4.png" alt="" />
+										<img src="images/home/iframe4.png" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
@@ -240,7 +264,7 @@
 					</div>
 					<div class="col-sm-3">
 						<div class="address">
-							<img src="/images/home/map.png" alt="" />
+							<img src="images/home/map.png" alt="" />
 							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
 						</div>
 					</div>
@@ -324,25 +348,14 @@
 		</div>
 		
 	</footer><!--/Footer-->
+	
 
-  	<script th:inline="javascript">
-
-        var message = [[${message}]];
-        test(message);
-
-        function test(message) {
-		    if (null!=message){
-		        alert(message.toString());
-			}
-		}
-	</script>
-    <script src="/js/jquery.js"></script>
-	<script src="/js/price-range.js"></script>
-    <script src="/js/jquery.scrollUp.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.prettyPhoto.js"></script>
-    <script src="/js/main.js"></script>
-	<script src="/js/signup.js"></script>
-    <script src="/js/sweetalert.js"></script>
+  
+    <script src="js/jquery.js"></script>
+	<script src="js/price-range.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

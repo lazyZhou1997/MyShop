@@ -44,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests().antMatchers("/registerpage",
                 "/file","/fileUpload",//FIXME: add proper authority
+                "/register",
                 "/loginpage",
                 "/",
                 "/js/**",
