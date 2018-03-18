@@ -8,30 +8,7 @@ function checkUser() {
         return false;
     }
     else if (!userpsw) {
-        swal("","未输入密码,请重试","error");
+        swal("未输入密码,请重试");
         return false;
-    }else {
-        $.ajax({
-            type: 'POST',
-            url:'/check',
-            data:{
-                username:username,
-                password:userpsw
-        },
-            success:function (data,status) {
-                if(data=="false"){
-                    alert("worng");
-                }
-                else {
-                    if(data=="wrong"){
-                        alert("worong")
-                    }
-                    if(data=="success"){
-                        window.location.href = "/index";
-                    }
-                }
-            }
-
-        })
     }
 }
