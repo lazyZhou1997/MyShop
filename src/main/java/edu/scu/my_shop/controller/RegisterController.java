@@ -20,11 +20,14 @@ public class RegisterController {
      * @return
      */
     @PostMapping("/register")
-    public String register(User user){
+    public String register(ModelMap modelMap,User user){
 
         registerService.register(user);
 
-        return "/login";
+        //登录成功处理
+        modelMap.addAttribute("message","注册成功");
+
+        return "/signup";
     }
 
     /**

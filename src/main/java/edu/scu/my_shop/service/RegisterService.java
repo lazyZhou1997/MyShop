@@ -2,6 +2,7 @@ package edu.scu.my_shop.service;
 
 import edu.scu.my_shop.dao.UserMapper;
 import edu.scu.my_shop.entity.User;
+import edu.scu.my_shop.entity.UserExample;
 import edu.scu.my_shop.exception.RegisterException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -37,9 +38,16 @@ public class RegisterService {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 
-        //看看用户是否已经存在,如果已经存在
+        //看看用户email是否已经存在,如果已经存在
         if (null != userMapper.selectByPrimaryKey(user.getUserId())) {
 
+            throw new RegisterException("邮箱已经存在");
+        }
+
+        //看看userName是否已经存在
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andUserNameEqualTo(user.getUserName());
+        if (null!=userMapper.selectByExample(userExample)){
             throw new RegisterException("用户名已经存在");
         }
 
