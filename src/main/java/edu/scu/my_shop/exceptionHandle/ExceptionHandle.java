@@ -78,4 +78,9 @@ public class ExceptionHandle {
     public String handleProductException(HttpServletRequest request, ProductException e){
         return null;
     }
+
+    @ExceptionHandler(CartException.class)
+    public String handleCartException(HttpServletRequest request, ProductException e) {
+        return null;
+    }
 }
