@@ -1,16 +1,16 @@
 package edu.scu.my_shop.exception;
 
 /**
- * 登录异常
+ * 修改用户信息异常
  */
-public class RegisterException extends RuntimeException{
+public class ChangeUserInfoException extends RuntimeException{
 
     /**
      * 错误码
      */
     private Integer code = 101;
 
-    public RegisterException(String message) {
+    public ChangeUserInfoException(String message) {
         super(message);
     }
 

@@ -31,7 +31,7 @@ public class ExceptionHandle {
     public ModelAndView rigesterExceptionHandle(HttpServletRequest reg, RegisterException e){
 
         ModelAndView mav = new ModelAndView();
-        mav.getModelMap().addAttribute("message",e.getMessage());//携带属性
+        mav.getModelMap().addAttribute("error",e.getMessage());//携带属性
         mav.setViewName("signup");//返回页面
         return mav;
     }

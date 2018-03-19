@@ -47,7 +47,7 @@ public class RegisterService {
         //看看userName是否已经存在
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUserNameEqualTo(user.getUserName());
-        if (null!=userMapper.selectByExample(userExample)){
+        if (!userMapper.selectByExample(userExample).isEmpty()){
             throw new RegisterException("用户名已经存在");
         }
 

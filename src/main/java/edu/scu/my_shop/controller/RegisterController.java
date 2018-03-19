@@ -25,7 +25,7 @@ public class RegisterController {
         registerService.register(user);
 
         //登录成功处理
-        modelMap.addAttribute("message","注册成功");
+        modelMap.addAttribute("success","注册成功");
 
         return "/signup";
     }

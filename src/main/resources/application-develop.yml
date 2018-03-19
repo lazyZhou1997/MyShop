@@ -2,10 +2,15 @@ server:
   port: 8080
   servlet:
     context-path: /
+pagehelper:
+  dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
 
 spring:
   mvc:
     static-path-pattern: /**
+
 
 #      prefix: /
 #      suffix: .html
@@ -19,4 +24,3 @@ spring:
 mybatis:
   mapperlocations: /mapper/**Mapper.xml
   type-aliases-package: edu.scu.my_shop.entity
-  
