@@ -41,7 +41,7 @@ public class ChangeUserInfoService {
 
             if (null!=userMapper.selectByExample(userExample)){
                 //如果用户名重复，抛出异常
-                throw new ChangeUserInfoException("用户名已经存在");
+                throw new ChangeUserInfoException(ChangeUserInfoException.USERNAME_HAS_EXIST_MESSAGE,ChangeUserInfoException.USERNAME_HAS_EXIST);
             }
         }
 

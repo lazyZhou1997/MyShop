@@ -45,6 +45,7 @@ public class ChangeUserInfoServiceTest {
         //user.setUserName("啦啦");
         user.setHeadImg("./d");
         user.setUserId("12@qq.com");
+        user.setUserPassword("12");
 
         changeUserInfoService.changeUserInfo(user);
     }

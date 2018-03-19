@@ -1,5 +1,9 @@
 package edu.scu.my_shop.controller;
 
-@
-public class ProductController {
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class ShowProductController {
+
+
 }

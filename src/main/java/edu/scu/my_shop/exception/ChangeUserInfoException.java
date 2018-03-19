@@ -5,13 +5,19 @@ package edu.scu.my_shop.exception;
  */
 public class ChangeUserInfoException extends RuntimeException{
 
+    public static int USERNAME_HAS_EXIST = 1001;
+
+
+    public static String USERNAME_HAS_EXIST_MESSAGE = "用户名已经存在";
+
     /**
      * 错误码
      */
-    private Integer code = 101;
+    private Integer code;
 
-    public ChangeUserInfoException(String message) {
+    public ChangeUserInfoException(String message, int code) {
         super(message);
+        this.code = code;
     }
 
     public Integer getCode() {

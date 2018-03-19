@@ -31,7 +31,8 @@ public class RegisterService {
 
         //如果传入user.user_id为空
         if (null == user || null == user.getUserId()||null==user.getUserPassword()||null==user.getUserName()){
-            throw new RegisterException("无效输入");
+
+            throw new RegisterException(RegisterException.INVALID_INPUT_MESSAGE,RegisterException.INVALID_INPUT);
 
         }
 
@@ -41,14 +42,14 @@ public class RegisterService {
         //看看用户email是否已经存在,如果已经存在
         if (null != userMapper.selectByPrimaryKey(user.getUserId())) {
 
-            throw new RegisterException("邮箱已经存在");
+            throw new RegisterException(RegisterException.EMAIL_HAS_EXIST_MESSAGE,RegisterException.EMAIL_HAS_EXIST);
         }
 
         //看看userName是否已经存在
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUserNameEqualTo(user.getUserName());
         if (!userMapper.selectByExample(userExample).isEmpty()){
-            throw new RegisterException("用户名已经存在");
+            throw new RegisterException(RegisterException.USERNAME_HAS_EXIST_MESSAGE,RegisterException.USERNAME_HAS_EXIST);
         }
 
         //设置角色为普通用户

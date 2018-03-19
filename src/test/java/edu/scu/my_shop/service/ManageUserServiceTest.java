@@ -9,18 +9,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * UserService Tester.
+ * ManageUserService Tester.
  *
  * @author <Authors name>
  * @version 1.0
- * @since <pre>三月 14, 2018</pre>
+ * @since <pre>三月 19, 2018</pre>
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserServiceTest {
+public class ManageUserServiceTest {
 
     @Autowired
-    private LoginService loginService;
+    private ManageUserService manageUserService;
 
     @Before
     public void before() throws Exception {
@@ -31,12 +31,13 @@ public class UserServiceTest {
     }
 
     /**
-     * Method: login()
+     * 测试设置用户为管理员
      */
     @Test
-    public void testLogin() throws Exception {
+    public void testAppointSuperUser() throws Exception {
 
-        loginService.login();
+        manageUserService.appointSuperUser("zzz");
+
     }
 
 
