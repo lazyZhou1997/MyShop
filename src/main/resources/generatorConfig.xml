@@ -25,7 +25,7 @@
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="edu.scu.my_shop.mapper"  targetProject="F:/PDP/Hwadee/code/MyShop/src/main/java">
+        <sqlMapGenerator targetPackage="mapper"  targetProject="F:/PDP/Hwadee/code/MyShop/src/main/resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
@@ -43,6 +43,8 @@
         <table tableName="product" domainObjectName="Product"/>
         <table tableName="second_category" domainObjectName="SecondCategory"/>
         <table tableName="user" domainObjectName="User"/>
+        <table tableName="comment" domainObjectName="Comment"/>
+        <table tableName="cart" domainObjectName="Cart"/>
 
     </context>
 </generatorConfiguration>
