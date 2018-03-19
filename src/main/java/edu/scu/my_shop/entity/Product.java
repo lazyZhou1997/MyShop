@@ -1,5 +1,7 @@
 package edu.scu.my_shop.entity;
 
+import java.util.Objects;
+
 public class Product {
     /**
      *
@@ -198,4 +200,5 @@ public class Product {
     public void setProductLeftTotals(Integer productLeftTotals) {
         this.productLeftTotals = productLeftTotals;
     }
+
 }

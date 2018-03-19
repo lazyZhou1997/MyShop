@@ -81,6 +81,14 @@ public class ExceptionHandle {
 
     @ExceptionHandler(CartException.class)
     public String handleCartException(HttpServletRequest request, ProductException e) {
+    /**
+     * 处理订单相关异常
+     * @param request
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(OrderServiceException.class)
+    public String handleOrderServiceException(HttpServletRequest request,OrderServiceException e){
         return null;
     }
 }
