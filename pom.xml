@@ -81,12 +81,18 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--&lt;!&ndash;访问template中的静态页面需要&ndash;&gt;-->
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
-		<!--</dependency>-->
-
+		<!-- 分布插件 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>5.1.1</version>
+		</dependency>
+		<!-- Spring Boot集成 pagehelper-->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.2.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>

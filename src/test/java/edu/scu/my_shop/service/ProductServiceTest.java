@@ -180,12 +180,21 @@ public class ProductServiceTest {
         productService.updateProduct(toUpdateSelectively);
     }
 
+    /**
+     * 分页查询
+     */
     @Test
     public void getAllProductsTest() {
-        List<Product> productList = productService.getAllProducts();
+        List<Product> productList = productService.getAllProducts(1,3);
         System.out.println(productList.size());
         for (Product product : productList) {
-            System.out.println(product.getProductId());
+            System.out.println(product.getProductName());
+        }
+
+        productList = productService.getAllProducts(2,3);
+        System.out.println(productList.size());
+        for (Product product : productList) {
+            System.out.println(product.getProductName());
         }
     }
 
@@ -196,5 +205,20 @@ public class ProductServiceTest {
 
         Product productGood = productService.searchProductByID(toDelete.getProductId());
         assertEquals(productGood.getProductName(), toDelete.getProductName());
+    }
+
+    /**
+     * 测试商品模糊查询通过
+     */
+    @Test
+    public void SearchProductByName(){
+
+        List<Product> products = productService.searchProductByName("id");
+
+        for (Product product:
+             products) {
+            System.out.println(product.getProductName());
+        }
+
     }
 }

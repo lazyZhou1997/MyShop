@@ -18,8 +18,7 @@ public class LoginController {
      * 登录失败界面
      * @return
      */
-    @PostMapping("/fail")
-    @ResponseBody
+    @GetMapping("/fail")
     public String fail(){
         return "登录失败";
     }

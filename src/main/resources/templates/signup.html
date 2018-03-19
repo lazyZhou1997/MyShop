@@ -325,17 +325,6 @@
 		
 	</footer><!--/Footer-->
 
-  	<script th:inline="javascript">
-
-        var message = [[${message}]];
-        test(message);
-
-        function test(message) {
-		    if (null!=message){
-		        alert(message.toString());
-			}
-		}
-	</script>
     <script src="/js/jquery.js"></script>
 	<script src="/js/price-range.js"></script>
     <script src="/js/jquery.scrollUp.min.js"></script>
@@ -344,5 +333,28 @@
     <script src="/js/main.js"></script>
 	<script src="/js/signup.js"></script>
     <script src="/js/sweetalert.js"></script>
+
+    <script th:inline="javascript">
+
+        var errormessage = [[${error}]];
+        errorDialog(errormessage);
+
+        var successmessage = [[${success}]];
+        successDialog(successmessage);
+
+        function errorDialog(errormessage) {
+            if (null!=errormessage){
+                swal("",errormessage.toString(),"error");
+            }
+        }
+
+        function successDialog(successmessage) {
+            if (null!=successmessage){
+                swal("",successmessage.toString(),"success");
+            }
+        }
+
+    </script>
+
 </body>
 </html>

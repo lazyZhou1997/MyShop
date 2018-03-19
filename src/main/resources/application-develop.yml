@@ -2,6 +2,10 @@ server:
   port: 8080
   servlet:
     context-path: /
+pagehelper:
+#  dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
 
 # path to save file(DO NOT ADD "/" AT THE END)
 # TODO: configure correct path
@@ -15,6 +19,7 @@ spring:
   mvc:
     static-path-pattern: /**
 
+
 #      prefix: /
 #      suffix: .html
 # 数据库连接
@@ -27,4 +32,3 @@ spring:
 mybatis:
   mapperlocations: /mapper/**Mapper.xml
   type-aliases-package: edu.scu.my_shop.entity
-  
