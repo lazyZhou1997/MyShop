@@ -38,7 +38,7 @@
         <table tableName="first_category" domainObjectName="FirstCategory"/>
         <table tableName="image" domainObjectName="Image"/>
         <table tableName="message" domainObjectName="Message"/>
-        <table tableName="order" domainObjectName="Order"/>
+        <table tableName="user_order" domainObjectName="Order"/>
         <table tableName="order_item" domainObjectName="OrderItem"/>
         <table tableName="product" domainObjectName="Product"/>
         <table tableName="second_category" domainObjectName="SecondCategory"/>
