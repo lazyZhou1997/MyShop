@@ -43,7 +43,7 @@ public class FileService {
     private String productImageRelatePath;
 
     @Autowired
-    SqlSessionFactory sqlSessionFactory;
+    private SqlSessionFactory sqlSessionFactory;
 
     /**
      * Upload user image and update database.
@@ -104,6 +104,11 @@ public class FileService {
         sqlSession.close();
     }
 
+    /**
+     * Overwrite product image.
+     * @param imageIDs
+     * @param files
+     */
     public void updateProductImages(List<String> imageIDs, List<MultipartFile> files) {
 
         // validate data
@@ -123,6 +128,9 @@ public class FileService {
         for (int i = 0; i < imageIDs.size(); i++) {
             Image image = imageMapper.selectByPrimaryKey(imageIDs.get(i));
             MultipartFile file = files.get(i);
+
+            // ignore wrong imageID
+            if (image == null) continue;
 
             // pass empty file in case that front-end send empty
             if (file == null || file.isEmpty()) continue;

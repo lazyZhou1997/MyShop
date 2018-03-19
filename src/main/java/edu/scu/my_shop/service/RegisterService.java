@@ -55,7 +55,7 @@ public class RegisterService {
         //设置角色为普通用户
         user.setRole(false);
         //设置头像路径为
-        user.setHeadImg("./portrait.png");
+        user.setHeadImg("portrait.png");
         //将用户密码进行加密后，保存到数据库中
         user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
         userMapper.insert(user);
