@@ -78,4 +78,15 @@ public class ExceptionHandle {
     public String handleProductException(HttpServletRequest request, ProductException e){
         return null;
     }
+
+    /**
+     * 处理订单相关异常
+     * @param request
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(OrderServiceException.class)
+    public String handleOrderServiceException(HttpServletRequest request,OrderServiceException e){
+        return null;
+    }
 }

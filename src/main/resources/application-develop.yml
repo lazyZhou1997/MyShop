@@ -29,6 +29,7 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
 
+
 mybatis:
   mapperlocations: /mapper/**Mapper.xml
   type-aliases-package: edu.scu.my_shop.entity
