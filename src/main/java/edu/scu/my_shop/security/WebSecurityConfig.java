@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.authorizeRequests().antMatchers("/registerpage",
-                "/file","/fileUpload",//FIXME: add proper authority
+                "/file","/fileUpload", "/multifile", "/multifileUpload", "/multifileUpdate",//FIXME: add proper authority
                 "/register",
                 "/loginpage",
                 "/",
