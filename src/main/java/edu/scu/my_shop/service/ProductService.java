@@ -193,15 +193,52 @@ public class ProductService {
     /**
      * 根据传入的产品名称进行模糊查询
      * @param productName
+     * @param pageNum
+     * @param pageSize
      * @return
      */
-    public List<Product> searchProductByName(String productName){
+    public List<Product> searchProductByName(String productName,int pageNum,int pageSize){
+
+        //启动分页
+        PageHelper.startPage(pageNum,pageSize);
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 
         ProductExample productExample = new ProductExample();
         productExample.createCriteria().andProductNameLike("%"+productName+"%");
+
+        //查询
+        List<Product> products = productMapper.selectByExample(productExample);
+
+        //判断查询结果是否为null
+        if (null==products||products.isEmpty()){
+
+            //抛出查询结果为空异常
+            throw new ProductException(SEARCH_RESULT_IS_NULL_MESSAGE,ProductException.SEARCH_RESULT_IS_NULL);
+        }
+
+        sqlSession.close();
+        return products;
+    }
+
+    /**
+     * 分类查找商品
+     * @param category
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    public List<Product> searchProductByCategory(String category,int pageNum,int pageSize){
+
+        //启动分页
+        PageHelper.startPage(pageNum,pageSize);
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andSecondCategoryIdEqualTo(category);
 
         //查询
         List<Product> products = productMapper.selectByExample(productExample);

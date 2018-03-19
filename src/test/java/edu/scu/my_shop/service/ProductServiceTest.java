@@ -211,13 +211,28 @@ public class ProductServiceTest {
      * 测试商品模糊查询通过
      */
     @Test
-    public void SearchProductByName(){
+    public void searchProductByName(){
 
-        List<Product> products = productService.searchProductByName("id");
+        List<Product> products = productService.searchProductByName("id",2,1);
 
         for (Product product:
              products) {
-            System.out.println(product.getProductName());
+            System.out.println(product.getProductId());
+        }
+
+    }
+
+    /**
+     * 测试商品分类查找
+     */
+    @Test
+    public void testSearchProductByCategory(){
+
+        List<Product> products = productService.searchProductByName("kajsnxaksajskx",2,2);
+
+        for (Product product:
+                products) {
+            System.out.println(product.getProductId());
         }
 
     }
