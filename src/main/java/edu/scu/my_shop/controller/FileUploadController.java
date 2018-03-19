@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * Created by Vicent_Chen on 2018/3/18.
  */
@@ -26,6 +28,11 @@ public class FileUploadController {
         return "/file";
     }
 
+    @RequestMapping("multifile")
+    public String multifile() {
+        return "/multifile";
+    }
+
     /**
      * process file upload request
      * @param file uploaded by browser
@@ -33,8 +40,26 @@ public class FileUploadController {
      */
     @RequestMapping("fileUpload")
     @ResponseBody
-    public String fileUpload(@RequestParam("fileName") MultipartFile file, @RequestParam("userID") String userID){
+    public String uploadUserImage(@RequestParam("fileName") MultipartFile file, @RequestParam("userID") String userID){
         fileService.uploadUserImage(userID, file);
+
+        // TODO: redirect to new page
+        return "TODO: redirect to new page";
+    }
+
+    @RequestMapping("multifileUpload")
+    @ResponseBody
+    public String uploadProductImages(@RequestParam("fileName")List<MultipartFile> files, @RequestParam("productID") String productID) {
+        fileService.insertProductImages(productID, files);
+
+        // TODO: redirect to new page
+        return "TODO: redirect to new page";
+    }
+
+    @RequestMapping("multifileUpdate")
+    @ResponseBody
+    public String updateProductImages(@RequestParam("fileName")List<MultipartFile> files, @RequestParam("productID") List<String> productIDs) {
+        fileService.updateProductImages(productIDs, files);
 
         // TODO: redirect to new page
         return "TODO: redirect to new page";
