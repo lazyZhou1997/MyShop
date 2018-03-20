@@ -79,10 +79,14 @@ public class ExceptionHandle {
         return null;
     }
 
-
+    /**
+     * 处理购物车相关异常
+     * @param request
+     * @param e
+     * @return
+     */
     @ExceptionHandler(CartException.class)
     public String handleCartException(HttpServletRequest request, ProductException e) {
-
         return null;
     }
 
@@ -94,6 +98,17 @@ public class ExceptionHandle {
      */
     @ExceptionHandler(OrderServiceException.class)
     public String handleOrderServiceException(HttpServletRequest request,OrderServiceException e){
+        return null;
+    }
+
+    /**
+     * 处理商品相关异常
+     * @param request
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(AddressException.class)
+    public String handleAddressException(HttpServletRequest request, AddressException e) {
         return null;
     }
 }
