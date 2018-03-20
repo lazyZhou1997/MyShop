@@ -1983,7 +1983,13 @@ h2.title {
   border-bottom: 1px solid #F7F7F0;
 }
 
+.table tbody tr td{
+  vertical-align: middle;
+}
 
+tbody tr td{
+  vertical-align: middle;
+}
 
 
 /*************************
