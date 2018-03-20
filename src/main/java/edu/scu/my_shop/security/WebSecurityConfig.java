@@ -44,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests().antMatchers("/registerpage",
                 "/file","/fileUpload", "/multifile", "/multifileUpload", "/multifileUpdate",//FIXME: add proper authority
+                "/message", "/serverMessage", "/sendMessage","/send",//FIXME: add proper authority
                 "/register",
                 "/loginpage",
                 "/",

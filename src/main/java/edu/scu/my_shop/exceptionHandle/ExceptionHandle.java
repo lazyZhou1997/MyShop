@@ -113,12 +113,24 @@ public class ExceptionHandle {
     }
 
     /**
+     * 处理消息相关异常
+     * @param request
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(MessageException.class)
+    public String handleMessageException(HttpServletRequest request, MessageException e) {
+        return null;
+    }
+
+     /**
      * 处理分类相关的异常
      * @param request
      * @param e
      * @return
      */
     public String handleCategoryServiceException(HttpServletRequest request,CategoryServiceException e){
+ 
         return null;
     }
 }
