@@ -8,7 +8,7 @@ function checkUser() {
         return false;
     }
     else if (!userpsw) {
-        swal("未输入密码,请重试");
+        swal("未输入密码，请重试");
         return false;
     }
 }

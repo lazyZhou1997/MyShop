@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 改变用户信息
@@ -51,11 +52,12 @@ public class ChangeUserInfoController {
      * 获取用户信息
      * @return
      */
+    @ResponseBody
     @GetMapping("/getUserInfo")
     public Result getUserInfo(){
 
         //获取当前用户信息
-        SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext();
+        SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         //当前用户
         User user = new User();
         user.setUserId(userDetails.getUserId());

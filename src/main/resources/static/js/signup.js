@@ -15,9 +15,7 @@ function checkUser() {
     if (!userpsw) {
         swal("未输入密码，请重试");
         return false;
-    }
-
-    if(userpsw!=userpsw2){
+Y    if(userpsw!=userpsw2){
         swal("密码不一致","您两次输入的密码似乎不一样，请重新输入","error");
         return false;
     }
