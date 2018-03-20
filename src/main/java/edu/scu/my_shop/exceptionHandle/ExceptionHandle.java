@@ -79,8 +79,17 @@ public class ExceptionHandle {
         return null;
     }
 
+    /**
+     * 处理购物车相关异常
+     * @param request
+     * @param e
+     * @return
+     */
     @ExceptionHandler(CartException.class)
     public String handleCartException(HttpServletRequest request, ProductException e) {
+        return null;
+    }
+
     /**
      * 处理订单相关异常
      * @param request
