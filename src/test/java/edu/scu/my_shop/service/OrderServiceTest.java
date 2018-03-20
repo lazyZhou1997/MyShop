@@ -82,4 +82,12 @@ public class OrderServiceTest {
         orderService.acceptOrderByOrderId("cfb58774-4e4d-40f4-9e1e-e46b4bfe1c2b");
     }
 
+    /**
+     * 测试管理员取消订单，测试通过
+     * @throws Exception
+     */
+    @Test
+    public void testCancelOrderByOrderId() throws Exception{
+        orderService.cancelOrderByOrderId("cfb58774-4e4d-40f4-9e1e-e46b4bfe1c2b");
+    }
 } 

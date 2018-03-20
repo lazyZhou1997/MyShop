@@ -39,7 +39,7 @@ public class ChangeUserInfoController {
     public String changeUserInfo(User user){
 
         //判断输入的用户信息是否合法
-        SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext();
+        SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         //设置用户userID
         user.setUserId(userDetails.getUserId());
 

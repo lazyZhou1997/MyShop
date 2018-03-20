@@ -206,6 +206,35 @@ public class OrderService {
      * TODO:未完成
      */
     public void cancelOrderByOrderId(String orderId){
+        //检查输入
+        if (null == orderId) {
+            throw new OrderServiceException(OrderServiceException.INVALID_INPUT_MESSAGE, OrderServiceException.INVALID_INPUT);
+        }
 
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        OrderMapper orderMapper  = sqlSession.getMapper(OrderMapper.class);
+
+        //查询订单
+        Order order = orderMapper.selectByPrimaryKey(orderId);
+        if (null==order){
+            throw new OrderServiceException(OrderServiceException.NO_ORDERS_MESSAGE,OrderServiceException.NO_ORDERS);
+        }
+
+        //判断订单是否可以取消，在运送中或者已经取消、完成的订单不能取消
+        if (ORDER_STATUS_CANCELED.equals(order.getOrderStatus()) ||
+                ORDER_STATUS_ON_WAY.equals(order.getOrderStatus()) ||
+                ORDER_STATUS_FINISH.equals(order.getOrderStatus())) {
+            throw new OrderServiceException(OrderServiceException.ORDER_CANNT_CANCEL_MESSAGE, OrderServiceException.ORDER_CANNT_CANCEL);
+        }
+
+        //如果已经付款
+        if (ORDER_STATUS_HAS_PAYMENT.equals(order.getOrderStatus())) {
+            //FIXME:退款
+            System.out.println("退款");
+        }
+
+        //设置订单状态为取消
+        order.setOrderStatus(ORDER_STATUS_CANCELED);
+        orderMapper.updateByPrimaryKeySelective(order);
     }
 }

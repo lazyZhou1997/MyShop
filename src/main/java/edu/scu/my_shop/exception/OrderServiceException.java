@@ -14,7 +14,7 @@ public class OrderServiceException extends RuntimeException{
     public static String ORDER_CANNT_CANCEL_MESSAGE = "订单不能取消";
     public static String NO_AUTHORITY_MESSAGE = "权限不足";
     public static String NO_ORDERS_MESSAGE = "没有订单";
-    public static String NO_PAY_MESSAGE = "订单未支付，不能接收";
+    public static String NO_PAY_MESSAGE = "订单不处于已付款状态，不能接收";
 
     private int code;
 
