@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Message</title>
+    <script type="text/javascript">
+        if (!window.EventSource) {
+            alert('no SSE');
+        }
+        var source = new EventSource('serverMessage');
+        var str = "";
+        source.addEventListener('message', function (e) {
+            str += new Date().toDateString() + ": " + e.data + "<br/>";
+            document.getElementById("message-response").innerHTML = str;
+        });
+
+        source.addEventListener('open', function (e) {
+            document.getElementById("status").innerHTML = "connected"
+        });
+
+        source.addEventListener('error', function (e) {
+            document.getElementById("status").innerHTML = e.readyState;
+        });
+    </script>
+</head>
+<body>
+    <p>Messages from server:</p>
+    <div id="status">waiting</div>
+    <div id="message-response"></div>
+</body>
+</html>
