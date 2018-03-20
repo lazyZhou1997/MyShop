@@ -100,4 +100,15 @@ public class ExceptionHandle {
     public String handleOrderServiceException(HttpServletRequest request,OrderServiceException e){
         return null;
     }
+
+    /**
+     * 处理商品相关异常
+     * @param request
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(AddressException.class)
+    public String handleAddressException(HttpServletRequest request, AddressException e) {
+        return null;
+    }
 }
