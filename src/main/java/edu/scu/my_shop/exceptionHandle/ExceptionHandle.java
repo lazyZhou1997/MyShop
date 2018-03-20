@@ -111,4 +111,15 @@ public class ExceptionHandle {
     public String handleAddressException(HttpServletRequest request, AddressException e) {
         return null;
     }
+
+    /**
+     * 处理消息相关异常
+     * @param request
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(MessageException.class)
+    public String handleMessageException(HttpServletRequest request, MessageException e) {
+        return null;
+    }
 }
