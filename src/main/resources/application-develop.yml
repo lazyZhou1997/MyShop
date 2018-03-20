@@ -33,3 +33,6 @@ spring:
 mybatis:
   mapperlocations: /mapper/**Mapper.xml
   type-aliases-package: edu.scu.my_shop.entity
+logging:
+  file: test.log
+
