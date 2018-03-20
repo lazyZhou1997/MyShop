@@ -62,7 +62,7 @@ public class ChangeUserInfoController {
         User user = new User();
         user.setUserId(userDetails.getUserId());
         user.setHeadImg(userDetails.getHeadImg());
-        user.setUserName(userDetails.getUsername());
+        user.setUserName(userDetails.getUserName());
         user.setBirthday(userDetails.getBirthday());
 
         //封装当前用户
