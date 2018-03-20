@@ -63,7 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(loginSuccessHandler) //登陆成功处理
                 .failureUrl("/fail")
                 .failureForwardUrl("/fail").permitAll()//登录失败页面跳转
-                .defaultSuccessUrl("/index")//登录成功跳转页面
+                .defaultSuccessUrl("/userInfoPage")//登录成功跳转页面
                 .and()
                 .rememberMe() //登陆后记住用户，下次自动登录，数据库中必须存在名为persistent_logins的表
                 .tokenValiditySeconds(1209600);

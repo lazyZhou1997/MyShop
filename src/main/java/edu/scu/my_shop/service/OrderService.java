@@ -8,6 +8,7 @@ import edu.scu.my_shop.exception.OrderServiceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -88,7 +89,7 @@ public class OrderService {
 
 
     /**
-     * 普通用户取消自己的订单，如果订单已经运送，则不能取消
+     * 普通用户取消自己的订单，如果订单已经运送、取消或者完成，则不能取消
      *
      * @param userId
      * @param orderId
@@ -106,9 +107,10 @@ public class OrderService {
         //查询订单
         Order order = orderMapper.selectByPrimaryKey(orderId);
 
-        //判断订单是否可以取消，在运送中或者已经取消的订单不能取消
+        //判断订单是否可以取消，在运送中或者已经取消、完成的订单不能取消
         if (ORDER_STATUS_CANCELED.equals(order.getOrderStatus()) ||
-                ORDER_STATUS_ON_WAY.equals(order.getOrderStatus())) {
+                ORDER_STATUS_ON_WAY.equals(order.getOrderStatus()) ||
+                ORDER_STATUS_FINISH.equals(order.getOrderStatus())) {
             throw new OrderServiceException(OrderServiceException.ORDER_CANNT_CANCEL_MESSAGE, OrderServiceException.ORDER_CANNT_CANCEL);
         }
 
@@ -156,12 +158,54 @@ public class OrderService {
         List<Order> orders = orderMapper.selectByExample(orderExample);
 
         //判断结果是否为空
-        if (orders.isEmpty()){
-            throw new OrderServiceException(OrderServiceException.NO_ORDERS_MESSAGE,OrderServiceException.NO_ORDERS);
+        if (orders.isEmpty()) {
+            throw new OrderServiceException(OrderServiceException.NO_ORDERS_MESSAGE, OrderServiceException.NO_ORDERS);
         }
 
         return orders;
     }
 
+    /**
+     * 管理员接收用户的订单（当前仅当订单已付款），订单状态变为“正在运送”状态
+     *
+     * @param orderId
+     */
+    public void acceptOrderByOrderId(String orderId) {
 
+        //检查输入
+        if (null == orderId) {
+
+            throw new OrderServiceException(OrderServiceException.INVALID_INPUT_MESSAGE, OrderServiceException.INVALID_INPUT);
+        }
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        OrderMapper orderMapper  = sqlSession.getMapper(OrderMapper.class);
+
+        //查询订单
+        Order order = orderMapper.selectByPrimaryKey(orderId);
+        if (null==order){
+            throw new OrderServiceException(OrderServiceException.NO_ORDERS_MESSAGE,OrderServiceException.NO_ORDERS);
+        }
+
+        //如果订单状态不是已付款状态，则抛出异常
+        if (!ORDER_STATUS_HAS_PAYMENT.equals(order.getOrderStatus())){
+
+            throw new OrderServiceException(OrderServiceException.NO_PAY_MESSAGE,OrderServiceException.NO_PAY);
+        }
+
+        //更新订单状态为正在运送
+        order.setOrderStatus(ORDER_STATUS_ON_WAY);
+        orderMapper.updateByPrimaryKeySelective(order);
+
+        return;
+    }
+
+    /**
+     * 管理员取消用户订单，订单状态变为"已取消"状态
+     * @param orderId
+     * TODO:未完成
+     */
+    public void cancelOrderByOrderId(String orderId){
+
+    }
 }
