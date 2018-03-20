@@ -1,7 +1,9 @@
 package edu.scu.my_shop.controller;
 
+import edu.scu.my_shop.entity.SecurityUser;
 import edu.scu.my_shop.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,13 +41,14 @@ public class FileUploadController {
      * @return
      */
     @RequestMapping("fileUpload")
-    @ResponseBody
-    public String uploadUserImage(@RequestParam("fileName") MultipartFile file, @RequestParam("userID") String userID){
+    public String uploadUserImage(@RequestParam("fileName") MultipartFile file){
+        SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userID = userDetails.getUserId();
         fileService.uploadUserImage(userID, file);
 
-        // TODO: redirect to new page
-        return "TODO: redirect to new page";
+        return "account";
     }
+
 
     @RequestMapping("multifileUpload")
     @ResponseBody

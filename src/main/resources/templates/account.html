@@ -84,6 +84,9 @@
 			font-weight: normal;
 			background-color: white;
 		}
+		#choose-image{
+			display: none;
+		}
 
     </style>
 </head><!--/head-->
@@ -229,11 +232,13 @@
 				<div class="col-sm-8 tab-content">
 					<div class="tab-pane fade active in login-form" id="user-info"><!--login form-->
 						<h2>用户信息修改</h2>
-						<form action="#">
 							<div>
-								<label>头像</label>
-								<image id="user-info-image" src="images/head/boy.jpg" class="img-responsive img-circle center-block" height="100" width="100"/>
+							<label>头像</label>
+							<image id="user-info-image" src="images/head/boy.jpg" class="img-responsive img-circle center-block" height="100" width="100">
+								<form method="post" id="submit-image" action="/fileUpload" enctype="multipart/form-data"><input type="file" id="choose-image" name="fileName"/></form>
+							</image>
 							</div>
+						<form action="#">
 							<div>
 								<label>用户名</label>
 								<input id="user-info-name" type="text" class="form-control" placeholder="用户名" />
@@ -595,5 +600,6 @@
     <script src="js/main.js"></script>
 	<script src="js/account.js"></script>
 	<script src="js/sweetalert.js"></script>
+	<script src="js/ajaxfileupload.js"></script>
 </body>
 </html>

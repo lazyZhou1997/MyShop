@@ -4,6 +4,7 @@ import edu.scu.my_shop.entity.SecurityUser;
 import edu.scu.my_shop.entity.User;
 import edu.scu.my_shop.result.Result;
 import edu.scu.my_shop.service.ChangeUserInfoService;
+import edu.scu.my_shop.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,8 @@ public class ChangeUserInfoController {
     @Autowired
     private ChangeUserInfoService changeUserInfoService;
 
+    @Autowired
+    private FileService fileService;
     /**
      * 跳转到用户信息页面
      * @return
@@ -61,7 +64,7 @@ public class ChangeUserInfoController {
         //当前用户
         User user = new User();
         user.setUserId(userDetails.getUserId());
-        user.setHeadImg(userDetails.getHeadImg());
+        user.setHeadImg(fileService.getUserImageURL(userDetails.getUserId()));
         user.setUserName(userDetails.getUserName());
         user.setBirthday(userDetails.getBirthday());
 

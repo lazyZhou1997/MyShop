@@ -39,3 +39,11 @@ function check() {
  }
 
 }
+
+$('#user-info-image').click(function () {
+    $('#choose-image').trigger('click');
+})
+
+$('#choose-image').change(function () {
+    $('#submit-image').submit();
+})
