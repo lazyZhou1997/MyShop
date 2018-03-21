@@ -41,6 +41,8 @@ function check() {
 
 }
 
+
+//上传图片功能
 $('#user-info-image').click(function () {
     $('#choose-image').trigger('click');
 })
@@ -74,6 +76,7 @@ $('#choose-image').change(function () {
         //         });
         // });
     })
+
 
 //订单信息
 // <tr>
@@ -224,3 +227,31 @@ $(function () {
                 $('#user-notification').append(div);
             }
 })
+
+
+//js实现标签栏跳转至对应的窗口
+    $(function () {
+        $('#shop-menu > li').click(function () {
+            //     $('#shop-menu2 > li .active').removeClass('active');
+            //     console.log($('li .active'));
+            $('#shop-menu2 > li').each(function () {
+                if($(this).hasClass('active')){
+                    $(this).removeClass('active');
+                }
+            })
+            $('.tab-content > div').each(function () {
+                if($(this).hasClass('active')){
+                    $(this).removeClass('active');
+                }
+            })
+
+            var id = $(this).children('a').attr('href');
+                $('#shop-menu2 > li > a').each(function () {
+                    if ($(this).attr('href') == id) {
+                        $(this).parent().addClass("active");
+                        $(id).addClass("active");
+                    }
+                })
+            // })
+        })
+    })
