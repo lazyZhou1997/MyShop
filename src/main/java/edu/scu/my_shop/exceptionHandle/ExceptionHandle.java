@@ -133,4 +133,15 @@ public class ExceptionHandle {
  
         return null;
     }
+
+    /**
+     * 处理评论相关的异常
+     * @param request
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(CommentException.class)
+    public String handleCommentException(HttpServletRequest request, CommentException e) {
+        return null;
+    }
 }
