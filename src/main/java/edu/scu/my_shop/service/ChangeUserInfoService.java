@@ -60,4 +60,18 @@ public class ChangeUserInfoService {
         return;
     }
 
+
+    /**
+     * Search for database to check if user exists.
+     * @param userID
+     * @return
+     */
+    public boolean userExists(String userID) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        User user = userMapper.selectByPrimaryKey(userID);
+        sqlSession.close();
+        return user != null;
+    }
+
 }

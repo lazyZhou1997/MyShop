@@ -58,5 +58,10 @@ public class ChangeUserInfoServiceTest {
 
     }
 
-
+    @Test
+    public void userExistsTest() {
+        System.out.println(changeUserInfoService.userExists(null));
+        System.out.println(changeUserInfoService.userExists("Vicent_Chen@yeah.net"));
+        System.out.println(changeUserInfoService.userExists("NOT EXIST"));
+    }
 } 
