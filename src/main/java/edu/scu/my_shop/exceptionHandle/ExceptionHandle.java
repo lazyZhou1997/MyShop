@@ -39,9 +39,13 @@ public class ExceptionHandle {
      * @return
      */
     @ExceptionHandler(ChangeUserInfoException.class)
-    public String handleChangeUserInfoException(HttpServletRequest request, ChangeUserInfoException e){
+    public ModelAndView handleChangeUserInfoException(HttpServletRequest request, ChangeUserInfoException e){
 
-        return null;
+        ModelAndView mav = new ModelAndView();
+        mav.getModelMap().addAttribute("error",e.getMessage());//携带属性
+        mav.setViewName("account");//返回页面
+
+        return mav;
     }
 
     /**
@@ -129,6 +133,7 @@ public class ExceptionHandle {
      * @param e
      * @return
      */
+     @ExceptionHandler({CategoryServiceException.class})
     public String handleCategoryServiceException(HttpServletRequest request,CategoryServiceException e){
  
         return null;

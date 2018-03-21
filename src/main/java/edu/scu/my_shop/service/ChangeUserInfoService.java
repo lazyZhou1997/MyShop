@@ -39,7 +39,7 @@ public class ChangeUserInfoService {
             UserExample userExample = new UserExample();
             userExample.createCriteria().andUserNameEqualTo(user.getUserName());
 
-            if (null!=userMapper.selectByExample(userExample)){
+            if (!userMapper.selectByExample(userExample).isEmpty()){
                 //如果用户名重复，抛出异常
                 throw new ChangeUserInfoException(ChangeUserInfoException.USERNAME_HAS_EXIST_MESSAGE,ChangeUserInfoException.USERNAME_HAS_EXIST);
             }

@@ -8,6 +8,7 @@ import edu.scu.my_shop.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,7 +40,7 @@ public class ChangeUserInfoController {
      * @return
      */
     @PostMapping("/changeUserInfo")
-    public String changeUserInfo(User user){
+    public String changeUserInfo(ModelMap modelMap,User user){
 
         //判断输入的用户信息是否合法
         SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -48,6 +49,8 @@ public class ChangeUserInfoController {
 
         changeUserInfoService.changeUserInfo(user);
 
+        //登录成功处理
+        modelMap.addAttribute("success","修改成功");
         return "account";
     }
 

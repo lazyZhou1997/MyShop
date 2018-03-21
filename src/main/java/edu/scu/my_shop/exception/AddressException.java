@@ -5,6 +5,7 @@ package edu.scu.my_shop.exception;
  */
 public class AddressException extends RuntimeException {
 
+
     public static final int USER_EMPTY = 501;
     public static final int ADDRESS_EMPTY = 502;
     public static final int UNKNOWN_ERROR = 503;

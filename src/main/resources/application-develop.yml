@@ -18,6 +18,9 @@ image:
 spring:
   mvc:
     static-path-pattern: /**
+#  #解决时间差
+#  jackson:
+#    time-zone: GMT+8
 
 
 #      prefix: /
@@ -33,6 +36,4 @@ spring:
 mybatis:
   mapperlocations: /mapper/**Mapper.xml
   type-aliases-package: edu.scu.my_shop.entity
-logging:
-  file: test.log
 
