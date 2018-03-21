@@ -84,10 +84,10 @@
 			font-weight: normal;
 			background-color: white;
 		}
+
 		#choose-image{
 			display: none;
 		}
-
     </style>
 </head><!--/head-->
 
@@ -235,13 +235,13 @@
 							<div>
 							<label>头像</label>
 							<image id="user-info-image" src="images/head/boy.jpg" class="img-responsive img-circle center-block" height="100" width="100">
-								<form method="post" id="submit-image" action="/fileUpload" enctype="multipart/form-data"><input type="file" id="choose-image" name="fileName"/></form>
+								<form method="post" id="submit-image" action="/fileUpload" enctype="multipart/form-data" ><input type="file" id="choose-image" name="fileName"/></form>
 							</image>
 							</div>
-						<form action="#">
+						<form action="/changeUserInfo" method="post">
 							<div>
 								<label>用户名</label>
-								<input id="user-info-name" type="text" class="form-control" placeholder="用户名" />
+								<input id="user-info-name" type="text" class="form-control" placeholder="用户名" name="userName"/>
 							</div>
 							<div>
 								<label>邮箱</label>
@@ -249,11 +249,11 @@
 							</div>
 							<div>
 								<label>生日</label>
-								<input id="user-info-date"  class="form-control" placeholder="2018/1/1" />
+								<input id="user-info-date"  class="form-control" placeholder="2018/1/1" name="birthday"/>
 							</div>
 							<div>
 								<label>密码</label>
-								<input id="user-info-psw1" type="password" class="form-control" placeholder="密码" />
+								<input id="user-info-psw1" type="password" class="form-control" placeholder="密码" name="userPassword"/>
 							</div>
 							<div>
 								<label>确认密码</label>
@@ -277,41 +277,7 @@
 										<td>操作</td>
 									</tr>
 								</thead>
-								<tbody class="text-center">
-									<tr>
-										<td>123456798</td>
-										<td class="order-img">
-											<a href=""><img src="images/cart/one.png" alt=""></a>
-										</td>
-										<td>
-											<h4><a href="">Colorblock Scuba</a></h4>
-											<span>Web ID: 1089772</span>
-										</td>
-										<td>$59</td>
-										<td>1</td>
-										<td>$59</td>
-										<td>已完成</td>
-										<td>
-											<a class="glyphicon glyphicon-trash" href=""></a>
-										</td>
-									</tr>
-									<tr>
-										<td>123456798</td>
-										<td class="order-img">
-											<a href=""><img src="images/cart/one.png" alt=""></a>
-										</td>
-										<td>
-											<h4><a href="">Colorblock Scuba</a></h4>
-											<span>Web ID: 1089772</span>
-										</td>
-										<td>$59</td>
-										<td>1</td>
-										<td>$59</td>
-										<td>已完成</td>
-										<td>
-											<a class="glyphicon glyphicon-trash" href=""></a>
-										</td>
-									</tr>
+								<tbody class="text-center" id="order-info">
 								</tbody>
 							</table>
 						</div>
@@ -376,55 +342,12 @@
 										<td></td>
 									</tr>
 								</thead>
-								<tbody class="text-center">
-									<tr>
-										<td>张三</td>
-										<td>四川省成都市双流县西航港街道</td>
-										<td>四川大学江安校区</td>
-										<td>621107</td>
-										<td>12345678901</td>
-										<td><a href="">修改</a>|<a href="">删除</a></td>
-										<td>默认地址</td>
-									</tr>
-									<tr>
-										<td>张三</td>
-										<td>四川省成都市双流县西航港街道</td>
-										<td>四川大学江安校区</td>
-										<td>621107</td>
-										<td>12345678901</td>
-										<td><a href="">修改</a>|<a href="">删除</a></td>
-										<td></td>
-									</tr>
+								<tbody class="text-center" id="address-info">
 								</tbody>
 							</table>
 						</div>
 					</div>
 					<div class="tab-pane fade in" id="user-notification">
-						<div class="notif">
-							<div class="notif-status col-sm-1 col-md-1">未读</div>
-							<div class="col-sm-11 col-md-11">
-								<div class="notif-head">
-									<span>管理员001，</span>
-									<span>一小时前</span>
-								</div>
-								<div class="notif-body fa-border">
-									<p>前言：近年来,随着留学市场的成熟,人们在考虑留学时越来越理性,不再是人云亦云随大流。许多欧洲小语种国家开始受到青睐,这些国家成本较低，大学免收学费及承认中国的学位而成为近年留学的热门国家。伴随互联网的迅猛发展，欧洲留学凭借它低成本、高回报的特…</p>
-								</div>
-							</div>
-						</div>
-						<div class="notif">
-							<div class="notif-status col-sm-1">未读</div>
-							<div class="col-sm-11">
-								<div class="notif-head">
-									<span>管理员001，</span>
-									<span>一小时前</span>
-								</div>
-								<div class="notif-body fa-border">
-									<p>前言：近年来,随着留学市场的成熟,人们在考虑留学时越来越理性,不再是人云亦云随大流。许多欧洲小语种国家开始受到青睐,这些国家成本较低，大学免收学费及承认中国的学位而成为近年留学的热门国家。伴随互联网的迅猛发展，欧洲留学凭借它低成本、高回报的特…</p>
-								</div>
-							</div>
-
-						</div>
 					</div>
 				</div>
 			</div>
@@ -600,6 +523,25 @@
     <script src="js/main.js"></script>
 	<script src="js/account.js"></script>
 	<script src="js/sweetalert.js"></script>
-	<script src="js/ajaxfileupload.js"></script>
+	<script th:inline="javascript">
+
+        var errormessage = [[${error}]];
+        errorDialog(errormessage);
+
+        var successmessage = [[${success}]];
+        successDialog(successmessage);
+
+        function errorDialog(errormessage) {
+            if (null!=errormessage){
+                swal("",errormessage.toString(),"error");
+            }
+        }
+
+        function successDialog(successmessage) {
+            if (null != successmessage) {
+                swal("",successmessage.toString(),"success");
+            }
+        }
+	</script>
 </body>
 </html>

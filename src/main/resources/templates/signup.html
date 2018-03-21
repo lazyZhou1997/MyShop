@@ -349,22 +349,10 @@
         }
 
         function successDialog(successmessage) {
-            if (null!=successmessage){
-                // swal({
-					// text:successmessage.toString(),
-					// icon:"success",
-					// button:"确定",
-                // }),function () {
-					// window.location.href = "/loginpage" ;
-                // }
-				swal("",successmessage.toString(),"success");
-				$('#confirm').click(function () {
-					window.location.href = '/loginpage';
-                })
-
+            if (null != successmessage) {
+                swal("",successmessage.toString(),"success");
             }
         }
-
     </script>
 
 </body>
