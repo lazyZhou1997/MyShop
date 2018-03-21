@@ -191,6 +191,19 @@ public class ProductService {
     }
 
     /**
+     * Search for database to check whether product exists.
+     * @param productID
+     * @return
+     */
+    public boolean productExists(String productID) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+        Product product = productMapper.selectByPrimaryKey(productID);
+        sqlSession.close();
+        return product != null;
+    }
+
+    /**
      * 根据传入的产品名称进行模糊查询
      * @param productName
      * @param pageNum

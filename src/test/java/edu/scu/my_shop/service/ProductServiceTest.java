@@ -236,4 +236,11 @@ public class ProductServiceTest {
         }
 
     }
+
+    @Test
+    public void productExistsTest() {
+        assertEquals(productService.productExists("87c491c5-c6b8-4254-b142-44cd2343eadf"), true);
+        assertEquals(productService.productExists("false"), false);
+        assertEquals(productService.productExists(null), false);
+    }
 }
