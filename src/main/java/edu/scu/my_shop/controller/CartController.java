@@ -4,10 +4,13 @@ import edu.scu.my_shop.entity.Product;
 import edu.scu.my_shop.entity.SecurityUser;
 import edu.scu.my_shop.entity.User;
 import edu.scu.my_shop.service.CartService;
+import edu.scu.my_shop.service.OrderService;
+import edu.scu.my_shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -20,9 +23,17 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
+    @Autowired
+    private ProductService productService;
+
     @RequestMapping("cart.html")
     public String cart() {
         return "cart";
+    }
+
+    @RequestMapping("payment.html")
+    public String payment() {
+        return "payment";
     }
 
     @RequestMapping("productInCart")
@@ -48,6 +59,36 @@ public class CartController {
         SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = new User(); user.setUserId(userDetails.getUserId());
         cartService.deleteProducts(user, productIDList);
-        return "cart";
+        return "redirect:cart.html";
+    }
+
+    @PostMapping("settleAccount")
+    public ModelAndView createOrder(@RequestParam(value = "productID", required = false)List<String> productIDList,
+                                    @RequestParam(value = "quantity", required = false)List<Integer> productNumberList) {
+        ModelAndView mav = new ModelAndView();
+
+        if (productIDList == null || productIDList.isEmpty() || productNumberList == null || productNumberList.isEmpty()) {
+            mav.setViewName("cart.html");
+            mav.getModelMap().addAttribute("error", "未选中任何商品");
+        }
+        else if (productIDList.size() != productNumberList.size()) {
+            mav.setViewName("cart.html");
+            mav.getModelMap().addAttribute("error", "信息错误");
+        }
+        else {
+            // check if product exists
+            for (String productID : productIDList) {
+                if (!productService.productExists(productID)) {
+                    mav.setViewName("cart.html");
+                    mav.getModelMap().addAttribute("error", "信息错误");
+                    return mav;
+                }
+            }
+
+            mav.getModelMap().addAttribute("productID", productIDList);
+            mav.setViewName("payment.html");
+        }
+
+        return mav;
     }
 }

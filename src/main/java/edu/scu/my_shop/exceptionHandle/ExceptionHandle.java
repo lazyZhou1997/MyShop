@@ -90,6 +90,7 @@ public class ExceptionHandle {
      * @return
      */
     @ExceptionHandler(CartException.class)
+    @ResponseBody
     public String handleCartException(HttpServletRequest request, CartException e) {
         return e.getMessage();
     }
