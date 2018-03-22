@@ -86,6 +86,7 @@ public class CartController {
             }
 
             mav.getModelMap().addAttribute("productID", productIDList);
+            mav.getModelMap().addAttribute("productNumber", productNumberList);
             mav.setViewName("payment.html");
         }
 
