@@ -55,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/webjars/**",
                 "/fail").permitAll()//无需登录认证权限访问
                 .anyRequest().authenticated() //其他所有资源需要认证，登陆后访问
-                .antMatchers("/userInfoPage","/changeUserInfo","/getUserInfo").hasAnyRole()
+                .antMatchers("/userInfoPage","/changeUserInfo","/getUserInfo","/searchProductByName").hasAnyRole()
                 .antMatchers("/admin").hasRole("ADMIN") //登陆之后拥有"ADMIN"权限才能够访问，否则会出现“403”权限不足的提示
                 .and()
                 .formLogin() //表单登陆

@@ -75,8 +75,14 @@ public class ExceptionHandle {
      * @return
      */
     @ExceptionHandler(ProductException.class)
-    public String handleProductException(HttpServletRequest request, ProductException e){
-        return null;
+    public ModelAndView handleProductException(HttpServletRequest request, ProductException e){
+
+        ModelAndView mav = new ModelAndView();
+        mav.getModelMap().addAttribute("error",e.getMessage());//携带属性
+        mav.setViewName("account");//返回页面
+
+        return mav;
+
     }
 
     /**

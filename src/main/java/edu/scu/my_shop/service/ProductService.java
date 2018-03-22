@@ -1,5 +1,6 @@
 package edu.scu.my_shop.service;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import edu.scu.my_shop.dao.ProductMapper;
 import edu.scu.my_shop.dao.SecondCategoryMapper;
@@ -7,6 +8,7 @@ import edu.scu.my_shop.entity.Product;
 import edu.scu.my_shop.entity.ProductExample;
 import edu.scu.my_shop.entity.SecondCategory;
 import edu.scu.my_shop.exception.ProductException;
+import edu.scu.my_shop.result.PageResult;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -214,10 +216,16 @@ public class ProductService {
      * @param pageSize
      * @return
      */
-    public List<Product> searchProductByName(String productName,int pageNum,int pageSize){
+    public PageResult<Product> searchProductByName(String productName, int pageNum, int pageSize){
+
+        //检查输入
+        if (null==productName){
+
+            throw new ProductException(ProductException.INVALID_INPUT_MESSAGE,ProductException.INVALID_INPUT);
+        }
 
         //启动分页
-        PageHelper.startPage(pageNum,pageSize);
+        Page page =PageHelper.startPage(pageNum,pageSize);
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
@@ -235,8 +243,16 @@ public class ProductService {
             throw new ProductException(SEARCH_RESULT_IS_NULL_MESSAGE,ProductException.SEARCH_RESULT_IS_NULL);
         }
 
+        //封装分页结果
+        PageResult<Product> productPageResult = new PageResult<>();
+        productPageResult.setContent(products);//放入某页内容
+        productPageResult.setNumber(page.getPageNum());//第几页
+        productPageResult.setNumberOfElements(page.getPageSize());//当前页的元素个数
+        productPageResult.setTotalElements(page.getTotal());//总个数
+        productPageResult.setTotalPages(page.getPages());//总页数
+
         sqlSession.close();
-        return products;
+        return productPageResult;
     }
 
     /**
