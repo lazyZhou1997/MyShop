@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,8 +27,13 @@ public class CartController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping("cart.html")
+    @RequestMapping("cart")
     public String cart() {
+        return "cart";
+    }
+
+    @RequestMapping("cart.html")
+    public String cartHTML() {
         return "cart";
     }
 
@@ -77,15 +83,18 @@ public class CartController {
         }
         else {
             // check if product exists
+            List<Product> productList = new ArrayList<>();
             for (String productID : productIDList) {
-                if (!productService.productExists(productID)) {
+                Product product = productService.searchProductByID(productID);
+                if (product == null) {
                     mav.setViewName("cart.html");
                     mav.getModelMap().addAttribute("error", "信息错误");
                     return mav;
                 }
+                productList.add(product);
             }
 
-            mav.getModelMap().addAttribute("productID", productIDList);
+            mav.getModelMap().addAttribute("product", productList);
             mav.getModelMap().addAttribute("productNumber", productNumberList);
             mav.setViewName("payment.html");
         }

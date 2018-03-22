@@ -16,16 +16,16 @@ window.onload = function (ev) {
 
 function showProducts(data) {
     var productCount = data.length;
-    var htmlCode = "";
     if (productCount == 0) {
-        alert("nothing");
-        htmlCode += "nothing";// 在这里新增空样式
+        swal("", "购物车为空", "warning");
         return;
     }
     for (var i = 0; i < productCount; i++) {
         var productRow = $(".product-tr-template").clone(true).prependTo("#product-tbody");
         productRow.children(".cart_product").find("img").attr("alt", data[i].productId);
+        // TODO: 跳转至详情页 productRow.children(".cart_product").find("a").attr("href", "详情页?productID=data[i].productId");
         productRow.children(".cart_description").find("a").text(data[i].productName);
+        // TODO: 跳转至详情页 productRow.children(".cart_description").find("a").attr("href", "详情页?productID=data[i].productId");
         productRow.children(".cart_description").find("p").text(data[i].productDescription);
         productRow.children(".cart_price").find("p").text(data[i].productPrice);
         productRow.children(".cart_quantity").find("input").attr("value", data[i].productLeftTotals);
