@@ -102,6 +102,30 @@
             max-width: 50px;
             max-height: 50px;
         }
+        .pagination a {
+            text-decoration: none;
+            border: 1px solid #AAE;
+            color: #15B;
+        }
+
+        .pagination a, .pagination span {
+            display: inline-block;
+            padding: 0.1em 0.4em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .pagination .current {
+            background: #26B;
+            color: #fff;
+            border: 1px solid #AAE;
+        }
+
+        .pagination .current.prev, .pagination .current.next{
+            color:#999;
+            border-color:#999;
+            background:#fff;
+        }
     </style>
 </head>
 <body>
@@ -121,9 +145,9 @@
                     <div class="col-sm-8" style="padding-right: 30px">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="../../../../../account.html?kw=user-info" style="background-color: transparent"><i class="fa fa-user"></i>用户名</a></li>
-                                <li><a href="../../../../../account.html?kw=user-orders" style="background-color: transparent"><i class="fa fa-list-alt"></i> 订单</a></li>
-                                <li><a href="../../../../../account.html?kw=user-notification" style="background-color: transparent"><i class="fa fa-envelope"></i>  消息<span id="notif-no">0</span></a></li>
+                                <li><a href="account.html?kw=user-info" style="background-color: transparent"><i class="fa fa-user"></i>用户名</a></li>
+                                <li><a href="account.html?kw=user-orders" style="background-color: transparent"><i class="fa fa-list-alt"></i> 订单</a></li>
+                                <li><a href="account.html?kw=user-notification" style="background-color: transparent"><i class="fa fa-envelope"></i>  消息<span id="notif-no">0</span></a></li>
                                 <li><a href="login.html" style="background-color: transparent"><i class="fa fa-lock"></i> 登入/出</a></li>
                             </ul>
                         </div>
@@ -200,186 +224,69 @@
 <div class="container">
     <br>
     <br>
-    <h2 class="title text-center">Your Search Results</h2>
+    <h2 class="title text-center" id="test">Your Search Results</h2>
     <br>
-    <div class="row">
-        <div class="tab-content">
+    <div id="hidden-result" style="display: none;"></div>
+    <div id="pageaaa">
+    </div>
+</div>
+</div>
+</div>
+<div class="row">
+    <div class="col-sm-5"></div>
+    <div class="col-sm-3">
+        <ul class="pagination">
+            <!--  <li class="active"><a href="">1</a></li>
+             <li><a href="">2</a></li>
+             <li><a href="">3</a></li>
+            <li><a href="">&raquo;</a></li> -->
+        </ul>
+    </div>
 
-                <div class="col-sm-2">
-                    <div class="product-image-wrapper">
-                        <div class="single-products">
-                            <div class="productinfo text-center">
-                                <a href="#"><img src="images/home/gallery1.jpg" alt="" /></a>
-                                <h2>$56</h2>
-                                <p>Easy Polo Black Edition</p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-sm-2">
-                    <div class="product-image-wrapper">
-                        <div class="single-products">
-                            <div class="productinfo text-center">
-                                <a href="#"><img src="images/home/gallery2.jpg" alt="" /></a>
-                                <h2>$56</h2>
-                                <p>Easy Polo Black Edition</p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="product-image-wrapper">
-                        <div class="single-products">
-                            <div class="productinfo text-center">
-                                <a href="#"><img src="images/home/gallery3.jpg" alt="" /></a>
-                                <h2>$56</h2>
-                                <p>Easy Polo Black Edition</p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="product-image-wrapper">
-                        <div class="single-products">
-                            <div class="productinfo text-center">
-                                <a href="#"><img src="images/home/gallery4.jpg" alt="" /></a>
-                                <h2>$56</h2>
-                                <p>Easy Polo Black Edition</p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="product-image-wrapper">
-                        <div class="single-products">
-                            <div class="productinfo text-center">
-                                <a href="#"><img src="images/home/gallery4.jpg" alt="" /></a>
-                                <h2>$56</h2>
-                                <p>Easy Polo Black Edition</p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            <div class="col-sm-2">
-                <div class="product-image-wrapper">
-                    <div class="single-products">
-                        <div class="productinfo text-center">
-                            <a href="#"> <img src="images/home/gallery1.jpg" alt="" /></a>
-                            <h2>$56</h2>
-                            <p>Easy Polo Black Edition</p>
-                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!--finished the first row of div-->
-
-        <!--<div class="row">-->
-            <!--<div class="tab-content">-->
-                <!--<div class="col-sm-2">-->
-                    <!--<div class="product-image-wrapper">-->
-                        <!--<div class="single-products">-->
-                            <!--<div class="productinfo text-center">-->
-                                <!--<a href="#"><img src="images/home/gallery2.jpg" alt="" /></a>-->
-                                <!--<h2>$56</h2>-->
-                                <!--<p>Easy Polo Black Edition</p>-->
-                                <!--<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
-                            <!--</div>-->
-
-
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-sm-2">-->
-                    <!--<div class="product-image-wrapper">-->
-                        <!--<div class="single-products">-->
-                            <!--<div class="productinfo text-center">-->
-                                <!--<a href="#"><img src="images/home/gallery3.jpg" alt="" /></a>-->
-                                <!--<h2>$56</h2>-->
-                                <!--<p>Easy Polo Black Edition</p>-->
-                                <!--<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
-                            <!--</div>-->
-
-
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <div class="row">
-            <div class="col-sm-5"></div>
-            <div class="col-sm-3">
-                 <ul class="pagination">
-                     <li class="active"><a href="">1</a></li>
-                     <li><a href="">2</a></li>
-                     <li><a href="">3</a></li>
-                    <li><a href="">&raquo;</a></li>
-                </ul>
-            </div>
-
-        </div>
+</div>
 </div>
 <!-- finished the body -->
 
 
 
-   <!--Footer-->
-    <footer id="footer">
+<!--Footer-->
+<footer id="footer">
 
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-                    <p class="pull-right">Designed by <span><a href="#">Our Team</a></span></p>
-                </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+                <p class="pull-right">Designed by <span><a href="#">Our Team</a></span></p>
+            </div>
 
             <!-- the row of footer below the copyright row -->
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="contactinfo">
-                            <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
-                            </ul>
-                        </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="contactinfo">
+                        <ul class="nav nav-pills">
+                            <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                        </ul>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="social-icons pull-right">
-                            <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="social-icons pull-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-
         </div>
-        
-    </footer>
+
+    </div>
+
+</footer>
 <!--/Footer-->
 
 
@@ -389,5 +296,69 @@
 <script src="js/price-range.js"></script>
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/main.js"></script>
+<script src="js/jquery.page.js"></script>
+<script type="text/javascript">
+    // $(function () {
+    //         for(var i = 0; i<10;i++) {
+    //         var div = "";
+    //         div += "<div class=\"col-sm-2\">";
+    //         div += "<div class=\"product-image-wrapper\">";
+    //         div += " <div class=\"single-products\">";
+    //         div += "<div class=\"productinfo text-center\">";
+    //         div += "<a href=\"#\"><img src=\"images/home/gallery3.jpg\" alt=\"\" /></a>";
+    //         div += "<h2>" + "213" + "</h2>";
+    //         div += "<p>" + "nonono" + " </p>";
+    //         div += "<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>";
+    //         div += "</div>";
+    //         $('.tab-content').append(div);
+    //     }
+    // })
+    $(function(){
+        var items_no=12;
+        var data_length = 80;
+        var pages = Math.ceil(data_length/items_no);
+
+        for(var i = 0; i<pages;i++){
+            var div = "<div class=\"row page\">";
+            div += "<div class=\"tab-content\">";
+            var ceiling = items_no*(i+1) > data_length ? data_length : items_no*(i+1);
+            for(var j =items_no*i; j<ceiling;j++){
+                div += "<div class=\"col-sm-2\">";
+                div += "<div class=\"product-image-wrapper\">";
+                div += "<div class=\"single-products\">";
+                div += "<div class=\"productinfo text-center\">";
+                div += "<a href=\"#\"><img src=\"images/home/gallery3.jpg\" alt=\"\" /></a>";
+                div += "<h2>" + j + "</h2>";
+                div += "<p>" + "nonono" + " </p>";
+                div += "<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>";
+                div += "</div>";
+                div += "</div>";
+                div += "</div>";
+                div += "</div>";
+            }
+            div += "</div>";
+            div += "</div>";
+            $('#hidden-result').append(div);
+        }
+        var initPagination = function(){
+            var num = $('#hidden-result div.col-sm-2').length;
+            console.log(num);
+            $('.pagination').pagination(num,{
+                num_edge_entries: 1, //边缘页数
+                num_display_entries: 2, //主体页数
+                callback: pageselectCallback,
+                items_per_page:12//每页显示1项
+            });
+        }();
+
+        function pageselectCallback(page_index,jq){
+            // var new_content = $("#hidden-result div.col-sm-2:eq("+page_index+")").clone();
+            var new_content = $("#hidden-result div.page:eq("+page_index+")").clone();
+            $('#pageaaa').empty().append(new_content);
+            return false;
+        }
+
+    });
+</script>
 </body>
 </html>
