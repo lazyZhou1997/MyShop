@@ -185,13 +185,7 @@ public class ProductServiceTest {
      */
     @Test
     public void getAllProductsTest() {
-        List<Product> productList = productService.getAllProducts(1,3);
-        System.out.println(productList.size());
-        for (Product product : productList) {
-            System.out.println(product.getProductName());
-        }
-
-        productList = productService.getAllProducts(2,3);
+        List<Product> productList = productService.getAllProducts();
         System.out.println(productList.size());
         for (Product product : productList) {
             System.out.println(product.getProductName());
@@ -228,12 +222,12 @@ public class ProductServiceTest {
     @Test
     public void testSearchProductByCategory(){
 
-//        List<Product> products = productService.searchProductByName("kajsnxaksajskx",2,2);
-//
-//        for (Product product:
-//                products) {
-//            System.out.println(product.getProductId());
-//        }
+        List<Product> products = productService.searchProductByCategory("kajsnxaksajskx");
+
+        for (Product product:
+                products) {
+            System.out.println(product.getProductId());
+        }
 
     }
 

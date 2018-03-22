@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -80,6 +81,7 @@ public class ProductService {
      * Duplicate insert will be treated as two different insert with different product id.
      * @param product
      */
+    @Transactional
     public void insertProduct(Product product) {
 
         validateProductExceptID(product);
@@ -101,6 +103,7 @@ public class ProductService {
      * Theoretically pid cannot be null, otherwise it will not compile.
      * @param pid
      */
+    @Transactional
     public void deleteProduct(String pid) {
         // validate product id
         if (pid == null || pid.equals("")) {
@@ -122,6 +125,7 @@ public class ProductService {
      * Theoretically product cannot be null, otherwise it will not compile.
      * @param product
      */
+    @Transactional
     public void deleteProduct(Product product) {
         // validate product data
         if (product == null) {
@@ -137,6 +141,7 @@ public class ProductService {
      * No need to validate every data since it update selectively.
      * @param product
      */
+    @Transactional
     public void updateProduct(Product product) {
 
         // validate product data
@@ -161,9 +166,7 @@ public class ProductService {
      * Selete all product records in database.
      * @return
      */
-    public List<Product> getAllProducts(int pageNum,int pageSize) {
-        //启动分页
-        PageHelper.startPage(pageNum,pageSize);
+    public List<Product> getAllProducts() {
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
@@ -292,14 +295,10 @@ public class ProductService {
     /**
      * 分类查找商品
      * @param category
-     * @param pageNum
-     * @param pageSize
      * @return
      */
-    public List<Product> searchProductByCategory(String category,int pageNum,int pageSize){
+    public List<Product> searchProductByCategory(String category){
 
-        //启动分页
-        PageHelper.startPage(pageNum,pageSize);
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);

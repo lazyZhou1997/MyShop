@@ -99,7 +99,8 @@
 					<!--search box -->
 					<div class="col-sm-5">
 						<div class="search_box">
-							<input type="text" placeholder="在这里搜索任何项目"/>
+							<input type="text" placeholder="在这里搜索任何项目" id="search-area" name="productName"/>
+							<!--<form action="/searchProductByName" method="post"><input type="text" placeholder="在这里搜索任何项目" id="search-area" name="productName"/></form>-->
 						</div>
 						<div class="search_hint_box">
 							<div class="table-responsive search_hint">
@@ -422,5 +423,14 @@
             }
         }
     </script>
+	<script type="text/javascript">
+        $('#search-area').keydown(function (e) {
+            if (13 == e.which) {
+                console.log("test");
+                var url = "search-results.html?kw=" + $('#search-area').val();
+                window.location.href = url;
+            }
+        })
+	</script>
 </body>
 </html>

@@ -167,7 +167,7 @@
                     </div>
                     <div class="col-sm-2 users-cart">
                         <div class="cart-logo">
-                            <a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart <span>0</span></a>
+                            <a href="cart.html"><i class="fa fa-shopping-cart"></i> 购物车 <span>0</span></a>
                         </div>
                         <div class="users-cart-info">
                             <div style="display: none;">购物车中还没有商品，赶紧选购吧！</div>
@@ -297,68 +297,106 @@
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/main.js"></script>
 <script src="js/jquery.page.js"></script>
+<script src="js/search-result.js"></script>
 <script type="text/javascript">
     // $(function () {
-    //         for(var i = 0; i<10;i++) {
-    //         var div = "";
-    //         div += "<div class=\"col-sm-2\">";
-    //         div += "<div class=\"product-image-wrapper\">";
-    //         div += " <div class=\"single-products\">";
-    //         div += "<div class=\"productinfo text-center\">";
-    //         div += "<a href=\"#\"><img src=\"images/home/gallery3.jpg\" alt=\"\" /></a>";
-    //         div += "<h2>" + "213" + "</h2>";
-    //         div += "<p>" + "nonono" + " </p>";
-    //         div += "<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>";
+    //     var url = decodeURI(window.location.href);
+    //     var argsIndex = url.split("?kw=");
+    //     var arg = argsIndex[1];
+    //     console.log(arg);
+    //     $.post("/searchProductByName",{
+    //         productName:arg
+    //     },function (data) {
+    //         console.log(data);
+    //         var items_no = 12;
+    //         var data_length = data.length;
+    //         var pages = Math.ceil(data_length/items_no);
+    //         for(var i=0; i<pages;i++){
+    //             var div = "<div class=\"row page\">";
+    //             div += "<div class=\"tab-content\">";
+    //             var ceiling = items_no*(i+1) > data_length ? data_length : items_no*(i+1);
+    //             for(var j =items_no*i; j<ceiling;j++){
+    //                 div += "<div class=\"col-sm-3\">";
+    //                 div += "<div class=\"product-image-wrapper\">";
+    //                 div += "<div class=\"single-products\">";
+    //                 div += "<div class=\"productinfo text-center\">";
+    //                 div += "<a href=\"#\"><img src=\"images/home/gallery3.jpg\" alt=\"\" /></a>";
+    //                 div += "<h2>" + data[j].productPrice + "</h2>";
+    //                 div += "<p>" + data[j].productName + " </p>";
+    //                 div += "<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>";
+    //                 div += "</div>";
+    //                 div += "</div>";
+    //                 div += "</div>";
+    //                 div += "</div>";
+    //             }
+    //             div += "</div>";
+    //             div += "</div>";
+    //             $('#hidden-result').append(div);
+    //         }
+    //         var initPagination = function(){
+    //             var num = $('#hidden-result div.col-sm-3').length;
+    //             console.log(num);
+    //             $('.pagination').pagination(num,{
+    //                 num_edge_entries: 1, //边缘页数
+    //                 num_display_entries: 2, //主体页数
+    //                 callback: pageselectCallback,
+    //                 items_per_page:12//每页显示1项
+    //             });
+    //         }();
+    //
+    //         function pageselectCallback(page_index,jq){
+    //             var new_content = $("#hidden-result div.page:eq("+page_index+")").clone();
+    //             $('#pageaaa').empty().append(new_content);
+    //             return false;
+    //         }
+    //     });
+    // });
+    // $(function(){
+    //     var items_no=12;
+    //     var data_length = 80;
+    //     var pages = Math.ceil(data_length/items_no);
+    //
+    //     for(var i = 0; i<pages;i++){
+    //         var div = "<div class=\"row page\">";
+    //         div += "<div class=\"tab-content\">";
+    //         var ceiling = items_no*(i+1) > data_length ? data_length : items_no*(i+1);
+    //         for(var j =items_no*i; j<ceiling;j++){
+    //             div += "<div class=\"col-sm-3\">";
+    //             div += "<div class=\"product-image-wrapper\">";
+    //             div += "<div class=\"single-products\">";
+    //             div += "<div class=\"productinfo text-center\">";
+    //             div += "<a href=\"#\"><img src=\"images/home/gallery3.jpg\" alt=\"\" /></a>";
+    //             div += "<h2>" + j + "</h2>";
+    //             div += "<p>" + "nonono" + " </p>";
+    //             div += "<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>";
+    //             div += "</div>";
+    //             div += "</div>";
+    //             div += "</div>";
+    //             div += "</div>";
+    //         }
     //         div += "</div>";
-    //         $('.tab-content').append(div);
+    //         div += "</div>";
+    //         $('#hidden-result').append(div);
     //     }
-    // })
-    $(function(){
-        var items_no=12;
-        var data_length = 80;
-        var pages = Math.ceil(data_length/items_no);
-
-        for(var i = 0; i<pages;i++){
-            var div = "<div class=\"row page\">";
-            div += "<div class=\"tab-content\">";
-            var ceiling = items_no*(i+1) > data_length ? data_length : items_no*(i+1);
-            for(var j =items_no*i; j<ceiling;j++){
-                div += "<div class=\"col-sm-2\">";
-                div += "<div class=\"product-image-wrapper\">";
-                div += "<div class=\"single-products\">";
-                div += "<div class=\"productinfo text-center\">";
-                div += "<a href=\"#\"><img src=\"images/home/gallery3.jpg\" alt=\"\" /></a>";
-                div += "<h2>" + j + "</h2>";
-                div += "<p>" + "nonono" + " </p>";
-                div += "<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>";
-                div += "</div>";
-                div += "</div>";
-                div += "</div>";
-                div += "</div>";
-            }
-            div += "</div>";
-            div += "</div>";
-            $('#hidden-result').append(div);
-        }
-        var initPagination = function(){
-            var num = $('#hidden-result div.col-sm-2').length;
-            console.log(num);
-            $('.pagination').pagination(num,{
-                num_edge_entries: 1, //边缘页数
-                num_display_entries: 2, //主体页数
-                callback: pageselectCallback,
-                items_per_page:12//每页显示1项
-            });
-        }();
-
-        function pageselectCallback(page_index,jq){
-            // var new_content = $("#hidden-result div.col-sm-2:eq("+page_index+")").clone();
-            var new_content = $("#hidden-result div.page:eq("+page_index+")").clone();
-            $('#pageaaa').empty().append(new_content);
-            return false;
-        }
-
-    });
+    //     var initPagination = function(){
+    //         var num = $('#hidden-result div.col-sm-3').length;
+    //         console.log(num);
+    //         $('.pagination').pagination(num,{
+    //             num_edge_entries: 1, //边缘页数
+    //             num_display_entries: 2, //主体页数
+    //             callback: pageselectCallback,
+    //             items_per_page:12//每页显示1项
+    //         });
+    //     }();
+    //
+    //     function pageselectCallback(page_index,jq){
+    //         // var new_content = $("#hidden-result div.col-sm-2:eq("+page_index+")").clone();
+    //         var new_content = $("#hidden-result div.page:eq("+page_index+")").clone();
+    //         $('#pageaaa').empty().append(new_content);
+    //         return false;
+    //     }
+    //
+    // });
 </script>
 </body>
 </html>
