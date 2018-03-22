@@ -83,6 +83,7 @@ public class AddressService {
     /**
      * Update address in database.
      * Automatically ignore address that not exist.
+     *
      * @param address
      */
     @Transactional
@@ -91,6 +92,16 @@ public class AddressService {
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         AddressMapper addressMapper = sqlSession.getMapper(AddressMapper.class);
+
+        if (address.getIsDefaultAddress()) {
+            Address setNotDefault = new Address();
+            setNotDefault.setIsDefaultAddress(false);
+
+            AddressExample addressExample = new AddressExample();
+            addressExample.createCriteria().andUserIdEqualTo(address.getUserId());
+            addressMapper.updateByExampleSelective(setNotDefault, addressExample);
+        }
+
         addressMapper.updateByPrimaryKeySelective(address);
         sqlSession.close();
     }
@@ -130,5 +141,21 @@ public class AddressService {
         sqlSession.close();
 
         return addressList;
+    }
+
+    /**
+     * Check if address exists.
+     * @param addressID
+     * @return
+     */
+    public boolean addressExists(String addressID) {
+        if (addressID == null || addressID.equals("")) {
+            return false;
+        }
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        AddressMapper addressMapper = sqlSession.getMapper(AddressMapper.class);
+        Address address = addressMapper.selectByPrimaryKey(addressID);
+        return address != null;
     }
 }
