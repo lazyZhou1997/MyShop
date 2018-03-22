@@ -175,7 +175,7 @@ public class CartService {
      *
      * <b>Product that cannot be found in database will be ignored</b>
      *
-     * delete product when number is 0
+     * Throw an exception when number is equal to or less than 0
      * @param user
      * @param productIDList
      * @param numberList
@@ -210,7 +210,7 @@ public class CartService {
             }
 
             // check product number
-            if (number < 0) {
+            if (number <= 0) {
                 sqlSession.close();
                 throw new CartException(WRONG_PRODUCT_NUMBER_MESSAGE, WRONG_PRODUCT_NUMBER);
             }
@@ -221,15 +221,7 @@ public class CartService {
             CartExample cartExample = new CartExample();
             Criteria criteria = cartExample.createCriteria();
             criteria.andProductIdEqualTo(productID).andUserIdEqualTo(userID);
-
-            // delete empty product
-            if (number == 0) {
-                cartMapper.deleteByExample(cartExample);
-            }
-            // update product
-            else {
-                cartMapper.updateByExample(cart, cartExample);
-            }
+            cartMapper.updateByExample(cart, cartExample);
         }
 
         sqlSession.close();
