@@ -209,6 +209,12 @@ public class CartService {
                 throw new CartException(NO_MORE_PRODUCT_MESSAGE, NO_MORE_PRODUCT);
             }
 
+            // check product number
+            if (number < 0) {
+                sqlSession.close();
+                throw new CartException(WRONG_PRODUCT_NUMBER_MESSAGE, WRONG_PRODUCT_NUMBER);
+            }
+
             // data to update
             Cart cart = new Cart();
             cart.setProductId(productID); cart.setUserId(user.getUserId()); cart.setTotals(number);

@@ -86,8 +86,8 @@ public class ExceptionHandle {
      * @return
      */
     @ExceptionHandler(CartException.class)
-    public String handleCartException(HttpServletRequest request, ProductException e) {
-        return null;
+    public String handleCartException(HttpServletRequest request, CartException e) {
+        return e.getMessage();
     }
 
     /**
