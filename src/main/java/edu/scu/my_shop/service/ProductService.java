@@ -51,6 +51,10 @@ public class ProductService {
             throw new ProductException(PRODUCT_TOTAL_EMPTY_MESSAGE, PRODUCT_TOTAL_EMPTY);
         }
 
+        if (total < 0) {
+            throw new ProductException(PRODUCT_NUMBER_WRONG_MESSAGE, PRODUCT_NUMBER_WRONG);
+        }
+
         String secondCategoryID = product.getSecondCategoryId();
         if (secondCategoryID == null || secondCategoryID.equals("")) {
             throw new ProductException(PRODUCT_CATEGORY_EMPTY_MESSAGE, PRODUCT_CATEGORY_EMPTY);
