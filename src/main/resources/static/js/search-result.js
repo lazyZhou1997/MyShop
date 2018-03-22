@@ -33,16 +33,17 @@ $(function () {
     //     }
     //
     // })
-    for(var i = 0; i<4;i++){
-        var div = "<div class=\"col-sm-2\">";
-        div += "<div class=\"product-image-wrapper\">";
-        div += " <div class=\"single-products\">";
-        div += "<div class=\"productinfo text-center\">";
-        div += "<a href=\"#\"><img src=\"images/home/gallery3.jpg\" alt=\"\" /></a>";
-        div += "<h2>" + "213"+ "</h2>";
-        div += "<p>" + "nonono + "</p>";
-        div += "<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>";
-        div += "</div>";
-        $('.tab-content').append(div);
-    }
+        for(var i = 0; i<6;i++) {
+            var div = "";
+            div += "<div class=\"col-sm-2\">";
+            div += "<div class=\"product-image-wrapper\">";
+            div += " <div class=\"single-products\">";
+            div += "<div class=\"productinfo text-center\">";
+            div += "<a href=\"#\"><img src=\"images/home/gallery3.jpg\" alt=\"\" /></a>";
+            div += "<h2>" + "213" + "</h2>";
+            div += "<p>" + "nonono" + " </p>";
+            div += "<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>";
+            div += "</div>";
+            $('.tab-content').append(div);
+        }
 })
