@@ -61,9 +61,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin() //表单登陆
                 .loginPage("/loginpage")
                 .loginProcessingUrl("/login") //指定登陆页面为"/login"
-                .successHandler(loginSuccessHandler) //登陆成功处理
+                .successHandler(loginSuccessHandler) //
                 .failureUrl("/fail")
-                .failureForwardUrl("/fail").permitAll()//登录失败页面跳转
                 .defaultSuccessUrl("/userInfoPage")//登录成功跳转页面
                 .and()
                 .rememberMe() //登陆后记住用户，下次自动登录，数据库中必须存在名为persistent_logins的表
@@ -73,10 +72,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
+
         //指定密码加密所使用的加密器为passwordEncoder()
         //将密码加密后写入数据库
         auth.userDetailsService(customUserDetailsService).passwordEncoder(new BCryptPasswordEncoder(10));
-
         //不删除凭据，以便记住用户
         auth.eraseCredentials(false);
     }

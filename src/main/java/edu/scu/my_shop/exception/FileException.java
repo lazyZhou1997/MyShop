@@ -11,7 +11,8 @@ public class FileException extends RuntimeException {
     public static final int IMAGE_ID_EMPTY = 205;
     public static final int IMAGE_URL_EMPTY = 206;
     public static final int IMAGE_ID_FILE_NOT_MATCH = 207;
-    public static final int UNKNOWN_ERROR = 208;
+    public static final int EMPTY_USER = 208;
+    public static final int UNKNOWN_ERROR = 209;
 
     public static final String EMPTY_FILE_MESSAGE = "文件为空";
     public static final String NETWORK_EXCEPION_MESSAGE = "网络异常";
@@ -20,6 +21,7 @@ public class FileException extends RuntimeException {
     public static final String IMAGE_ID_EMPTY_MESSAGE = "图片ID为空";
     public static final String IMAGE_URL_EMPTY_MESSAGE = "图片URL为空";
     public static final String IMAGE_ID_FILE_NOT_MATCH_MESSAGE = "图片ID与文件不匹配";
+    public static final String EMPTY_USER_MESSAGE = "未知用户";
     public static final String UNKNOW_ERROR_MESSAGE = "未知错误";
 
     private Integer code;

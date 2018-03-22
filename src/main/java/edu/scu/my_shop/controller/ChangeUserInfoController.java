@@ -47,10 +47,21 @@ public class ChangeUserInfoController {
         //设置用户userID
         user.setUserId(userDetails.getUserId());
 
+        //如果密码为空串，设置为空值
+        if ("".equals(user.getUserPassword())){
+            user.setUserPassword(null);
+        }
+
+        //如果用户名为空串，设置为空值
+        if ("".equals(user.getUserName())){
+            user.setUserName(null);
+        }
+
         changeUserInfoService.changeUserInfo(user);
 
         //登录成功处理
         modelMap.addAttribute("success","修改成功");
+
         return "account";
     }
 
@@ -65,11 +76,14 @@ public class ChangeUserInfoController {
         //获取当前用户信息
         SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         //当前用户
-        User user = new User();
-        user.setUserId(userDetails.getUserId());
-        user.setHeadImg(fileService.getUserImageURL(userDetails.getUserId()));
-        user.setUserName(userDetails.getUserName());
-        user.setBirthday(userDetails.getBirthday());
+        User user = changeUserInfoService.getUserInfoByUserId(userDetails.getUserId());
+
+        //隐藏信息
+        user.setUserPassword(null);
+        user.setRole(null);
+
+        //设置头像
+        user.setHeadImg(fileService.getUserImageURL(user.getUserId()));
 
         //封装当前用户
         Result result = new Result();
