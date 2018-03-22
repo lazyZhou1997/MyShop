@@ -39,10 +39,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         //没找到用户
         if (null == users || users.isEmpty()) {
 
-            throw new UsernameNotFoundException("username" + username + "not found");
+            throw new UsernameNotFoundException("用户名"+username+"不存在");
         }
         // SecurityUser实现UserDetails并将user_id映射为username
         SecurityUser securityUser = new SecurityUser(users.get(0));
+
 
         //关闭
         sqlSession.close();

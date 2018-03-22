@@ -240,7 +240,21 @@ public class FileService {
      * @return
      */
     public String getUserImageURL(String userID) {
-        return userImageRelatePath + "/" + userID;
+        if (userID == null || userID.equals("")) {
+            throw new FileException(EMPTY_USER_MESSAGE, EMPTY_USER);
+        }
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        User user = userMapper.selectByPrimaryKey(userID);
+        if (user == null) {
+            throw new FileException(EMPTY_USER_MESSAGE, EMPTY_USER);
+        }
+
+        String userImageURL = user.getHeadImg();
+        sqlSession.close();
+
+        return userImageRelatePath + "/" + userImageURL;
     }
 
     /**
