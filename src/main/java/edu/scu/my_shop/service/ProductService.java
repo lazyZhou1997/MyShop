@@ -210,12 +210,13 @@ public class ProductService {
     }
 
     /**
-     * 根据传入的产品名称进行模糊查询
+     * 根据传入的产品名称进行模糊查询,分页
      * @param productName
      * @param pageNum
      * @param pageSize
      * @return
      */
+    @Deprecated
     public PageResult<Product> searchProductByName(String productName, int pageNum, int pageSize){
 
         //检查输入
@@ -253,6 +254,39 @@ public class ProductService {
 
         sqlSession.close();
         return productPageResult;
+    }
+
+
+    /**
+     * 根据传入的产品名称进行模糊查询,不分页
+     * @param productName
+     * @return
+     */
+    public List<Product> searchProductByName(String productName){
+
+        //检查输入
+        if (null==productName){
+
+            throw new ProductException(ProductException.INVALID_INPUT_MESSAGE,ProductException.INVALID_INPUT);
+        }
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andProductNameLike("%"+productName+"%");
+
+        //查询
+        List<Product> products = productMapper.selectByExample(productExample);
+
+        //判断查询结果是否为null
+        if (null==products||products.isEmpty()){
+
+            //抛出查询结果为空异常
+            throw new ProductException(SEARCH_RESULT_IS_NULL_MESSAGE,ProductException.SEARCH_RESULT_IS_NULL);
+        }
+
+        return products;
     }
 
     /**

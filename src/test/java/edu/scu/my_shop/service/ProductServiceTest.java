@@ -213,12 +213,12 @@ public class ProductServiceTest {
     @Test
     public void searchProductByName(){
 
-        List<Product> products = productService.searchProductByName("id",2,1);
-
-        for (Product product:
-             products) {
-            System.out.println(product.getProductId());
-        }
+//        //List<Product> products = productService.searchProductByName("id",2,1);
+//
+//        for (Product product:
+//             products) {
+//            System.out.println(product.getProductId());
+//        }
 
     }
 
@@ -228,19 +228,35 @@ public class ProductServiceTest {
     @Test
     public void testSearchProductByCategory(){
 
-        List<Product> products = productService.searchProductByName("kajsnxaksajskx",2,2);
-
-        for (Product product:
-                products) {
-            System.out.println(product.getProductId());
-        }
+//        List<Product> products = productService.searchProductByName("kajsnxaksajskx",2,2);
+//
+//        for (Product product:
+//                products) {
+//            System.out.println(product.getProductId());
+//        }
 
     }
+
 
     @Test
     public void productExistsTest() {
         assertEquals(productService.productExists("87c491c5-c6b8-4254-b142-44cd2343eadf"), true);
         assertEquals(productService.productExists("false"), false);
         assertEquals(productService.productExists(null), false);
+    }
+
+    /**
+     * 测试按名称查找，不分页
+     * @throws Exception
+     */
+    @Test
+    public void testSearchByName() throws Exception{
+
+        List<Product> products = productService.searchProductByName("For");
+
+        for (Product product:
+                products) {
+            System.out.println(product.getProductId());
+        }
     }
 }
