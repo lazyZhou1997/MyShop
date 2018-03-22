@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>购买详情页 | 乐购</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/price-range.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    <style type="text/css">
+        .order-payInfo {
+            text-align: right;
+            margin-top: 15px;
+        }
+
+        body, button, input, select, textarea {
+            font: 12px/1.5 tahoma, arial, "\5b8b\4f53";
+            -ms-overflow-style: scrollbar;
+        }
+
+        #App {
+            color: #3c3c3c;
+        }
+
+        .order-payInfo .payInfo-wrapper .payInfo-shadow {
+            border: 3px solid #fff0e8;
+            min-width: 230px;
+            padding: 10px 10px 10px 20px;
+        }
+
+        .order-realPay .realPay-title {
+            font-weight: 700;
+            color: #333;
+        }
+
+        .order-realPay .order-price {
+            font-size: 26px;
+            margin-right: 4px;
+            color: #999;
+        }
+
+        .order-price {
+            font-family: verdana, arial;
+        }
+
+        .order-realPay .realPay-price {
+            color: #f40;
+            font: 700 26px tahoma;
+        }
+
+        .order-confirmAddr {
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .order-cgsSubmitOrder, .order-submitOrder {
+            text-align: right;
+            margin-top: -1px;
+        }
+
+        .order-cgsSubmitOrder .wrapper, .order-submitOrder .wrapper {
+            display: inline-block;
+            padding: 0 0 5px 5px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .page a {
+            color: #36c;
+            cursor: pointer;
+        }
+
+        .order-cgsSubmitOrder .go-btn, .order-submitOrder .go-btn {
+            display: inline-block;
+            width: 182px;
+            height: 39px;
+            position: relative;
+            vertical-align: middle;
+            line-height: 39px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 700;
+            background: #f40;
+            color: #fff;
+        }
+
+        .order-address {
+            margin: 23px 0 40px;
+        }
+
+        h3 {
+            display: block;
+            font-size: 1.17em;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+            font-weight: bold;
+        }
+
+        .order-address .order-address-wrap h3 {
+            border-bottom: 2px solid #f1f1f1;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        li, ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .order-address .order-address-wrap .manage-address {
+            float: right;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .order-address .order-address-wrap .manage-address {
+            float: right;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .order-address .order-address-wrap .address-list li {
+            position: relative;
+            line-height: 25px;
+            padding-left: 92px;
+            border: 1px solid #fff;
+        }
+
+        .order-address .order-address-wrap .address-list li.selected {
+            border-color: #f40;
+            background-color: #fff0e8;
+            box-shadow: 5px 5px 0 #f3f3f3;
+        }
+
+        .order-address .order-address-wrap .address-list li {
+            position: relative;
+            line-height: 25px;
+            padding-left: 92px;
+            border: 1px solid #fff;
+        }
+
+        .order-address .order-address-wrap .btn-bar {
+            margin-top: 5px;
+        }
+
+        .order-address .order-address-wrap .btn-bar .moreAddrBtn, .order-address .order-address-wrap .btn-bar .newAddrBtn {
+            margin-left: 103px;
+        }
+
+        .order-address .order-address-wrap .btn-bar .moreAddrBtn {
+            display: inline-block;
+        }
+
+        .tips > em {
+            color: #ff4400;
+        }
+
+        .tips {
+            padding-left: 20px;
+        }
+
+        .cart_product img{
+            height: 60px;
+            width: 60px;
+        }
+        .cart_bottom{
+            background-color: #e5e5e5;
+            font-family: 'Roboto', sans-serif;
+            font-weight: normal;
+            border: solid black;
+        }
+
+        .cart_info .cart_menu {
+            background: #FE980F;
+            color: #fff;
+            font-size: 16px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: normal;
+        }
+
+        .cart_info .table.table-condensed thead tr {
+            height: 51px;
+        }
+    </style>
+</head><!--/head-->
+
+<body>
+<!--header-->
+<header id="header">
+    <div class="container header-box">
+        <!--header-top-->
+        <div class="header-middle">
+            <div>
+                <div class="row">
+                    <!--logo of our website-->
+                    <div class="col-sm-4">
+                        <div class="logo pull-left">
+                            <a href="index.html" style="position: absolute"><img src="images/home/perfectlogo.png"
+                                                                                 class="logo-image"/></a>
+                        </div>
+
+                    </div>
+                    <!-- links on the right side of header -->
+                    <div class="col-sm-8" style="padding-right: 30px">
+                        <div class="shop-menu pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="account.html?kw=user-info" style="background-color: transparent"><i
+                                        class="fa fa-user"></i> 用户名</a></li>
+                                <li><a href="account.html?kw=user-orders" style="background-color: transparent"><i
+                                        class="fa fa-list-alt"></i> 订单</a></li>
+                                <li><a href="account.html?kw=user-notification" style="background-color: transparent"><i
+                                        class="fa fa-envelope"></i> 消息<span id="notif-no">0</span></a></li>
+                                <li><a href="login.html" style="background-color: transparent"><i
+                                        class="fa fa-lock"></i> 登入/出</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/header-top-->
+
+        <!--header-bottom-->
+        <div class="header-bottom">
+            <div>
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <!--search box -->
+                    <div class="col-sm-5">
+                        <div class="search_box">
+                            <input type="text" placeholder="在这里搜索任何项目"/>
+                        </div>
+                        <div class="search_hint_box">
+                            <div class="table-responsive search_hint">
+                                <div><span>你好</span></div>
+                                <div><span>你好</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- users cart -->
+                    <div class="col-sm-2 users-cart">
+                        <div class="cart-logo">
+                            <a href="cart.html"><i class="fa fa-shopping-cart"></i> 购物车 <span>0</span></a>
+                        </div>
+                        <div class="users-cart-info">
+                            <div style="display: none;">购物车中还没有商品，赶紧选购吧！</div>
+                            <div class="table-responsive cart-inshort" style="">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="cart-inshort-pic">
+                                            <a href=""><img src="images/cart/one.png" alt=""></a>
+                                        </td>
+                                        <td class="cart-inshort-des">
+                                            <span>Web ID: 1089772</span>
+                                        </td>
+                                        <td class="cart-inshort-pri">
+                                            <span>$59</span>x<span>1</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cart-inshort-pic">
+                                            <a href=""><img src="images/cart/one.png" alt=""></a>
+                                        </td>
+                                        <td class="cart-inshort-des">
+                                            <span>Web ID: 1089772</span>
+                                        </td>
+                                        <td class="cart-inshort-pri">
+                                            <span>$59</span>x<span>1</span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /users cart-->
+                    <div class="col-sm-2"></div>
+
+                </div>
+
+            </div>
+        </div>
+        <!--/header-bottom-->
+        <!-- colourful horizontal bar-->
+        <div class="horizontal"></div>
+    </div>
+
+</header>
+<!--/header-->
+
+<section>
+    <div class="container">
+        <div class="order-address">
+            <div class="order-address-wrap">
+                <h3><span>确认收货地址</span></h3>
+                <ul class="address-list">
+                    <li class="address-wrap default selected" id="address-li-template">
+                        <input type="hidden" class="hidden-id" value=""/>
+                        <div class="addressBox">
+                            <label class="addressInfo">
+                                <input type="radio" name="address" class="addressInput" checked="">
+                                <span class="user-addr">
+                                    <span>四川大学江安校区西南门</span>
+                                    <em>17721876903</em></span>
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+                <div class="btn-bar">
+                    <a class="moreAddrBtn" href="">使用其它地址</a>
+                </div>
+            </div>
+        </div>
+        <div class="cart_items">
+            <div class="order-address-wrap">
+                <h3><span>确认订单详情</span></h3>
+            </div>
+            <div class="table-responsive cart_info">
+                <table class="table table-condensed">
+                    <thead>
+                    <tr class="cart_menu">
+                        <td class="image">商品图片</td>
+                        <td class="description">详细信息</td>
+                        <td class="price">价格</td>
+                        <td class="quantity">数量</td>
+                        <td class="total">总计</td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody id="product-tbody">
+                    <tr class="product-tr-template">
+                        <td class="cart_product">
+                            <a href=""><img src="images/cart/three.png" alt=""></a>
+                        </td>
+                        <td class="cart_description">
+                            <h4><a href="">Colorblock Scuba</a></h4>
+                            <p>Web ID: 1089772</p>
+                        </td>
+                        <td class="cart_price">
+                            <p>$59</p>
+                        </td>
+                        <td class="cart_quantity">
+                            <p>x<span>1</span></p>
+                        </td>
+                        <td class="cart_total">
+                            <p class="cart_total_price">$59</p>
+                        </td>
+                        <td class="cart_delete">
+                            <a class="cart_quantity_delete" href="javascript:void(0);"><i class="fa fa-times"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="order-payInfo" id="payInfo_1">
+                <div class="payInfo-wrapper">
+                    <div class="payInfo-shadow">
+                        <div class="order-realPay" id="realPay_1">
+                            <div><span class="realPay-title">实付款：</span><span class="order-price">￥</span><span
+                                    class="realPay-price">1880.00</span></div>
+                        </div>
+                        <div class="order-confirmAddr" id="confirmAddr_1">
+                            <div class="confirmAddr-addr">
+                                <span class="confirmAddr-title">寄送至：</span>
+                                <span class="confirmAddr-addr-bd"></span>
+                            </div>
+                            <div class="confirmAddr-addr-user">
+                                <span>联系方式：</span>
+                                <span class="confirmAddr-addr-bd"></span>
+                            </div>
+                        </div>
+                        <div></div>
+                        <div class="order-confirmAddr"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="order-submitOrder" id="submitOrder_1">
+            <div class="wrapper"><a role="button" title="提交订单" class="go-btn">提交订单</a></div>
+            <div class="base-msg">若价格变动，请在提交订单后联系卖家改价，并查看已买到的宝贝</div>
+        </div>
+    </div>
+</section>
+
+<!--Footer-->
+<footer id="footer">
+
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+                <p class="pull-right">Designed by <span><a href="#">Our Team</a></span></p>
+            </div>
+
+            <!-- the row of footer below the copyright row -->
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="contactinfo">
+                        <ul class="nav nav-pills">
+                            <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="social-icons pull-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</footer>
+<!--/Footer-->
+
+
+<script src="js/jquery.js"></script>
+<script src="js/price-range.js"></script>
+<script src="js/jquery.scrollUp.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/main.js"></script>
+<script src="js/payment.js"></script>
+<script th:inline="javascript">
+    $(".product-tr-template").hide();
+
+    var productList = [[${product}]];
+    var numberList = [[${productNumber}]];
+    var productCount = productList.length;
+
+    for (var i = 0; i < productCount; i++) {
+        var productRow = $(".product-tr-template").clone(true).prependTo("#product-tbody");
+        productRow.children(".cart_product").find("img").attr("alt", productList[i].productId);
+        // TODO: 跳转至详情页 productRow.children(".cart_product").find("a").attr("href", "详情页?productID=data[i].productId");
+        productRow.children(".cart_description").find("a").text(productList[i].productName);
+        // TODO: 跳转至详情页 productRow.children(".cart_description").find("a").attr("href", "详情页?productID=data[i].productId");
+        productRow.children(".cart_description").find("p").text(productList[i].productDescription);
+        productRow.children(".cart_price").find("p").text(productList[i].productPrice);
+        productRow.children(".cart_quantity").find("span").text(numberList[i]);
+        productRow.children(".cart_total").find("p").text(productList[i].productPrice * numberList[i]);
+        productRow.attr("class", "product-tr"); // change id to divide from template
+        productRow.show();
+        showImage(productRow, productList[i].productId);
+
+        reComputeAll();
+    }
+    $(".product-tr-template").remove();
+</script>
+</body>
+</html>
