@@ -16,16 +16,16 @@ window.onload = function (ev) {
 
 function showProducts(data) {
     var productCount = data.length;
-    var htmlCode = "";
     if (productCount == 0) {
-        alert("nothing");
-        htmlCode += "nothing";// 在这里新增空样式
+        swal("", "购物车为空", "warning");
         return;
     }
     for (var i = 0; i < productCount; i++) {
         var productRow = $(".product-tr-template").clone(true).prependTo("#product-tbody");
         productRow.children(".cart_product").find("img").attr("alt", data[i].productId);
+        // TODO: 跳转至详情页 productRow.children(".cart_product").find("a").attr("href", "详情页?productID=data[i].productId");
         productRow.children(".cart_description").find("a").text(data[i].productName);
+        // TODO: 跳转至详情页 productRow.children(".cart_description").find("a").attr("href", "详情页?productID=data[i].productId");
         productRow.children(".cart_description").find("p").text(data[i].productDescription);
         productRow.children(".cart_price").find("p").text(data[i].productPrice);
         productRow.children(".cart_quantity").find("input").attr("value", data[i].productLeftTotals);
@@ -35,6 +35,7 @@ function showProducts(data) {
         productRow.show();
         showImage(productRow, data[i].productId);
     }
+    $(".product-tr-template").remove();
 }
 
 function showImage(productRow, productID) {
@@ -94,18 +95,17 @@ $(".cart_quantity_up").click(function () {
         function (result) {
             if (result == null || result == "") {
                 var itemCount = parseInt(thisObj.siblings("input").val());
-                thisObj.siblings(".cart_quantity_input").attr("value", itemCount - 1);
+                thisObj.siblings(".cart_quantity_input").attr("value", itemCount + 1);
 
                 // update row
                 var producePrice = parseFloat(rowObj.children(".cart_price").find("p").text());
-                var productCount = parseInt(rowObj.children(".cart_quantity").find("input").attr("value"));
+                var productCount = parseInt(rowObj.children(".cart_quantity").find("input").val());
                 rowObj.children(".cart_total").find("p").text(producePrice * productCount);
 
                 reComputeAll();
             }
             else {
-                // TODO
-                console.log(result);
+                swal("",result, "error");
             }
         }
     );
@@ -128,15 +128,65 @@ $(".cart_quantity_down").click(function () {
 
                 // update row
                 var producePrice = parseFloat(rowObj.children(".cart_price").find("p").text());
-                var productCount = parseInt(rowObj.children(".cart_quantity").find("input").attr("value"));
+                var productCount = parseInt(rowObj.children(".cart_quantity").find("input").val());
                 rowObj.children(".cart_total").find("p").text(producePrice * productCount);
 
                 reComputeAll();
             }
             else {
-                // TODO
-                console.log(result);
+                swal("",result, "error");
             }
         }
     );
+});
+
+// listen to input label
+// remember old value
+$(".cart_quantity_input").focus(function () {
+    $(this).attr("oldValue", $(this).val());
+});
+// check new value
+$(".cart_quantity_input").blur(function () {
+    var thisObj = $(this);
+    var rowObj = $(this).parents("tr");
+    $.post(
+        "/modifyProductNumber",
+        {
+            productID: $(this).parents(".product-tr").find("img").attr("alt"),
+            productNumber: parseInt($(this).parents(".product-tr").find(".cart_quantity_input").val()),
+        },
+        function (result) {
+            if (result == null || result == "") {
+                var itemCount = parseInt(thisObj.siblings("input").val());
+                thisObj.siblings(".cart_quantity_input").attr("value", itemCount);
+
+                // update row
+                var producePrice = parseFloat(rowObj.children(".cart_price").find("p").text());
+                var productCount = parseInt(rowObj.children(".cart_quantity").find("input").val());
+                rowObj.children(".cart_total").find("p").text(producePrice * productCount);
+
+                reComputeAll();
+            }
+            else {
+                swal("",result, "error");
+                thisObj.val(thisObj.attr("oldValue"));
+            }
+        }
+    );
+});
+
+// modify submit data
+$('#settle-account').submit(function (e) {
+    var form = $(this);
+    $(".product-tr").each(function () {
+        var isChecked = $(this).find(".check").prop("checked");
+        if (isChecked) {
+            var productID = $(this).find("img").attr("alt");
+            $("<input />").attr("type", "hidden").attr("name", "productID").attr("value", productID).appendTo(form);
+        }
+        else {
+            $(this).find(".cart_quantity_input").attr("disabled", "disabled");
+        }
+    });
+    return true;
 });

@@ -1,4 +1,4 @@
-//用户信息
+
 $(function () {
     $.getJSON("http://localhost:8080/getUserInfo",function(data){
         var username = data.data.userName;
@@ -14,7 +14,7 @@ $(function () {
         }
         $('#user-info-image').attr('src',userimg);
     })
-});
+})
 
 function check() {
  var username = $('#user-info-name').val();
@@ -229,29 +229,29 @@ $(function () {
 })
 
 
-//js实现标签栏跳转至对应的窗口
-    $(function () {
-        $('#shop-menu > li').click(function () {
-            //     $('#shop-menu2 > li .active').removeClass('active');
-            //     console.log($('li .active'));
-            $('#shop-menu2 > li').each(function () {
-                if($(this).hasClass('active')){
-                    $(this).removeClass('active');
-                }
-            })
-            $('.tab-content > div').each(function () {
-                if($(this).hasClass('active')){
-                    $(this).removeClass('active');
-                }
-            })
-
-            var id = $(this).children('a').attr('href');
-                $('#shop-menu2 > li > a').each(function () {
-                    if ($(this).attr('href') == id) {
-                        $(this).parent().addClass("active");
-                        $(id).addClass("active");
-                    }
-                })
-            // })
-        })
-    })
+// //js实现标签栏跳转至对应的窗口
+//     $(function () {
+//         $('#shop-menu > li').click(function () {
+//             //     $('#shop-menu2 > li .active').removeClass('active');
+//             //     console.log($('li .active'));
+//             $('#shop-menu2 > li').each(function () {
+//                 if($(this).hasClass('active')){
+//                     $(this).removeClass('active');
+//                 }
+//             })
+//             $('.tab-content > div').each(function () {
+//                 if($(this).hasClass('active')){
+//                     $(this).removeClass('active');
+//                 }
+//             })
+//
+//             var id = $(this).children('a').attr('href');
+//                 $('#shop-menu2 > li > a').each(function () {
+//                     if ($(this).attr('href') == id) {
+//                         $(this).parent().addClass("active");
+//                         $(id).addClass("active");
+//                     }
+//                 })
+//             // })
+//         })
+//     })
