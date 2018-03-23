@@ -78,28 +78,40 @@ $('#choose-image').change(function () {
         // });
     })
 
-
+//order
 $(function () {
-    for(var i = 0; i<3;i++){
-        var tr = "<tr>";
-        if(i == 0){
-             tr += "<td rowspan='3'>" + "asdfg" + "</td>";
+    $.getJSON("/getUserOrders",function (data) {
+        console.log(data);
+        for(var i=0;i<data.length;i++){
+            $.post("/getOrderItems",{
+                orderID : data[i].orderId
+            },function (DATA) {
+                console.log(DATA);
+            })
         }
-        tr += "<td class = 'order-img'>" + "<a href=''><img alt='' src='" + "images/cart/one.png" + "'></a>";
-        tr += "</td>" + "<td>";
-        tr += "<h4><a href=''>" + "Testsd" + "</a></h4>";
-        tr += "<span>Web ID:roysifan</span>";
-        tr += "</td>";
-        tr += "<td>" + "12" + "</td>";
-        tr += "<td>" + "3" + "</td>";
-        tr += "<td>" + "36" + "</td>";
-        tr += "<td>" + "已付款"+ "</td>";
-        tr += "<td>" + "<a class=\'glyphicon glyphicon-trash\'href=\'\'></a></td>";
-        tr += "</tr>";
-        $('#order-info').append(tr);
-    }
+
+        // for(var i = 0; i<data.length;i++){
+        //     var tr = "<tr>";
+        //     if(i == 0){
+        //         tr += "<td rowspan='3'>" + "asdfg" + "</td>";
+        //     }
+        //     tr += "<td class = 'order-img'>" + "<a href=''><img alt='' src='" + "images/cart/one.png" + "'></a>";
+        //     tr += "</td>" + "<td>";
+        //     tr += "<h4><a href=''>" + "Testsd" + "</a></h4>";
+        //     tr += "<span>Web ID:roysifan</span>";
+        //     tr += "</td>";
+        //     tr += "<td>" + "12" + "</td>";
+        //     tr += "<td>" + "3" + "</td>";
+        //     tr += "<td>" + "36" + "</td>";
+        //     tr += "<td>" + "已付款"+ "</td>";
+        //     tr += "<td>" + "<a class=\'glyphicon glyphicon-trash\'href=\'\'></a></td>";
+        //     tr += "</tr>";
+        //     $('#order-info').append(tr);
+        // }
+    })
 })
 
+//address
 $(function () {
     $.getJSON("/getUserAddress",function (data) {
         console.log(data);
