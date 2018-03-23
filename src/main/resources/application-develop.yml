@@ -12,7 +12,7 @@ pagehelper:
 image:
   user-image-folder-path: /Users/zhouqinchun/IdeaProjects/my_shop/src/main/resources/static/images/users/
   user-image-relate-path: /images/users
-  product-image-folder-path: F:/PDP/Hwadee/code/MyShop/src/main/resources/static/images/products
+  product-image-folder-path: /Users/zhouqinchun/IdeaProjects/my_shop/src/main/resources/static/images/users/
   product-image-relate-path: /images/products
 
 spring:
@@ -31,9 +31,13 @@ spring:
     username: hzzone
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
+    tomcat:
+      max-wait: 10000
+      max-active: 30
 
 
 mybatis:
   mapperlocations: /mapper/**Mapper.xml
   type-aliases-package: edu.scu.my_shop.entity
+
 

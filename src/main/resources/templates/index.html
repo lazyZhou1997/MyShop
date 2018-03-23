@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home | E-Shopper</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/price-range.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+
+    <style>
+        .search_hint{
+            width: 425px;
+            min-height: 100px;
+            border:1px solid #fdb45e;
+            position: absolute;
+            z-index: 1;
+            top:39px;
+            left: 27px;
+            padding: 10px 10px 0 10px;
+            background-color: white;
+            border-bottom-left-radius: 7px;
+            border-bottom-right-radius: 7px;
+            display: none;
+        }
+
+        .search_hint div{
+            height:25px;
+        }
+
+        .search_hint div:hover{
+            background-color: #f0f0e9;
+        }
+
+    </style>
+</head><!--/head-->
+
+<body>
+<!--header-->
+<!-- header-->
+<header id="header">
+    <div class="container header-box">
+        <div class="header-middle"><!--header-middle-->
+
+            <div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="logo pull-left">
+                            <a href="#" style="position: absolute" ><img src="images/home/perfectlogo.png" class="logo-image"/></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-8" style="padding-right: 30px">
+                        <div class="shop-menu pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/userInfoPage?kw=user-info"  style="background-color: transparent"><i class="fa fa-user"></i><span id="user-name"> 用户名</span></a></li>
+                                <li><a href="/userInfoPage?kw=user-orders" style="background-color: transparent"><i class="fa fa-list-alt"></i> 订单</a></li>
+                                <li><a href="/userInfoPage?kw=user-notification" style="background-color: transparent"><i class="fa fa-envelope"></i> 消息<span id="notif-no">0</span></a></li>
+                                <li><a href="/loginpage" style="background-color: transparent"><i class="fa fa-lock"></i> 登入/出</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-middle-->
+
+        <div class="header-bottom"><!--header-bottom-->
+            <div>
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-5">
+                        <div class="search_box">
+                            <input type="text" placeholder="在这里搜索任何项目"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 users-cart">
+                        <div class="cart-logo">
+                            <a href="cart.html"><i class="fa fa-shopping-cart"></i> 购物车 <span>0</span></a>
+                        </div>
+                        <div class="users-cart-info">
+                            <div style="display: none;">购物车中还没有商品，赶紧选购吧！</div>
+                            <div class="table-responsive cart-inshort" style="">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="cart-inshort-pic">
+                                            <a href=""><img src="images/cart/one.png" alt=""></a>
+                                        </td>
+                                        <td class="cart-inshort-des">
+                                            <span>Web ID: 1089772</span>
+                                        </td>
+                                        <td class="cart-inshort-pri">
+                                            <span>$59</span>x<span>1</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cart-inshort-pic">
+                                            <a href=""><img src="images/cart/one.png" alt=""></a>
+                                        </td>
+                                        <td class="cart-inshort-des">
+                                            <span>Web ID: 1089772</span>
+                                        </td>
+                                        <td class="cart-inshort-pri">
+                                            <span>$59</span>x<span>1</span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+
+                </div>
+
+            </div>
+        </div><!--/header-bottom-->
+        <div class="horizontal"></div>
+    </div>
+</header><!--/header-->
+<!--/header-->
+
+<!--slider or the next section of the page after the header-->
+<section id="slider">
+    <div class="container">
+        <div class="row">
+
+            <!-- the pictures + text div that moves -->
+            <div class="col-xs-6 col-sm-10" style="float:right;margin-top:20px">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#slider-carousel" data-slide-to="1"></li>
+                        <li data-target="#slider-carousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-sm-6">
+                                <h1><span>乐</span>购</h1>
+                                <h2>触手可及的最新时尚</h2>
+                                <p>从数千种设计中选择, 免费送货, 如果您不喜欢该产品，可在30天内退货 </p>
+                                <button type="button" class="btn btn-default get">现在开始购物</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="images/home/model1.jpg" class="girl img-responsive" alt="" />
+                                <img src="images/home/pricing.png"  class="pricing" alt="" />
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>乐</span>购</h1>
+                                <h2>触手可及的最新时尚</h2>
+                                <p>从数千种设计中选择, 免费送货, 如果您不喜欢该产品，可在30天内退货 </p>
+                                <button type="button" class="btn btn-default get">现在开始购物</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="images/home/model2.jpg" class="girl img-responsive" alt="" />
+                                <img src="images/home/pricing.png"  class="pricing" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>乐</span>购</h1>
+                                <h2>触手可及的最新时尚</h2>
+                                <p>从数千种设计中选择, 免费送货, 如果您不喜欢该产品，可在30天内退货 </p>
+                                <button type="button" class="btn btn-default get">现在开始购物</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="images/home/model4.jpg" class="girl img-responsive" alt="" />
+                                <img src="images/home/pricing.png" class="pricing" alt="" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+
+            </div>
+            <!--finished the pictures + text div that moves across page-->
+
+            <!-- new side menu -->
+            <div class="col-sm-2" style="margin-top: 20px">
+                <div class="side-menu-items">
+                    <ul style="float: left" class="ul">
+                        <li class="side-menu">
+                            <a href="search-results.html?kw=手机数码">手机数码 </a>
+                            <div class="side-menu-hover-1 side-menu-hover-all">
+                                <ul>
+                                    <li class="sub-category"><a href="search-results.html?kw=电脑">电脑</a></li><li class="sub-category"><a href="search-results.html?kw=平板">平板</a></li>
+                                    <li class="sub-category"><a href="search-results.html?kw=手机">手机</a></li><li class="sub-category"><a href="search-results.html?kw=相机">相机</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="side-menu"><a href="search-results.html?kw=家用电器">家用电器</a>
+                            <div class="side-menu-hover-2 side-menu-hover-all">
+                                <ul>
+                                    <li class="sub-category"><a href="search-results.html?kw=电视">电视</a></li><li class="sub-category"><a href="search-results.html?kw=空调">空调</a></li>
+                                    <li class="sub-category"><a href="search-results.html?kw=洗衣机">洗衣机</a></li><li class="sub-category"><a href="search-results.html?kw=冰箱">冰箱</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="side-menu"><a href="search-results.html?kw=母婴用品">母婴用品</a>
+                            <div class="side-menu-hover-3 side-menu-hover-all">
+                                <ul>
+                                    <li class="sub-category"><a href="search-results.html?kw=奶粉">奶粉</a></li><li class="sub-category"><a href="search-results.html?kw=辅食">辅食</a></li>
+                                    <li class="sub-category"><a href="search-results.html?kw=玩具">玩具</a></li><li class="sub-category"><a href="search-results.html?kw=喂养">喂养</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="side-menu"><a href="search-results.html?kw=图书音像">图书音像</a>
+                            <div class="side-menu-hover-4 side-menu-hover-all">
+                                <ul>
+                                    <li class="sub-category"><a href="search-results.html?kw=教育">教育</a></li><li class="sub-category"><a href="search-results.html?kw=文艺">文艺</a></li>
+                                    <li class="sub-category"><a href="search-results.html?kw=杂志">杂志</a></li><li class="sub-category"><a href="search-results.html?kw=音像">音像</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="side-menu"><a href="search-results.html?kw=女装男装">女装男装</a>
+                            <div class="side-menu-hover-5 side-menu-hover-all">
+                                <ul>
+                                    <li class="sub-category"><a href="search-results.html?kw=女装">女装</a></li><li class="sub-category"><a href="search-results.html?kw=男装">男装</a></li>
+                                    <li class="sub-category"><a href="search-results.html?kw=内衣">内衣</a></li><li class="sub-category"><a href="search-results.html?kw=配饰">配饰</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="side-menu"><a href="search-results.html?kw=食品酒类">食品酒类</a>
+                            <div class="side-menu-hover-6 side-menu-hover-all">
+                                <ul>
+                                    <li class="sub-category"><a href="search-results.html?kw=水果">水果</a></li><li class="sub-category"><a href="search-results.html?kw=肉类">肉类</a></li>
+                                    <li class="sub-category"><a href="search-results.html?kw=饮料">饮料</a></li><li class="sub-category"><a href="search-results.html?kw=名酒">名酒</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- side menu finishes here -->
+        </div>
+    </div>
+</section>
+<!--/slider-->
+
+
+<!-- the rest of the body of the webpage-->
+<section>
+    <div class="container">
+        <h2 class="title text-center">畅销分类</h2>
+        <!--featured_items-->
+        <div class="row">
+            <!-- shipping picture on left side -->
+            <div class=" shipping col-sm-3">
+                <img src="images/home/shipping.jpg" alt="" />
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="category-tab"><!--category-tab-->
+
+                    <div class="col-sm-12">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tshirt" data-toggle="tab">电脑</a></li>
+                            <li><a href="#blazers" data-toggle="tab">男装</a></li>
+                            <li><a href="#sunglass" data-toggle="tab">水果</a></li>
+                            <li><a href="#kids" data-toggle="tab">手机</a></li>
+                            <li><a href="#poloshirt" data-toggle="tab">相机</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <!--/*@thymesVar id="computer" type="edu.scu.my_shop.entity.ProductWithImage"*/-->
+                        <div class="tab-pane fade active in" id="tshirt">
+                            <div class="col-sm-3" th:each="computer:${computerswithimages}">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+
+
+                                            <a th:href="@{/productdetails(productID=${computer.getComputer().getProductId()})}"><img src="images/home/gallery1.jpg" th:src="${computer.getComputerImage()}" alt="" /></a>
+                                            <h2>￥<h2 th:text="${computer.getComputer().getProductPrice()}">$56</h2></h2>
+                                            <p th:text="${computer.getComputer().getProductName()}">Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+                        <div class="tab-pane fade" id="blazers" >
+                            <div class="col-sm-3" th:each="computer:${manwithimages}">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+
+
+                                            <a th:href="@{/productdetails(productID=${computer.getComputer().getProductId()})}"><img src="images/home/gallery1.jpg" th:src="${computer.getComputerImage()}" alt="" /></a>
+                                            <h2>￥<h2 th:text="${computer.getComputer().getProductPrice()}">$56</h2></h2>
+                                            <p th:text="${computer.getComputer().getProductName()}">Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="sunglass" >
+                            <div class="col-sm-3" th:each="computer:${fruitwithimages}">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+
+
+                                            <a th:href="@{/productdetails(productID=${computer.getComputer().getProductId()})}"><img src="images/home/gallery1.jpg" th:src="${computer.getComputerImage()}" alt="" /></a>
+                                            <h2>￥<h2 th:text="${computer.getComputer().getProductPrice()}">$56</h2></h2>
+                                            <p th:text="${computer.getComputer().getProductName()}">Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="kids" >
+                            <div class="col-sm-3" th:each="computer:${phonewithimages}">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+
+
+                                            <a th:href="@{/productdetails(productID=${computer.getComputer().getProductId()})}"><img src="images/home/gallery1.jpg" th:src="${computer.getComputerImage()}" alt="" /></a>
+                                            <h2>￥<h2 th:text="${computer.getComputer().getProductPrice()}">$56</h2></h2>
+                                            <p th:text="${computer.getComputer().getProductName()}">Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="poloshirt" >
+                            <div class="col-sm-3" th:each="computer:${cametaswithimages}">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+
+
+                                            <a th:href="@{/productdetails(productID=${computer.getComputer().getProductId()})}"><img src="images/home/gallery1.jpg" th:src="${computer.getComputerImage()}" alt="" /></a>
+                                            <h2>￥<h2 th:text="${computer.getComputer().getProductPrice()}">$56</h2></h2>
+                                            <p th:text="${computer.getComputer().getProductName()}">Easy Polo Black Edition</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/category-tab-->
+            </div>
+        </div>
+
+        <!-- new row for recommended items -->
+        <div class="row">
+            <div class="col-sm-12">
+
+
+                <!--recommended_items-->
+                <div class="recommended_items">
+                    <h2 class="title text-center">推荐单品</h2>
+
+                    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="col-sm-3">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="images/home/recommend1.jpg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="images/home/recommend2.jpg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="images/home/recommend3.jpg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="images/home/recommend3.jpg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-sm-3">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="images/home/recommend1.jpg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="images/home/recommend2.jpg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="images/home/recommend3.jpg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="images/home/recommend2.jpg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!--/recommended_items-->
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Footer-->
+<footer id="footer">
+
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+                <p class="pull-right">Designed by <span><a href="#">Our Team</a></span></p>
+            </div>
+
+            <!-- the row of footer below the copyright row -->
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="contactinfo">
+                        <ul class="nav nav-pills">
+                            <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="social-icons pull-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</footer>
+<!--/Footer-->
+
+<!--<script type="text/html" id="thymeleafTable">-->
+
+    <!--<div class="col-sm-3">-->
+        <!--<div class="product-image-wrapper">-->
+            <!--<div class="single-products">-->
+                <!--<div class="productinfo text-center">-->
+                    <!--<img src="images/home/gallery1.jpg" alt="" />-->
+                    <!--<h2>$56</h2>-->
+                    <!--<p>Easy Polo Black Edition</p>-->
+                    <!--<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
+                <!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</script>-->
+<!--<script>-->
+    <!--$(window).onload(function () {-->
+        <!--$("#tshirt").html($("#thymeleafTable").html());-->
+        <!--$("#blazers").html($("#thymeleafTable").html());-->
+        <!--$("#sunglass").html($("#thymeleafTable").html());-->
+        <!--$("#kids").html($("#thymeleafTable").html());-->
+        <!--$("#poloshirt").html($("#thymeleafTable").html());-->
+
+    <!--})-->
+<!--</script>-->
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.scrollUp.min.js"></script>
+<script src="js/price-range.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/main.js"></script>
+<script src="js/header.js"></script>
+</body>
+</html>

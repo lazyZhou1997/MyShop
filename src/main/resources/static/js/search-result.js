@@ -15,11 +15,12 @@ $(function () {
             div += "<div class=\"tab-content\">";
             var ceiling = items_no*(i+1) > data_length ? data_length : items_no*(i+1);
             for(var j =items_no*i; j<ceiling;j++){
+                var url = "/productdetails?productID=" + data[j].productId;
                 div += "<div class=\"col-sm-3\">";
                 div += "<div class=\"product-image-wrapper\">";
                 div += "<div class=\"single-products\">";
                 div += "<div class=\"productinfo text-center\">";
-                div += "<a href=\"#\"><img src=\"images/home/gallery3.jpg\" alt=\"\" /></a>";
+                div += "<a href='"+url +"'>" + "<img src=\"images/home/gallery3.jpg\" alt=\"\" />" + "</a>";
                 div += "<h2>" + data[j].productPrice + "</h2>";
                 div += "<p>" + data[j].productName + " </p>";
                 div += "<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>";
@@ -50,3 +51,4 @@ $(function () {
         }
     });
 });
+

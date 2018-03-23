@@ -152,21 +152,9 @@ $(function () {
 // <td>默认地址</td>
 // </tr>
 $(function () {
-    // $.getJSON("url of address",function (data) {
-    //     for(var i=0;i<2;i++){
-    //         var tr = "<tr>";
-    //         tr += "<td>" + "name" + "</td>";
-    //         tr += "<td>" + "address" + "</td>";
-    //         tr += "<td>" + "address in detail" + "</td>";
-    //         tr += "<td>" + "youbian" + "</td>";
-    //         tr += "<td>" + "phone" + "</td>";
-    //         tr += "<td>" + "<a href=\"\">修改</a>|<a href=\"\">删除</a>" + "</td>";
-    //         tr += "<td>" + "么人地址" + "</td>";
-    //         tr += "</tr>";
-    //         $('#address-info').append(tr);
-    //     }
-    // })
-        for(var i=0;i<2;i++) {
+    $.getJSON("/getUserAddress",function (data) {
+        console.log(data);
+        for(var i=0;i<data.length;i++){
             var tr = "<tr>";
             tr += "<td>" + "name" + "</td>";
             tr += "<td>" + "address" + "</td>";
@@ -178,6 +166,8 @@ $(function () {
             tr += "</tr>";
             $('#address-info').append(tr);
         }
+    })
+
 })
 
 //消息通知
@@ -194,40 +184,25 @@ $(function () {
 // </div>
 // </div>
 $(function () {
-    // $.getJSON("url of info",function (data) {
-    //     for(var i=0; i<data.length;i++){
-    //         var div = "<div class=\"notif\">";
-    //         div += "<div class=\"notif-status col-sm-1 col-md-1\">未读</div>";
-    //         div += "<div class=\"col-sm-11 col-md-11\">\n" +
-    //             "<div class=\"notif-head\">";
-    //         div += "<span>" + "name of guider" + "</span>";
-    //         div += "<span>" + "time" + "</span>";
-    //         div += "</div>";
-    //         div += "<div class=\"notif-body fa-border\">";
-    //         div += "<p>" + "main info sadksaljdhewlwqdlsandalhdkjj2elksdasjldjadlkasjdljasd" + "</p>";
-    //         div += "</div>";
-    //         div += "</div>";
-    //         div += "</div>";
-    //         $('#user-notification').append(div);
-    //     }
-    // })
-    for(var i=0; i<3;i++){
-                var div = "<div class=\"notif\">";
-                div += "<div class=\"notif-status col-sm-1 col-md-1\">未读</div>";
-                div += "<div class=\"col-sm-11 col-md-11\">\n" +
-                    "<div class=\"notif-head\">";
-                div += "<span>" + "name of guider" + "</span>";
-                div += "<span>" + "   time" + "</span>";
-                div += "</div>";
-                div += "<div class=\"notif-body fa-border\">";
-                div += "<p>" + "main info sadksaljdhewlwqdlsandalhdkjj2elksdasjldjadlkasjdljasd" + "</p>";
-                div += "</div>";
-                div += "</div>";
-                div += "</div>";
-                $('#user-notification').append(div);
-            }
+    $.getJSON("/getUserMessage", function (data) {
+        console.log(data);
+        for (var i = 0; i < data.length; i++) {
+            var div = "<div class=\"notif\">";
+            div += "<div class=\"notif-status col-sm-1 col-md-1\">未读</div>";
+            div += "<div class=\"col-sm-11 col-md-11\">\n" +
+                "<div class=\"notif-head\">";
+            div += "<span>" + "name of guider" + "</span>";
+            div += "<span>" + "time" + "</span>";
+            div += "</div>";
+            div += "<div class=\"notif-body fa-border\">";
+            div += "<p>" + "main info sadksaljdhewlwqdlsandalhdkjj2elksdasjldjadlkasjdljasd" + "</p>";
+            div += "</div>";
+            div += "</div>";
+            div += "</div>";
+            $('#user-notification').append(div);
+        }
+    })
 })
-
 
 // //js实现标签栏跳转至对应的窗口
 //     $(function () {
@@ -255,3 +230,31 @@ $(function () {
 //             // })
 //         })
 //     })
+
+//js实现标签栏跳转至对应的窗口
+$(function () {
+    var url = decodeURI(window.location.href);
+    var argsIndex = url.split("?kw=");
+    var arg = argsIndex[1];
+    console.log(arg);
+    // $('#shop-menu > li').click(function () {
+    //     $('#shop-menu2 > li .active').removeClass('active');
+    //     console.log($('li .active'));
+    $('#shop-menu2 > li').each(function () {
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+        }
+    })
+    $('.tab-content > div').each(function () {
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+        }
+    })
+    var id = "#" + arg;
+    $('#shop-menu2 > li > a').each(function () {
+        if ($(this).attr('href') == id) {
+            $(this).parent().addClass("active");
+            $(id).addClass("active");
+        }
+    })
+})

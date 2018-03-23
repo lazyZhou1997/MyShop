@@ -79,7 +79,7 @@
 					<div class="col-sm-8" style="padding-right: 30px">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav" id="shop-menu">
-								<li><a href="/userInfoPage?kw=user-info" style="background-color: transparent"><i class="fa fa-user"></i> 用户名</a></li>
+								<li><a href="/userInfoPage?kw=user-info" style="background-color: transparent"><i class="fa fa-user"></i><span id="user-name"> 用户名</span></a></li>
 								<li><a href="/userInfoPage?kw=user-orders" style="background-color: transparent"><i class="fa fa-list-alt"></i> 订单</a></li>
 								<li><a href="/userInfoPage?kw=user-notification" style="background-color: transparent"><i class="fa fa-envelope"></i> 消息<span id="notif-no">0</span></a></li>
 								<li><a href="/loginpage" style="background-color: transparent"><i class="fa fa-lock"></i> 登入/出</a></li>
@@ -404,6 +404,7 @@
     <script src="js/main.js"></script>
 	<script src="/js/sweetalert.js"></script>
 	<script src="/js/cart.js"></script>
+	<script src="js/header.js"></script>
     <script th:inline="javascript">
         var errormessage = [[${error}]];
         errorDialog(errormessage);

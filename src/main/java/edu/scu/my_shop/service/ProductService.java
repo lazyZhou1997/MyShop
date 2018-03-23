@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -286,7 +287,7 @@ public class ProductService {
         if (null==products||products.isEmpty()){
 
             //抛出查询结果为空异常
-            throw new ProductException(SEARCH_RESULT_IS_NULL_MESSAGE,ProductException.SEARCH_RESULT_IS_NULL);
+            products = null;
         }
 
         return products;
@@ -315,6 +316,46 @@ public class ProductService {
             //抛出查询结果为空异常
             throw new ProductException(SEARCH_RESULT_IS_NULL_MESSAGE,ProductException.SEARCH_RESULT_IS_NULL);
         }
+
+        sqlSession.close();
+        return products;
+    }
+
+    /**
+     * 根据多个分类ID得到一个数组
+     * @param category
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    public List<List<Product>> searchProductByCategorys(String[] category,int pageNum,int pageSize){
+
+        SqlSession sqlSession =sqlSessionFactory.openSession();
+        List<List<Product>> products= new ArrayList<>();
+
+        for (String id:category){
+            //启动分页
+            PageHelper.startPage(pageNum,pageSize);
+
+            // sqlSession = sqlSessionFactory.openSession();
+            ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
+
+
+            ProductExample productExample = new ProductExample();
+            productExample.createCriteria().andSecondCategoryIdEqualTo(id);
+
+            //查询
+            List<Product> product = productMapper.selectByExample(productExample);
+
+            //判断查询结果是否为null
+            if (null==product||product.isEmpty()){
+
+                //抛出查询结果为空异常
+                throw new ProductException(SEARCH_RESULT_IS_NULL_MESSAGE,ProductException.SEARCH_RESULT_IS_NULL);
+            }
+            products.add(product);
+        }
+
 
         sqlSession.close();
         return products;

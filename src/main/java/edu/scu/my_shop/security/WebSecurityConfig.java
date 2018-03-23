@@ -55,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/webjars/**",
                 "/fail").permitAll()//无需登录认证权限访问
                 .anyRequest().authenticated() //其他所有资源需要认证，登陆后访问
-                .antMatchers("/userInfoPage","/changeUserInfo","/getUserInfo","/searchProductByName","/search-results.html").hasAnyRole()
+                .antMatchers("/userInfoPage","/changeUserInfo","/getUserInfo","/searchProductByName","/search-results.html","/index").hasAnyRole()
                 .antMatchers("/admin").hasRole("ADMIN") //登陆之后拥有"ADMIN"权限才能够访问，否则会出现“403”权限不足的提示
                 .and()
                 .formLogin() //表单登陆
@@ -63,7 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login") //指定登陆页面为"/login"
                 .successHandler(loginSuccessHandler) //
                 .failureUrl("/fail")
-                .defaultSuccessUrl("/userInfoPage")//登录成功跳转页面
+                .defaultSuccessUrl("/index")//登录成功跳转页面
                 .and()
                 .rememberMe() //登陆后记住用户，下次自动登录，数据库中必须存在名为persistent_logins的表
                 .tokenValiditySeconds(1209600);
