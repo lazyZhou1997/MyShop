@@ -1,6 +1,6 @@
 //user info
 $(function () {
-    $.getJSON("http://localhost:8080/getUserInfo",function(data){
+    $.getJSON("/getUserInfo",function(data){
         var username = data.data.userName;
         var userimg = data.data.headImg;
         var useremail = data.data.userId;

@@ -29,13 +29,13 @@ public class ShowProductController {
         Product product=productService.searchProductByID(productID);
         List<String> productImages=fileService.getProductImagesURL(productID);
 
-        System.out.println(productImages.size());
-        for (int i=0;i<productImages.size();i++){
+       // System.out.println(productImages.size());
+       // for (int i=0;i<productImages.size();i++){
             //  System.out.println(productImages.get(i));
-            String[] tmp=productImages.get(i).split("https");
-            productImages.set(i,"https"+tmp[1]);
-            System.out.println(productImages.get(i));
-        }
+  //          String[] tmp=productImages.get(i).split("https");
+         //   productImages.set(i,"https"+tmp[1]);
+           // System.out.println(productImages.get(i));
+        //}
 
         Map<String,String> des=(Map) JSON.parse(product.getProductDescription());
         model.addAttribute("des", des);
