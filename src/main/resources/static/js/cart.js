@@ -21,6 +21,7 @@ function showProducts(data) {
         return;
     }
     for (var i = 0; i < productCount; i++) {
+        var name
         var productRow = $(".product-tr-template").clone(true).prependTo("#product-tbody");
         productRow.children(".cart_product").find("img").attr("alt", data[i].productId);
         // TODO: 跳转至详情页 productRow.children(".cart_product").find("a").attr("href", "详情页?productID=data[i].productId");
