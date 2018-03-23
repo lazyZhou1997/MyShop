@@ -10,9 +10,13 @@ pagehelper:
 # path to save file(DO NOT ADD "/" AT THE END)
 # TODO: configure correct path
 image:
-  user-image-folder-path: /Users/zhouqinchun/IdeaProjects/my_shop/src/main/resources/static/images/users/
+#  user-image-folder-path: /Users/zhouqinchun/IdeaProjects/my_shop/src/main/resources/static/images/users/
+#  user-image-relate-path: /images/users
+#  product-image-folder-path: /Users/zhouqinchun/IdeaProjects/my_shop/src/main/resources/static/images/users/
+#  product-image-relate-path: /images/products
+  user-image-folder-path: /Users/xuyifan/Desktop/MyShop/src/main/resources/static/images/users/
   user-image-relate-path: /images/users
-  product-image-folder-path: /Users/zhouqinchun/IdeaProjects/my_shop/src/main/resources/static/images/users/
+  product-image-folder-path: /Users/xuyifan/Desktop/MyShop/src/main/resources/static/images/users/
   product-image-relate-path: /images/products
 
 spring:
@@ -34,7 +38,11 @@ spring:
     tomcat:
       max-wait: 10000
       max-active: 30
-
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      maximum-pool-size: 15
+      max-lifetime: 1800000
 
 mybatis:
   mapperlocations: /mapper/**Mapper.xml

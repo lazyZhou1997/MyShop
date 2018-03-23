@@ -47,6 +47,11 @@
             background-color: #f0f0e9;
         }
 
+        .cart-inshort-pic{
+            max-height: 70px;
+            max-width: 70px;
+            overflow: hidden;
+        }
     </style>
 </head><!--/head-->
 
@@ -84,7 +89,7 @@
                     <div class="col-sm-3"></div>
                     <div class="col-sm-5">
                         <div class="search_box">
-                            <input type="text" placeholder="在这里搜索任何项目"/>
+                            <input type="text" placeholder="在这里搜索任何项目" id="search-area"/>
                         </div>
                     </div>
                     <div class="col-sm-2 users-cart">
@@ -92,29 +97,11 @@
                             <a href="cart.html"><i class="fa fa-shopping-cart"></i> 购物车 <span>0</span></a>
                         </div>
                         <div class="users-cart-info">
-                            <div style="display: none;">购物车中还没有商品，赶紧选购吧！</div>
-                            <div class="table-responsive cart-inshort" style="">
+                            <div id="none-tips" style="display: none;">购物车中还没有商品，赶紧选购吧！</div>
+                            <div id="have-info" class="table-responsive cart-inshort" style="">
                                 <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td class="cart-inshort-pic">
-                                            <a href=""><img src="images/cart/one.png" alt=""></a>
-                                        </td>
-                                        <td class="cart-inshort-des">
-                                            <span>Web ID: 1089772</span>
-                                        </td>
-                                        <td class="cart-inshort-pri">
-                                            <span>$59</span>x<span>1</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
+                                    <tbody id="cart-tbody">
+                                    <tr class="cart-tr-template">
                                         <td class="cart-inshort-pic">
                                             <a href=""><img src="images/cart/one.png" alt=""></a>
                                         </td>
@@ -131,9 +118,7 @@
                         </div>
                     </div>
                     <div class="col-sm-2"></div>
-
                 </div>
-
             </div>
         </div><!--/header-bottom-->
         <div class="horizontal"></div>

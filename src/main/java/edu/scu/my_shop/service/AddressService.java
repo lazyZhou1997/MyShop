@@ -156,6 +156,8 @@ public class AddressService {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         AddressMapper addressMapper = sqlSession.getMapper(AddressMapper.class);
         Address address = addressMapper.selectByPrimaryKey(addressID);
+
+        sqlSession.close();
         return address != null;
     }
 }
