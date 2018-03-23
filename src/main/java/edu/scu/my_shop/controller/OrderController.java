@@ -1,8 +1,7 @@
 package edu.scu.my_shop.controller;
 
-import edu.scu.my_shop.entity.Address;
+import edu.scu.my_shop.entity.Order;
 import edu.scu.my_shop.entity.SecurityUser;
-import edu.scu.my_shop.service.AddressService;
 import edu.scu.my_shop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,11 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+import static edu.scu.my_shop.service.OrderService.*;
+
 /**
- * Created by Vicent_Chen on 2018/3/22.
+ * Created by Vicent_Chen on 2018/3/23.
  */
 @Controller
-public class PaymentController {
+public class OrderController {
+
     @Autowired
     private OrderService orderService;
 
@@ -28,5 +30,20 @@ public class PaymentController {
         String userID = userDetails.getUserId();
         orderService.createOrderByProductId(userID, productIDList, addressID);
         return "";
+    }
+
+    @RequestMapping("getUserOrders")
+    @ResponseBody
+    public List<Order> getUserOrders() {
+        SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userID = userDetails.getUserId();
+        String[] allStatus = new String[STATUS_COUNT];
+        allStatus[0] = ORDER_STATUS_NO_PAYMENT;
+        allStatus[1] = ORDER_STATUS_HAS_PAYMENT;
+        allStatus[2] = ORDER_STATUS_ON_WAY;
+        allStatus[3] = ORDER_STATUS_CANCELED;
+        allStatus[4] = ORDER_STATUS_FINISH;
+        List<Order> orderList = orderService.searchAllOrderByUserIdAndOrderStatus(userID, allStatus);
+        return orderList;
     }
 }
