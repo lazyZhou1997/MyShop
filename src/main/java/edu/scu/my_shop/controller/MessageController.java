@@ -1,9 +1,11 @@
 package edu.scu.my_shop.controller;
 
 import edu.scu.my_shop.entity.Message;
+import edu.scu.my_shop.entity.SecurityUser;
 import edu.scu.my_shop.service.MessageService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,9 +35,11 @@ public class MessageController {
 
     @RequestMapping(value = "/serverMessage")
     public SseEmitter pushMessage() {
+        SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userID = userDetails.getUserId();
         Random random = new Random();
         SseEmitter emitter = new SseEmitter();
-        List<Message> messageList = messageService.getUnreadMessage("for-message-test-recver");
+        List<Message> messageList = messageService.getUnreadMessage(userID);
         try {
             emitter.send(messageList);
         } catch (IOException e) {
@@ -50,5 +54,14 @@ public class MessageController {
     public String sendMessage(@Param("message")Message message) {
         messageService.insertMessage(message);
         return "sendMessage";
+    }
+
+    @RequestMapping("getUserMessage")
+    @ResponseBody
+    public List<Message> getUserMessage() {
+        SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userID = userDetails.getUserId();
+        List<Message> messageList = messageService.getUnreadMessage(userID);
+        return messageList;
     }
 }
