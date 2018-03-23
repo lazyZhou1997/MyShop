@@ -1,4 +1,4 @@
-
+//user info
 $(function () {
     $.getJSON("http://localhost:8080/getUserInfo",function(data){
         var username = data.data.userName;
@@ -26,7 +26,7 @@ function check() {
  //对输入内容的判断
  //至少得输入一项
  if(!username && !userdate && !userpsw1 && !userpsw2) {
-     swal("", "请至少修改一项内容", "error");
+     swal("", "请至少修改一项内容", "warning");
      return false;
  }
  //密码得一样
@@ -42,6 +42,14 @@ function check() {
 
 }
 
+function checkAddress() {
+    var address = $('input[name = addressInfo]').val();
+    var phone = $('input[name = phoneNumber]').val();
+    if(!address || !phone){
+        swal("","请将信息输入完整","warning");
+    }
+
+}
 
 //上传图片功能
 $('#user-info-image').click(function () {
