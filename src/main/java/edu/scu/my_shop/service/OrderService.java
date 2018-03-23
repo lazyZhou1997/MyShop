@@ -1,6 +1,7 @@
 package edu.scu.my_shop.service;
 
 import edu.scu.my_shop.dao.CartMapper;
+import edu.scu.my_shop.dao.OrderItemMapper;
 import edu.scu.my_shop.dao.OrderMapper;
 import edu.scu.my_shop.dao.ProductMapper;
 import edu.scu.my_shop.entity.*;
@@ -76,10 +77,25 @@ public class OrderService {
         Order order = new Order();
         order.setAddressId(addressId);
         order.setOrderDate(new Date());
-        order.setOrderId(UUID.randomUUID().toString());//订单Id，由UUID生成
+        String orderId = UUID.randomUUID().toString();
+        order.setOrderId(orderId);//订单Id，由UUID生成
         order.setOrderStatus(ORDER_STATUS_NO_PAYMENT);//支付状态，默认待付款
         order.setUserId(userId);
         orderMapper.insert(order);
+
+        //存入订单商品
+        OrderItem orderItem;
+        OrderItemMapper orderItemMapper = sqlSession.getMapper(OrderItemMapper.class);
+        for (Cart cart:
+             carts) {
+
+            orderItem = new OrderItem();
+            orderItem.setProductCount(cart.getTotals());
+            orderItem.setOrderId(orderId);
+            orderItem.setProductId(cart.getProductId());
+
+            orderItemMapper.insert(orderItem);
+        }
 
         //删除购物车中已经选中的商品
         cartMapper.deleteByExample(cartExample);

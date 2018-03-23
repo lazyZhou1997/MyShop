@@ -23,7 +23,6 @@ window.onload = function (ev) {
     var str = "";
     source.addEventListener('message', function (e) {
         var messageList = JSON.parse(e.data);
-        console.log(messageList);
         var messageLength = messageList.length;
         $("#notif-no").text(messageLength);
     });
@@ -37,7 +36,6 @@ function showAddress(data) {
         addressRow.find(".user-addr").children("em").text(data[i].phoneNumber);
         addressRow.attr("class", "address-wrap address-li");
         addressRow.find(".hidden-id").attr("value", data[i].addressId);
-        console.log(addressRow.find(".hidden-id").attr("value"));
         if (data[i].isDefaultAddress) {
             addressRow.addClass("selected");
             addressRow.find("input").prop("checked", true);
@@ -119,7 +117,6 @@ function reComputeAll() {
     $(".realPay-price").text(total);
 
     if (total == 0) {
-        console.log("zero le");
         window.location.href = "cart.html";
     }
 }
