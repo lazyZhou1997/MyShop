@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
+import static edu.scu.my_shop.exception.OrderServiceException.*;
+
 @Service
 public class OrderService {
 
@@ -39,7 +41,7 @@ public class OrderService {
 
         //检查输入
         if (null == userId || null == productIds || null == addressId) {
-            throw new OrderServiceException(OrderServiceException.INVALID_INPUT_MESSAGE, OrderServiceException.INVALID_INPUT);
+            throw new OrderServiceException(INVALID_INPUT_MESSAGE, OrderServiceException.INVALID_INPUT);
         }
 
         //已经选中的商品id
@@ -88,8 +90,8 @@ public class OrderService {
         //存入订单商品
         OrderItem orderItem;
         OrderItemMapper orderItemMapper = sqlSession.getMapper(OrderItemMapper.class);
-        for (Cart cart:
-             carts) {
+        for (Cart cart :
+                carts) {
 
             orderItem = new OrderItem();
             orderItem.setProductCount(cart.getTotals());
@@ -117,7 +119,7 @@ public class OrderService {
 
         //判断数据的合法性
         if (null == userId || null == orderId) {
-            throw new OrderServiceException(OrderServiceException.INVALID_INPUT_MESSAGE, OrderServiceException.INVALID_INPUT);
+            throw new OrderServiceException(INVALID_INPUT_MESSAGE, OrderServiceException.INVALID_INPUT);
         }
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -162,7 +164,7 @@ public class OrderService {
 
         //检查输入
         if (null == userId || null == statuses) {
-            throw new OrderServiceException(OrderServiceException.INVALID_INPUT_MESSAGE, OrderServiceException.INVALID_INPUT);
+            throw new OrderServiceException(INVALID_INPUT_MESSAGE, OrderServiceException.INVALID_INPUT);
         }
 
         List<String> arrayStatuses = Arrays.asList(statuses);
@@ -193,22 +195,22 @@ public class OrderService {
         //检查输入
         if (null == orderId) {
 
-            throw new OrderServiceException(OrderServiceException.INVALID_INPUT_MESSAGE, OrderServiceException.INVALID_INPUT);
+            throw new OrderServiceException(INVALID_INPUT_MESSAGE, OrderServiceException.INVALID_INPUT);
         }
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        OrderMapper orderMapper  = sqlSession.getMapper(OrderMapper.class);
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
 
         //查询订单
         Order order = orderMapper.selectByPrimaryKey(orderId);
-        if (null==order){
-            throw new OrderServiceException(OrderServiceException.NO_ORDERS_MESSAGE,OrderServiceException.NO_ORDERS);
+        if (null == order) {
+            throw new OrderServiceException(OrderServiceException.NO_ORDERS_MESSAGE, OrderServiceException.NO_ORDERS);
         }
 
         //如果订单状态不是已付款状态，则抛出异常
-        if (!ORDER_STATUS_HAS_PAYMENT.equals(order.getOrderStatus())){
+        if (!ORDER_STATUS_HAS_PAYMENT.equals(order.getOrderStatus())) {
 
-            throw new OrderServiceException(OrderServiceException.NO_PAY_MESSAGE,OrderServiceException.NO_PAY);
+            throw new OrderServiceException(OrderServiceException.NO_PAY_MESSAGE, OrderServiceException.NO_PAY);
         }
 
         //更新订单状态为正在运送
@@ -220,22 +222,22 @@ public class OrderService {
 
     /**
      * 管理员取消用户订单，订单状态变为"已取消"状态
-     * @param orderId
-     * TODO:未完成
+     *
+     * @param orderId TODO:未完成
      */
-    public void cancelOrderByOrderId(String orderId){
+    public void cancelOrderByOrderId(String orderId) {
         //检查输入
         if (null == orderId) {
-            throw new OrderServiceException(OrderServiceException.INVALID_INPUT_MESSAGE, OrderServiceException.INVALID_INPUT);
+            throw new OrderServiceException(INVALID_INPUT_MESSAGE, OrderServiceException.INVALID_INPUT);
         }
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        OrderMapper orderMapper  = sqlSession.getMapper(OrderMapper.class);
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
 
         //查询订单
         Order order = orderMapper.selectByPrimaryKey(orderId);
-        if (null==order){
-            throw new OrderServiceException(OrderServiceException.NO_ORDERS_MESSAGE,OrderServiceException.NO_ORDERS);
+        if (null == order) {
+            throw new OrderServiceException(OrderServiceException.NO_ORDERS_MESSAGE, OrderServiceException.NO_ORDERS);
         }
 
         //判断订单是否可以取消，在运送中或者已经取消、完成的订单不能取消
@@ -254,5 +256,57 @@ public class OrderService {
         //设置订单状态为取消
         order.setOrderStatus(ORDER_STATUS_CANCELED);
         orderMapper.updateByPrimaryKeySelective(order);
+    }
+
+    /**
+     * 根据订单id获取订单项
+     * @param orderId
+     * @return
+     */
+    public List<OrderItem> getOrderItemByOrderId(String orderId) {
+
+        //检查输入
+        if (null == orderId) {
+            throw new OrderServiceException(INVALID_INPUT_MESSAGE, INVALID_INPUT);
+        }
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        OrderItemMapper orderItemMapper = sqlSession.getMapper(OrderItemMapper.class);
+
+        OrderItemExample orderItemExample = new OrderItemExample();
+        orderItemExample.createCriteria().andOrderIdEqualTo(orderId);
+
+        List<OrderItem> orderItems = orderItemMapper.selectByExample(orderItemExample);
+
+        sqlSession.close();
+
+        return orderItems;
+
+
+    }
+
+    /**
+     * 根据用户id查找订单
+     *
+     * @param userId
+     * @return
+     */
+    public List<Order> searchAllOrderByUserId(String userId) {
+
+        //检查输入
+        if (null == userId) {
+            throw new OrderServiceException(INVALID_INPUT_MESSAGE, OrderServiceException.INVALID_INPUT);
+        }
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+
+        //查找对应的订单
+        OrderExample orderExample = new OrderExample();
+        orderExample.createCriteria().andUserIdEqualTo(userId);
+        List<Order> orders = orderMapper.selectByExample(orderExample);
+
+        sqlSession.close();
+        return orders;
     }
 }

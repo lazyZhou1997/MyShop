@@ -1,6 +1,7 @@
 package edu.scu.my_shop.controller;
 
 import edu.scu.my_shop.entity.Order;
+import edu.scu.my_shop.entity.OrderItem;
 import edu.scu.my_shop.entity.SecurityUser;
 import edu.scu.my_shop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +38,14 @@ public class OrderController {
     public List<Order> getUserOrders() {
         SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userID = userDetails.getUserId();
-        String[] allStatus = new String[STATUS_COUNT];
-        allStatus[0] = ORDER_STATUS_NO_PAYMENT;
-        allStatus[1] = ORDER_STATUS_HAS_PAYMENT;
-        allStatus[2] = ORDER_STATUS_ON_WAY;
-        allStatus[3] = ORDER_STATUS_CANCELED;
-        allStatus[4] = ORDER_STATUS_FINISH;
-        List<Order> orderList = orderService.searchAllOrderByUserIdAndOrderStatus(userID, allStatus);
+        List<Order> orderList = orderService.searchAllOrderByUserId(userID);
         return orderList;
+    }
+
+    @RequestMapping("getOrderItems")
+    @ResponseBody
+    public List<OrderItem> getOrderItems(@RequestParam("orderID") String orderID) {
+        List<OrderItem> orderItemList = orderService.getOrderItemByOrderId(orderID);
+        return orderItemList;
     }
 }

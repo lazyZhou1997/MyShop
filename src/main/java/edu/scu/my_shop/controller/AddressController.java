@@ -21,6 +21,16 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
+    @RequestMapping("addUserAddress")
+    public String addUserAddress(@RequestParam("address") Address address) {
+        if (address == null) {
+            return "未知地址";
+        }
+
+        addressService.insertAddress(address);
+        return "";
+    }
+
     @RequestMapping("setAddressDefault")
     public String setAddressDefault(@RequestParam(value = "addressID", required = false)String addressID) {
 
