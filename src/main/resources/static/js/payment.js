@@ -14,6 +14,19 @@ window.onload = function (ev) {
             showCart(result);
         }
     )
+
+    // show message count
+    if (!window.EventSource) {
+        swal("", "您的浏览器不支持实时消息通知", "error");
+    }
+    var source = new EventSource('serverMessage');
+    var str = "";
+    source.addEventListener('message', function (e) {
+        var messageList = JSON.parse(e.data);
+        console.log(messageList);
+        var messageLength = messageList.length;
+        $("#notif-no").text(messageLength);
+    });
 };
 
 function showAddress(data) {
