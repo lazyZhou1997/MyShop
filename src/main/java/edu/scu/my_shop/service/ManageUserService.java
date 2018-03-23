@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static edu.scu.my_shop.exception.ManageUserException.*;
+
 @Service
 public class ManageUserService {
 
@@ -56,4 +58,24 @@ public class ManageUserService {
         return userList;
     }
 
+
+    /**
+     * 设置指定UserId的用户为管理员
+     * @param userId
+     */
+    public void deleteUser(String userId){
+
+        //检查输入
+        if (null==userId){
+            throw new ManageUserException(INVALID_INPUT_MESSAGE,INVALID_INPUT);
+        }
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        userMapper.deleteByPrimaryKey(userId);
+
+        sqlSession.close();
+
+    }
 }
