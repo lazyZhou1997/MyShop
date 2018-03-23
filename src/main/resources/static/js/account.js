@@ -47,6 +47,7 @@ function checkAddress() {
     var phone = $('input[name = phoneNumber]').val();
     if(!address || !phone){
         swal("","请将信息输入完整","warning");
+        return false;
     }
 
 }

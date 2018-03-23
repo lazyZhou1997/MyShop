@@ -1,5 +1,6 @@
 package edu.scu.my_shop.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Product {
@@ -20,6 +21,11 @@ public class Product {
      * @mbg.generated Sat Mar 17 10:46:26 CST 2018
      */
     private String productName;
+
+    /**
+     * 商品图片
+     */
+    private List<String> iamges;
 
     /**
      *
@@ -201,4 +207,11 @@ public class Product {
         this.productLeftTotals = productLeftTotals;
     }
 
+    public List<String> getIamges() {
+        return iamges;
+    }
+
+    public void setIamges(List<String> iamges) {
+        this.iamges = iamges;
+    }
 }

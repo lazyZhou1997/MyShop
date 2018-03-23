@@ -1,3 +1,5 @@
+
+//分页功能
 $(function () {
     var url = decodeURI(window.location.href);
     var argsIndex = url.split("?kw=");
@@ -20,11 +22,17 @@ $(function () {
                     name = name.substring(0,17)+"...";
                 }
                 var url = "/productdetails?productID=" + data[j].productId;
+                var DIV = $("<img src=''/>");
                 div += "<div class=\"col-sm-3\">";
                 div += "<div class=\"product-image-wrapper\">";
                 div += "<div class=\"single-products\">";
                 div += "<div class=\"productinfo text-center\">";
-                div += "<a href='"+url +"'>" + "<img src=\"images/home/gallery3.jpg\" alt=\"\" />" + "</a>";
+                div += "<div style=\"height:177px;\"><a href='"+url +"'><img src='" +  data[j].iamges[0] +"' alt=\"\" /></a></div>";
+                // if("" == image_url){
+                //     div += "<a href='"+url +"'>" + "<img src=\"images/products/41c7awrpLjL._SL800_.jpg\" alt=\"\" />" + "</a>";
+                // }else {
+                //     div += "<a href='"+url +"'>" + "<img src='"  + image_url + "'" + "alt=\"\" />" + "</a>";
+                // }
                 div += "<h2>" + data[j].productPrice + "</h2>";
                 div += "<p>" + name + " </p>";
                 div += "<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>";
@@ -39,7 +47,6 @@ $(function () {
         }
         var initPagination = function(){
             var num = $('#hidden-result div.col-sm-3').length;
-            console.log(num);
             $('.pagination').pagination(num,{
                 num_edge_entries: 1, //边缘页数
                 num_display_entries: 2, //主体页数
@@ -55,4 +62,5 @@ $(function () {
         }
     });
 });
+
 
