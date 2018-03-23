@@ -60,7 +60,7 @@ public class ManageUserService {
 
 
     /**
-     * 设置指定UserId的用户为管理员
+     * 管理员删除用户
      * @param userId
      */
     public void deleteUser(String userId){
