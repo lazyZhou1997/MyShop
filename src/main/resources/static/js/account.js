@@ -156,14 +156,17 @@ $(function () {
         console.log(data);
         for(var i=0;i<data.length;i++){
             var tr = "<tr>";
-            tr += "<td>" + "name" + "</td>";
-            tr += "<td>" + "address" + "</td>";
-            tr += "<td>" + "address in detail" + "</td>";
-            tr += "<td>" + "youbian" + "</td>";
-            tr += "<td>" + "phone" + "</td>";
+            tr += "<td>" + data[i].userId + "</td>";
+            tr += "<td>" + data[i].addressInfo + "</td>";
+            tr += "<td>" + data[i].phoneNumber + "</td>";
             tr += "<td>" + "<a href=\"\">修改</a>|<a href=\"\">删除</a>" + "</td>";
-            tr += "<td>" + "么人地址" + "</td>";
-            tr += "</tr>";
+            if(data[i].isDefaultAddress == false) {
+                tr += "<td>" + "</td>";
+            }
+            else {
+                tr += "<td>" + "默认地址" +"</td>";
+            }
+                tr += "</tr>";
             $('#address-info').append(tr);
         }
     })
@@ -185,22 +188,31 @@ $(function () {
 // </div>
 $(function () {
     $.getJSON("/getUserMessage", function (data) {
-        console.log(data);
+        var unread = 0;
         for (var i = 0; i < data.length; i++) {
             var div = "<div class=\"notif\">";
-            div += "<div class=\"notif-status col-sm-1 col-md-1\">未读</div>";
+            if(data[i].isRead == false){
+                div += "<div class=\"notif-status col-sm-1 col-md-1\">未读</div>";
+                unread ++;
+            }
+            else{
+                div += "<div class=\"notif-status col-sm-1 col-md-1\">已读</div>";
+            }
             div += "<div class=\"col-sm-11 col-md-11\">\n" +
                 "<div class=\"notif-head\">";
-            div += "<span>" + "name of guider" + "</span>";
-            div += "<span>" + "time" + "</span>";
+            div += "<span>" + data[i].senderId + "</span>";
+            if(data[i].sendTime != null){
+                div += "<span>" + data[i].sendTime + "</span>";
+            }
             div += "</div>";
             div += "<div class=\"notif-body fa-border\">";
-            div += "<p>" + "main info sadksaljdhewlwqdlsandalhdkjj2elksdasjldjadlkasjdljasd" + "</p>";
+            div += "<p>" + data[i].messageContent + "</p>";
             div += "</div>";
             div += "</div>";
             div += "</div>";
             $('#user-notification').append(div);
         }
+        $('.badge').text(unread);
     })
 })
 
