@@ -1,0 +1,177 @@
+<html lang="cn"><head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style-metro.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style-responsive.css">
+    <link rel="stylesheet" type="text/css" id="style_color" href="../css/default.css">
+    <link rel="stylesheet" type="text/css" href="../css/uniform.default.css">
+    <link rel="stylesheet" type="text/css" href="../css/pagination.css">
+    <link rel="shortcut icon" href="../image/favicon.ico">
+</head>
+
+<body style="">
+<div class="container-fluid">
+    <div class="row-fluid">
+        <h3 class="page-title"><i class="fa fa-shopping-bag"></i> 商品管理</h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#"><i class="fa fa-home"></i>商品管理</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="#">商品列表</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row-fluid">
+        <div class="portlet">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-reorder"></i>
+                    商品列表
+                </div>
+                <div class="tools">
+                    <button onclick="window.location.href='toAdd.html';" class="btn mini"><i class="fa fa-plus"></i>添加
+                    </button>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table id="productTable" class="table table-advance table-hover">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>商品图片</th>
+                        <th>商品名称</th>
+                        <th>商品价格</th>
+                        <th>热门商品</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody><tr style="height: 50px;"><td>9</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/0B1CDC0C82A79A25A4BA159D88D8AC.jpg"></td><td>微软（Microsoft）新Surface Pro 二合一平板电脑 12.3英寸（Intel Core i5 8G内存 256G存储 ）</td><td>￥8999</td><td><b style="color:red;">是</b></td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(9)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(9,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style="height: 50px;"><td>10</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/E98ECEAC9E68BE31BB623419FD0C9E.png"></td><td>Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</td><td>￥8888</td><td><b style="color:red;">是</b></td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(10)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(10,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style="height: 50px;"><td>11</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/EA03D40CEC55463A958B3629511493.jpg"></td><td>可口可乐330ml*24听整箱装</td><td>￥39</td><td>否</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(11)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(11,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style="height: 50px;"><td>12</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/3E1E590D6BD2ED1CF047045C83B313.jpg"></td><td>惠普（HP）光影精灵580 吃鸡游戏主机（i5-7400 8G 128GSSD+1T GTX1060）</td><td>￥3999</td><td><b style="color:red;">是</b></td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(12)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(12,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style="height: 50px;"><td>13</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/9F6B955F4C732FF96793FC8BB2F244.jpg"></td><td>联想（Lenovo）拯救者刃7000 UIY主机( i7-7700 8G 128G SSD 1T硬盘 GTX1060 Win10)</td><td>￥5999</td><td><b style="color:red;">是</b></td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(13)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(13,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style="height: 50px;"><td>14</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/E98ECEAC9E68BE31BB623419FD0C9E.png"></td><td>1Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</td><td>￥8888</td><td>否</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(14)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(14,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style="height: 50px;"><td>15</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/E98ECEAC9E68BE31BB623419FD0C9E.png"></td><td>2Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</td><td>￥8888</td><td>否</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(15)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(15,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style="height: 50px;"><td>16</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/E98ECEAC9E68BE31BB623419FD0C9E.png"></td><td>3Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</td><td>￥8888</td><td>否</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(16)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(16,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style="height: 50px;"><td>17</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/E98ECEAC9E68BE31BB623419FD0C9E.png"></td><td>4Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</td><td>￥8888</td><td>否</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(17)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(17,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style="height: 50px;"><td>18</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/E98ECEAC9E68BE31BB623419FD0C9E.png"></td><td>5Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</td><td>￥8888</td><td>否</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(18)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(18,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style="height: 50px;"><td>19</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/E98ECEAC9E68BE31BB623419FD0C9E.png"></td><td>6Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</td><td>￥8888</td><td>否</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(19)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(19,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style="height: 50px;"><td>20</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/E98ECEAC9E68BE31BB623419FD0C9E.png"></td><td>7Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</td><td>￥8888</td><td>否</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(20)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(20,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style="height: 50px;"><td>21</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/E98ECEAC9E68BE31BB623419FD0C9E.png"></td><td>8Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</td><td>￥8888</td><td>否</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(21)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(21,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style="height: 50px;"><td>22</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/E98ECEAC9E68BE31BB623419FD0C9E.png"></td><td>9Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</td><td>￥8888</td><td>否</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(22)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(22,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style="height: 50px;"><td>23</td><td><img style="display: block;height: 50px;max-width: 100%;" src="../admin/product/img/E98ECEAC9E68BE31BB623419FD0C9E.png"></td><td>10Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</td><td>￥8888</td><td>否</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(23)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(23,this)"><i class="fa fa-trash"></i> 删除</button></td></tr></tbody>
+                </table>
+                <div id="Pagination" class="pagination align_right"><span class="current prev">前一页</span><span class="current">1</span><a href="#">2</a><a href="#">3</a><a href="#" class="next">后一页</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery-migrate-1.2.1.min.js"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script type="text/javascript" src="../js/jquery-ui-1.10.1.custom.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="../js/jquery.blockui.min.js"></script>
+<script type="text/javascript" src="../js/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="../js/jquery.uniform.min.js"></script>
+<script type="text/javascript" src="../js/app.js"></script>
+<script type="text/javascript" src="../js/jquery.pagination.js"></script>
+<script type="text/javascript">
+    //		<![CDATA[
+    var msg = null;
+    if (msg) {
+        alert(msg);
+    }
+
+    function edit(id) {
+        window.location.href = "toEdit.html?id=" + id;
+    }
+
+    function del(id, btn) {
+        if (!confirm("是否删除id为" + id + "的商品？")) {
+            return;
+        }
+        $.ajax({
+            url: "del.do?id=" + id,
+            type: "get",
+            success: function (result) {
+                if (result.state == 0) {
+                    if (result.data == true) {
+                        alert("删除成功！");
+                        $(btn).parent().parent().fadeOut();
+                    } else {
+                        alert("删除失败！");
+                    }
+                } else {
+                    alert(result.message);
+                }
+            }
+        });
+    }
+
+    var pagetotal;
+    $(function () {
+        $.ajax({
+            url: "getTotal.do",
+            type: "get",
+            success: function (result) {
+                if (result.state == 0) {
+                    pagetotal = result.data;
+                    $("#Pagination").pagination(pagetotal, {
+                        num_edge_entries: 1, //边缘页数
+                        num_display_entries: 5, //主体页数
+                        callback: pageselectCallback,
+                        items_per_page: 15, //每页显示7项
+                        prev_text: "前一页",
+                        next_text: "后一页"
+                    });
+                } else {
+                    alert(result.message);
+                }
+            }
+        });
+    });
+
+    function pageselectCallback(page_index, jq) {
+        $.ajax({
+            type: "get",
+            url: "list.do?pageindex=" + page_index,
+            success: function (result) {
+                if (result.state == 0) {
+                    showList(result.data);
+                } else {
+                    alert(result.message);
+                }
+            }
+        });
+    }
+
+    function showList(data) {
+        if (!data || !data.length > 0) {
+            return;
+        }
+        //清空表
+        var tbody = $("#productTable tbody").eq(0);
+        tbody.html("");
+        for (var i = 0; i < data.length; i++) {
+            var tr = $("<tr style='display:none;height:50px;'></tr>");
+            tr.append($("<td></td>").text(data[i].id));
+            var src = data[i].image;
+            tr.append($("<td></td>").html("<img style='display: block;height: 50px;max-width: 100%;' src='" + src + "'/>"));
+            tr.append($("<td></td>").text(data[i].title));
+            tr.append($("<td></td>").text("￥" + data[i].shopPrice));
+            if (1 == data[i].isHot)
+                tr.append($("<td></td>").html("<b style='color:red;'>是</b>"));
+            else
+                tr.append($("<td></td>").html("否"));
+            tr.append($("<td></td>")
+                .append($('<button style="margin-right:20px;" class="btn mini green" onclick="edit(' + data[i].id + ')"><i class="fa fa-edit"></i> 编辑</button>'))
+                .append($('<button class="btn mini red" onclick="del(' + data[i].id + ',this)"><i class="fa fa-trash"></i> 删除</button>')));
+            tbody.append(tr);
+            tr.fadeIn();
+        }
+
+    }
+
+    //		]]>
+</script>
+
+
+</body></html>

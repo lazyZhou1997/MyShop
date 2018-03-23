@@ -36,13 +36,9 @@ public class ExceptionHandle {
      * @return
      */
     @ExceptionHandler(ChangeUserInfoException.class)
-    public ModelAndView handleChangeUserInfoException(HttpServletRequest request, ChangeUserInfoException e){
-
-        ModelAndView mav = new ModelAndView();
-        mav.getModelMap().addAttribute("error",e.getMessage());//携带属性
-        mav.setViewName("account");//返回页面
-
-        return mav;
+    @ResponseBody
+    public String handleChangeUserInfoException(HttpServletRequest request, ChangeUserInfoException e){
+        return e.getMessage();
     }
 
     /**

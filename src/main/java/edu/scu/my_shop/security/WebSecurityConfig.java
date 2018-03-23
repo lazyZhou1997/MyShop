@@ -39,12 +39,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        http.headers().frameOptions().sameOrigin();
+
         // FIXME
         http.csrf().disable();
 
         http.authorizeRequests().antMatchers("/registerpage",
+                                             
+//                "/message", "/serverMessage", "/sendMessage","/send",//FIXME: add proper authority
+//                "/chuizi", "/user/**", "/order/**", "/classification/**", "/product/**",//FIXME
                 //"/file","/fileUpload", "/multifile", "/multifileUpload", "/multifileUpdate",//FIXME: add proper authority
-                //"/message", "/serverMessage", "/sendMessage","/send",//FIXME: add proper authority
+
                 "/register",
                 "/loginpage",
                 "/js/**",

@@ -1,0 +1,166 @@
+<html lang="cn"><head>
+    <meta charset="UTF-8">
+    <title>二级分类列表</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style-metro.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style-responsive.css">
+    <link rel="stylesheet" type="text/css" id="style_color" href="../css/default.css">
+    <link rel="stylesheet" type="text/css" href="../css/uniform.default.css">
+    <link rel="stylesheet" type="text/css" href="../css/pagination.css">
+    <link rel="shortcut icon" href="../image/favicon.ico">
+
+</head>
+
+<body style="">
+<div class="container-fluid">
+    <div class="row-fluid">
+        <h3 class="page-title"><i class="fa fa-object-group"></i> 分类管理</h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#"><i class="fa fa-home"></i>分类管理</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="#">二级分类</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row-fluid">
+        <div class="portlet box green">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-reorder"></i>
+                    二级分类列表
+                </div>
+                <div class="tools">
+                    <button onclick="window.location.href='toAdd.html?type=2';" class="btn mini"><i class="fa fa-plus"></i>添加
+                    </button>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table id="cateTable" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>名称</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody><tr style=""><td>5</td><td>笔记本</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(5)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(5,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style=""><td>6</td><td>平板</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(6)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(6,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style=""><td>7</td><td>台式机</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(7)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(7,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style=""><td>10</td><td>饮料</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(10)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(10,this)"><i class="fa fa-trash"></i> 删除</button></td></tr><tr style=""><td>11</td><td>智能手机</td><td><button style="margin-right:20px;" class="btn mini green" onclick="edit(11)"><i class="fa fa-edit"></i> 编辑</button><button class="btn mini red" onclick="del(11,this)"><i class="fa fa-trash"></i> 删除</button></td></tr></tbody>
+                </table>
+                <div id="Pagination" class="pagination align_right"><span class="current prev">前一页</span><span class="current">1</span><span class="current next">后一页</span></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery-migrate-1.2.1.min.js"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script type="text/javascript" src="../js/jquery-ui-1.10.1.custom.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="../js/jquery.blockui.min.js"></script>
+<script type="text/javascript" src="../js/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="../js/jquery.uniform.min.js"></script>
+<script type="text/javascript" src="../js/jquery.pagination.js"></script>
+<script type="text/javascript" src="../js/app.js"></script>
+<script>
+    //          <![CDATA[
+    function edit(id) {
+        window.location.href = "toEdit.html?type=2&id=" + id;
+    }
+
+    function del(id, btn) {
+        if (!confirm("是否删除id为" + id + "的分类？")) {
+            return;
+        }
+        $.ajax({
+            url: "del.do?id=" + id,
+            type: "get",
+            success: function (result) {
+                if (result.state == 0) {
+                    if (result.data == true) {
+                        alert("删除成功！");
+                        $(btn).parent().parent().fadeOut();
+                    } else {
+                        alert("删除失败！");
+                    }
+                } else {
+                    alert(result.message);
+                }
+            }
+        });
+    }
+
+    var pagetotal;
+    $(function () {
+
+        $.ajax({
+            url: "getTotal.do?type=2",
+            type: "get",
+            success: function (result) {
+                if (result.state == 0) {
+                    pagetotal = result.data;
+                    $("#Pagination").pagination(pagetotal, {
+                        num_edge_entries: 1, //边缘页数
+                        num_display_entries: 5, //主体页数
+                        callback: pageselectCallback,
+                        items_per_page: 7, //每页显示7项
+                        prev_text: "前一页",
+                        next_text: "后一页"
+                    });
+                } else {
+                    alert(result.message);
+                }
+            }
+        });
+    });
+
+    function pageselectCallback(page_index, jq) {
+        $.ajax({
+            type: "get",
+            url: "list.do?type=2&pageindex=" + page_index,
+            success: function (result) {
+                if (result.state == 0) {
+                    showList(result.data);
+                } else {
+                    alert(result.message);
+                }
+            }
+        });
+    }
+
+    function showList(data) {
+        if (!data || !data.length > 0) {
+            return;
+        }
+        //清空表
+        var tbody = $("#cateTable tbody").eq(0);
+        tbody.html("");
+        for (var i = 0; i < data.length; i++) {
+            var tr = $("<tr style='display:none;'></tr>");
+            tr.append($("<td></td>").text(data[i].id));
+            tr.append($("<td></td>").text(data[i].cname));
+            tr.append($("<td></td>")
+                .append($('<button style="margin-right:20px;" class="btn mini green" onclick="edit(' + data[i].id + ')"><i class="fa fa-edit"></i> 编辑</button>'))
+                .append($('<button class="btn mini red" onclick="del(' + data[i].id + ',this)"><i class="fa fa-trash"></i> 删除</button>')));
+            tbody.append(tr);
+            tr.fadeIn();
+        }
+
+    }
+
+    //          ]]>
+</script>
+
+
+</body></html>
