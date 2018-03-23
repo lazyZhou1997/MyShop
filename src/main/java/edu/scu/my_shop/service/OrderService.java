@@ -18,6 +18,8 @@ import java.util.*;
 @Service
 public class OrderService {
 
+    public static Integer STATUS_COUNT = 5;
+
     public static String ORDER_STATUS_NO_PAYMENT = "待付款";
     public static String ORDER_STATUS_HAS_PAYMENT = "已付款";
     public static String ORDER_STATUS_ON_WAY = "正在运送";
