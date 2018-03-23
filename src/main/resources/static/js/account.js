@@ -1,4 +1,4 @@
-
+//user info
 $(function () {
     $.getJSON("http://localhost:8080/getUserInfo",function(data){
         var username = data.data.userName;
@@ -26,7 +26,7 @@ function check() {
  //对输入内容的判断
  //至少得输入一项
  if(!username && !userdate && !userpsw1 && !userpsw2) {
-     swal("", "请至少修改一项内容", "error");
+     swal("", "请至少修改一项内容", "warning");
      return false;
  }
  //密码得一样
@@ -42,6 +42,14 @@ function check() {
 
 }
 
+function checkAddress() {
+    var address = $('input[name = addressInfo]').val();
+    var phone = $('input[name = phoneNumber]').val();
+    if(!address || !phone){
+        swal("","请将信息输入完整","warning");
+    }
+
+}
 
 //上传图片功能
 $('#user-info-image').click(function () {
@@ -78,28 +86,63 @@ $('#choose-image').change(function () {
         // });
     })
 
-
+//order
 $(function () {
-    for(var i = 0; i<3;i++){
-        var tr = "<tr>";
-        if(i == 0){
-             tr += "<td rowspan='3'>" + "asdfg" + "</td>";
+    var status = ""
+    $.getJSON("/getUserOrders",function (data) {
+        for(var i=0;i<data.length;i++){
+            status = data[i].orderStatus;
+            $.post("/getOrderItems",{
+                orderID : data[i].orderId
+            },function (DATA) {
+                console.log(DATA);
+                for(var j = 0;j<DATA.length;j++){
+                    var tr = "<tr>";
+                    if(0 == j){
+                        tr += "<td rowspan='" + DATA.length + "'>" + j+1 + "</td>";
+                    }
+                    tr += "<td>";
+                    tr += "<h4><a href=''>" + DATA[j].productName + "</a></h4>";
+                    tr += "<span>" + DATA[j].productDescription +"</span>";
+                    tr += "</td>";
+                    tr += "<td>" + DATA[j].productPrice + "</td>";
+                    tr += "<td>" + "3" + "</td>";
+                    tr += "<td>" + DATA[j].productPrice*3 + "</td>";
+                    if(0 == j){
+                        tr += "<td rowspan='" + DATA.length + "'>" + status + "</td>";
+                    }
+                    if(0 == j){
+                        tr += "<td rowspan='" + DATA.length + "'>" + "<a class=\'glyphicon glyphicon-trash\'href=\'\'></a></td>";
+                    }
+
+                    tr += "</tr>";
+                    $('#order-info').append(tr);
+                }
+            })
         }
-        tr += "<td class = 'order-img'>" + "<a href=''><img alt='' src='" + "images/cart/one.png" + "'></a>";
-        tr += "</td>" + "<td>";
-        tr += "<h4><a href=''>" + "Testsd" + "</a></h4>";
-        tr += "<span>Web ID:roysifan</span>";
-        tr += "</td>";
-        tr += "<td>" + "12" + "</td>";
-        tr += "<td>" + "3" + "</td>";
-        tr += "<td>" + "36" + "</td>";
-        tr += "<td>" + "已付款"+ "</td>";
-        tr += "<td>" + "<a class=\'glyphicon glyphicon-trash\'href=\'\'></a></td>";
-        tr += "</tr>";
-        $('#order-info').append(tr);
-    }
+
+        // for(var i = 0; i<data.length;i++){
+        //     var tr = "<tr>";
+        //     if(i == 0){
+        //         tr += "<td rowspan='3'>" + "asdfg" + "</td>";
+        //     }
+        //     tr += "<td class = 'order-img'>" + "<a href=''><img alt='' src='" + "images/cart/one.png" + "'></a>";
+        //     tr += "</td>" + "<td>";
+        //     tr += "<h4><a href=''>" + "Testsd" + "</a></h4>";
+        //     tr += "<span>Web ID:roysifan</span>";
+        //     tr += "</td>";
+        //     tr += "<td>" + "12" + "</td>";
+        //     tr += "<td>" + "3" + "</td>";
+        //     tr += "<td>" + "36" + "</td>";
+        //     tr += "<td>" + "已付款"+ "</td>";
+        //     tr += "<td>" + "<a class=\'glyphicon glyphicon-trash\'href=\'\'></a></td>";
+        //     tr += "</tr>";
+        //     $('#order-info').append(tr);
+        // }
+    })
 })
 
+//address
 $(function () {
     $.getJSON("/getUserAddress",function (data) {
         console.log(data);

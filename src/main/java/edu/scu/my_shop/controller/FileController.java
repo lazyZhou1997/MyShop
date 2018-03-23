@@ -47,7 +47,7 @@ public class FileController {
         String userID = userDetails.getUserId();
         fileService.uploadUserImage(userID, file);
 
-        return "account";
+        return "redirect:userInfoPage?kw=user-info";
     }
 
 

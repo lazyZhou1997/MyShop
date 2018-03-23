@@ -62,7 +62,7 @@ public class ChangeUserInfoController {
         //登录成功处理
         modelMap.addAttribute("success","修改成功");
 
-        return "account";
+        return "redirect:userInfoPage?kw=user-info";
     }
 
     /**
