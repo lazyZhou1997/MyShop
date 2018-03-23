@@ -27,7 +27,7 @@ $(function () {
                 div += "<div class=\"product-image-wrapper\">";
                 div += "<div class=\"single-products\">";
                 div += "<div class=\"productinfo text-center\">";
-                div += "<a href='"+url +"'><img src='" +  data[j].iamges[0] +"' alt=\"\" /></a>";
+                div += "<div style=\"height:177px;\"><a href='"+url +"'><img src='" +  data[j].iamges[0] +"' alt=\"\" /></a></div>";
                 // if("" == image_url){
                 //     div += "<a href='"+url +"'>" + "<img src=\"images/products/41c7awrpLjL._SL800_.jpg\" alt=\"\" />" + "</a>";
                 // }else {
