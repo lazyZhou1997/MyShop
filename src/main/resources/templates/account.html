@@ -218,7 +218,6 @@
 								<thead>
 									<tr>
 										<td>订单号</td>
-										<td class="image text-center">图片</td>
 										<td class="description text-center">商品详情</td>
 										<td class="price text-center">价格</td>
 										<td class="quantity text-center">数量</td>
@@ -235,42 +234,24 @@
 					<div class="tab-pane fade in" id="user-address">
 						<div class="login-form">
 							<h2>新增收货地址</h2>
-							<form class="">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">所在地区<i>*</i></label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" placeholder="adress">
-									</div>
-								</div>
+							<form action="/addUserAddress" method="post">
 								<div class="form-group">
 									<label class="col-sm-2 control-label">详细地址<i>*</i></label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" placeholder="adress">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">邮政编码<i>*</i></label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" placeholder="邮政编码">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">收货人姓名<i>*</i></label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" placeholder="收货人姓名">
+										<input type="text" class="form-control" placeholder="address" name="addressInfo">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label">电话号码<i>*</i></label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" placeholder="电话号码">
+										<input type="text" class="form-control" placeholder="电话号码" name="phoneNumber">
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-2"></div>
 									<div class="col-sm-10">
 										<span>
-											<input type="checkbox" class="form-control,checkbox">
+											<input type="checkbox" class="form-control,checkbox" name="isDefaultAddress">
 											设置为默认收货地址
 										</span>
 									</div>
