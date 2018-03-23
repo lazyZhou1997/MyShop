@@ -22,6 +22,8 @@ image:
 spring:
   mvc:
     static-path-pattern: /**
+  jackson:
+    time-zone: GMT+8
 #  #解决时间差
 #  jackson:
 #    time-zone: GMT+8
