@@ -14,6 +14,18 @@ window.onload = function (ev) {
             showCart(result);
         }
     )
+
+    // show message count
+    if (!window.EventSource) {
+        swal("", "您的浏览器不支持实时消息通知", "error");
+    }
+    var source = new EventSource('serverMessage');
+    var str = "";
+    source.addEventListener('message', function (e) {
+        var messageList = JSON.parse(e.data);
+        var messageLength = messageList.length;
+        $("#notif-no").text(messageLength);
+    });
 };
 
 function showAddress(data) {
@@ -24,7 +36,6 @@ function showAddress(data) {
         addressRow.find(".user-addr").children("em").text(data[i].phoneNumber);
         addressRow.attr("class", "address-wrap address-li");
         addressRow.find(".hidden-id").attr("value", data[i].addressId);
-        console.log(addressRow.find(".hidden-id").attr("value"));
         if (data[i].isDefaultAddress) {
             addressRow.addClass("selected");
             addressRow.find("input").prop("checked", true);
@@ -106,7 +117,6 @@ function reComputeAll() {
     $(".realPay-price").text(total);
 
     if (total == 0) {
-        console.log("zero le");
         window.location.href = "cart.html";
     }
 }

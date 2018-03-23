@@ -102,8 +102,6 @@ public class MessageService {
     public List<Message> getUnreadMessage(String userID) {
         MessageExample messageExample = new MessageExample();
         messageExample.createCriteria().andRecvIdEqualTo(userID).andIsReadEqualTo(false);
-        Message message = new Message();
-        message.setIsRead(true);
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         MessageMapper messageMapper = sqlSession.getMapper(MessageMapper.class);
@@ -111,12 +109,23 @@ public class MessageService {
         // get message list
         List<Message> messageList = messageMapper.selectByExample(messageExample);
 
-        // update message list
-        messageMapper.updateByExampleSelective(message, messageExample);
-
         sqlSession.close();
 
         return messageList;
+    }
+
+    /**
+     * Get a specific message.
+     * It may return null. (<b>NOT TESTED YET</b>)
+     * @param messageID
+     * @return
+     */
+    public Message getMessage(String messageID) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        MessageMapper messageMapper = sqlSession.getMapper(MessageMapper.class);
+        Message message = messageMapper.selectByPrimaryKey(messageID);
+        sqlSession.close();
+        return message;
     }
 
     public List<Message> getAllMessage(String userID) {
@@ -137,4 +146,14 @@ public class MessageService {
         return messageList;
     }
 
+    /**
+     * Get the number of unread messages
+     * @param userID
+     * @return
+     */
+    public Integer getUnreadMessgeNumber(String userID) {
+        // get message list
+        List<Message> messageList = getUnreadMessage(userID);
+        return messageList.size();
+    }
 }
