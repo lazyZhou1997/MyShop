@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class ManageUserService {
 
@@ -40,5 +42,17 @@ public class ManageUserService {
         userMapper.updateByPrimaryKeySelective(user);
 
         sqlSession.close();
+    }
+
+    /**
+     * Get all user in database.
+     * @return
+     */
+    public List<User> getAllUser() {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        List<User> userList = userMapper.selectByExample(new UserExample());
+        sqlSession.close();
+        return userList;
     }
 }
