@@ -90,6 +90,7 @@ public class ChangeUserInfoService {
             throw new ChangeUserInfoException(ChangeUserInfoException.NO_USER_MESSAGE,ChangeUserInfoException.NO_USER);
         }
 
+        sqlSession.close();
         return user;
     }
 
@@ -103,6 +104,7 @@ public class ChangeUserInfoService {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         User user = userMapper.selectByPrimaryKey(userID);
+
         sqlSession.close();
         return user != null;
     }

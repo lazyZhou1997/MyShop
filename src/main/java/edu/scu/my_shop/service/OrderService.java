@@ -149,6 +149,8 @@ public class OrderService {
         order.setOrderStatus(ORDER_STATUS_CANCELED);
         orderMapper.updateByPrimaryKeySelective(order);
 
+        sqlSession.close();
+
         return;
     }
 
@@ -182,6 +184,7 @@ public class OrderService {
             throw new OrderServiceException(OrderServiceException.NO_ORDERS_MESSAGE, OrderServiceException.NO_ORDERS);
         }
 
+        sqlSession.close();
         return orders;
     }
 
@@ -217,6 +220,7 @@ public class OrderService {
         order.setOrderStatus(ORDER_STATUS_ON_WAY);
         orderMapper.updateByPrimaryKeySelective(order);
 
+        sqlSession.close();
         return;
     }
 
@@ -256,6 +260,7 @@ public class OrderService {
         //设置订单状态为取消
         order.setOrderStatus(ORDER_STATUS_CANCELED);
         orderMapper.updateByPrimaryKeySelective(order);
+        sqlSession.close();
     }
 
     /**
@@ -308,5 +313,50 @@ public class OrderService {
 
         sqlSession.close();
         return orders;
+    }
+
+    /**
+     * 管理员用于获取所有订单
+     * @return
+     */
+    public List<Order> getAllOrder(){
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+
+        List<Order> orders = orderMapper.selectByExample(new OrderExample());
+
+        sqlSession.close();
+        return orders;
+    }
+
+    /**
+     * 根据传入订单状态数组搜索符合状态的订单
+     * @param statuses
+     * @return
+     */
+    public List<Order> searchOrderByOrderStatus(String[] statuses){
+
+
+        //检查输入
+        if (null==statuses||0==statuses.length){
+
+            throw new OrderServiceException(INVALID_INPUT_MESSAGE,INVALID_INPUT);
+        }
+
+        List<String> statusList = Arrays.asList(statuses);
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+
+        OrderExample orderExample = new OrderExample();
+        orderExample.createCriteria().andOrderStatusIn(statusList);
+
+        List<Order> orders = orderMapper.selectByExample(orderExample);
+
+
+        sqlSession.close();
+        return orders;
+
     }
 }

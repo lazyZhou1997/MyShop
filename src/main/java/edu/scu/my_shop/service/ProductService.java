@@ -290,6 +290,7 @@ public class ProductService {
             products = null;
         }
 
+        sqlSession.close();
         return products;
     }
 
