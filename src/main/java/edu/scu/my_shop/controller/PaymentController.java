@@ -19,11 +19,5 @@ public class PaymentController {
     @Autowired
     private AddressService addressService;
 
-    @RequestMapping("getUserAddress")
-    @ResponseBody
-    public List<Address> getUserAddress() {
-        SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Address> addressList = addressService.getAllAddresses(userDetails.getUserId());
-        return addressList;
-    }
+
 }
