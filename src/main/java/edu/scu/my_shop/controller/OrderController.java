@@ -2,11 +2,13 @@ package edu.scu.my_shop.controller;
 
 import edu.scu.my_shop.entity.Order;
 import edu.scu.my_shop.entity.OrderItem;
+import edu.scu.my_shop.entity.Product;
 import edu.scu.my_shop.entity.SecurityUser;
 import edu.scu.my_shop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,6 +35,10 @@ public class OrderController {
         return "";
     }
 
+    /**
+     * 获取用户的所有订单
+     * @return
+     */
     @RequestMapping("getUserOrders")
     @ResponseBody
     public List<Order> getUserOrders() {
@@ -42,10 +48,14 @@ public class OrderController {
         return orderList;
     }
 
-    @RequestMapping("getOrderItems")
+    /**
+     * 传入订单Id获取订单包含的商品
+     * @param orderID
+     * @return
+     */
+    @PostMapping("getOrderItems")
     @ResponseBody
-    public List<OrderItem> getOrderItems(@RequestParam("orderID") String orderID) {
-        List<OrderItem> orderItemList = orderService.getOrderItemByOrderId(orderID);
-        return orderItemList;
+    public List<Product> getOrderItems(@RequestParam("orderID") String orderID) {
+        return orderService.getOrderItemByOrderId(orderID);
     }
 }

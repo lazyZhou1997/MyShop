@@ -9,7 +9,6 @@ import edu.scu.my_shop.exception.OrderServiceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +28,9 @@ public class OrderService {
     public static String ORDER_STATUS_FINISH = "已完成";
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
+
+    @Autowired
+    private ProductService productService;
 
     /**
      * 将选中的商品放入订单中，并对购物车和库存进行相应操作
@@ -268,7 +270,7 @@ public class OrderService {
      * @param orderId
      * @return
      */
-    public List<OrderItem> getOrderItemByOrderId(String orderId) {
+    public List<Product> getOrderItemByOrderId(String orderId) {
 
         //检查输入
         if (null == orderId) {
@@ -283,9 +285,17 @@ public class OrderService {
 
         List<OrderItem> orderItems = orderItemMapper.selectByExample(orderItemExample);
 
+        //查找商品
+        List<Product> products = new ArrayList<>();
+        for (OrderItem orderItem:
+                orderItems) {
+            products.add(productService.searchProductByID(orderItem.getProductId()));
+        }
+
+
         sqlSession.close();
 
-        return orderItems;
+        return products;
 
 
     }
