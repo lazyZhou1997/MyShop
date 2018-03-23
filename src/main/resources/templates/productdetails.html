@@ -28,187 +28,78 @@
 <body>
 <!--/*@thymesVar id="product" type="edu.scu.my_shop.entity.Product"*/-->
 <header id="header">
-    <!--header-->
-    <div class="header_top">
-        <!--header_top-->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="contactinfo">
-                        <ul class="nav nav-pills">
-                            <li>
-                                <a href="">
-                                    <i class="fa fa-phone"></i>+2 95 01 88 821</a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="fa fa-envelope"></i>info@domain.com</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="social-icons pull-right">
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <a href="">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="fa fa-dribbble"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/header_top-->
-    <div class="header-middle">
-        <!--header-middle-->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="logo pull-left">
-                        <a href="index.html">
-                            <img src="images/home/logo.png" alt="" /></a>
-                    </div>
-                    <div class="btn-group pull-right">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">USA
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="">Canada</a></li>
-                                <li>
-                                    <a href="">UK</a></li>
-                            </ul>
+    <div class="container header-box">
+        <div class="header-middle"><!--header-middle-->
+
+            <div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="logo pull-left">
+                            <a href="/index" style="position: absolute" ><img src="images/home/perfectlogo.png" class="logo-image"/></a>
                         </div>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">DOLLAR
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="">Canadian Dollar</a></li>
-                                <li>
-                                    <a href="">Pound</a></li>
+                    </div>
+                    <div class="col-sm-8" style="padding-right: 30px">
+                        <div class="shop-menu pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/userInfoPage?kw=user-info"  style="background-color: transparent"><i class="fa fa-user"></i><span id="user-name"> 用户名</span></a></li>
+                                <li><a href="/userInfoPage?kw=user-orders" style="background-color: transparent"><i class="fa fa-list-alt"></i> 订单</a></li>
+                                <li><a href="/userInfoPage?kw=user-notification" style="background-color: transparent"><i class="fa fa-envelope"></i> 消息<span id="notif-no">0</span></a></li>
+                                <li><a href="/loginpage" style="background-color: transparent"><i class="fa fa-lock"></i> 登入/出</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-8">
-                    <div class="shop-menu pull-right">
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <a href="">
-                                    <i class="fa fa-user"></i>Account</a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="fa fa-star"></i>Wishlist</a>
-                            </li>
-                            <li>
-                                <a href="checkout.html">
-                                    <i class="fa fa-crosshairs"></i>Checkout</a>
-                            </li>
-                            <li>
-                                <a href="cart.html">
-                                    <i class="fa fa-shopping-cart"></i>Cart</a>
-                            </li>
-                            <li>
-                                <a href="login.html">
-                                    <i class="fa fa-lock"></i>Login</a>
-                            </li>
-                        </ul>
+            </div>
+        </div><!--/header-middle-->
+
+        <div class="header-bottom"><!--header-bottom-->
+            <div>
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-5">
+                        <div class="search_box">
+                            <input type="text" placeholder="在这里搜索任何项目" id="search-area"/>
+                        </div>
                     </div>
+                    <div class="col-sm-2 users-cart">
+                        <div class="cart-logo">
+                            <a href="cart.html"><i class="fa fa-shopping-cart"></i> 购物车 <span>0</span></a>
+                        </div>
+                        <div class="users-cart-info">
+                            <div id="none-tips" style="display: none;">购物车中还没有商品，赶紧选购吧！</div>
+                            <div id="have-info" class="table-responsive cart-inshort" style="">
+                                <table class="table">
+                                    <tbody id="cart-tbody">
+                                    <tr class="cart-tr-template">
+                                        <td class="cart-inshort-pic">
+                                            <a href=""><img src="images/cart/one.png" alt=""></a>
+                                        </td>
+                                        <td class="cart-inshort-des">
+                                            <span>Web ID: 1089772</span>
+                                        </td>
+                                        <td class="cart-inshort-pri">
+                                            <span>$59</span>x<span>1</span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
                 </div>
             </div>
-        </div>
+        </div><!--/header-bottom-->
+        <div class="horizontal"></div>
     </div>
-    <!--/header-middle-->
-    <div class="header-bottom">
-        <!--header-bottom-->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-9">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="mainmenu pull-left">
-                        <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li>
-                                <a href="index.html">Home</a></li>
-                            <li class="dropdown">
-                                <a href="#">Shop
-                                    <i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li>
-                                        <a href="shop.html">Products</a></li>
-                                    <li>
-                                        <a href="productdetails.html" class="active">Product Details</a></li>
-                                    <li>
-                                        <a href="checkout.html">Checkout</a></li>
-                                    <li>
-                                        <a href="cart.html">Cart</a></li>
-                                    <li>
-                                        <a href="login.html">Login</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#">Blog
-                                    <i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li>
-                                        <a href="blog.html">Blog List</a></li>
-                                    <li>
-                                        <a href="blog-single.html">Blog Single</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="404.html">404</a></li>
-                            <li>
-                                <a href="contact-us.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="search_box pull-right">
-                        <input type="text" placeholder="Search" /></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/header-bottom--></header>
+</header><!--/header-->
 <!--/header-->
 <section>
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
                 <div class="left-sidebar">
-                    <h2>Category</h2>
+                    <h2>分类</h2>
                     <div class="panel-group category-products" id="accordian">
                         <!--category-productsr-->
                         <div class="panel panel-default">
@@ -217,22 +108,20 @@
                                     <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
                         <span class="badge pull-right">
                           <i class="fa fa-plus"></i>
-                        </span>Sportswear</a>
+                        </span>手机数码</a>
                                 </h4>
                             </div>
                             <div id="sportswear" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <ul>
                                         <li>
-                                            <a href="">Nike</a></li>
+                                            <a href="search-results.html?kw=电脑">电脑</a</li>
                                         <li>
-                                            <a href="">Under Armour</a></li>
+                                            <a href="search-results.html?kw=平板">平板</a></li>
                                         <li>
-                                            <a href="">Adidas</a></li>
+                                            <a href="search-results.html?kw=手机">手机</a</li>
                                         <li>
-                                            <a href="">Puma</a></li>
-                                        <li>
-                                            <a href="">ASICS</a></li>
+                                            <a href="search-results.html?kw=相机">相机</a</li>
                                     </ul>
                                 </div>
                             </div>
@@ -243,32 +132,20 @@
                                     <a data-toggle="collapse" data-parent="#accordian" href="#mens">
                         <span class="badge pull-right">
                           <i class="fa fa-plus"></i>
-                        </span>Mens</a>
+                        </span>家用电器</a>
                                 </h4>
                             </div>
                             <div id="mens" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <ul>
                                         <li>
-                                            <a href="">Fendi</a></li>
+                                            <a href="search-results.html?kw=电视">电视</a></li>
                                         <li>
-                                            <a href="">Guess</a></li>
+                                            <a href="search-results.html?kw=空调">空调</a</li>
                                         <li>
-                                            <a href="">Valentino</a></li>
+                                            <a href="search-results.html?kw=洗衣机">洗衣机</a></li>
                                         <li>
-                                            <a href="">Dior</a></li>
-                                        <li>
-                                            <a href="">Versace</a></li>
-                                        <li>
-                                            <a href="">Armani</a></li>
-                                        <li>
-                                            <a href="">Prada</a></li>
-                                        <li>
-                                            <a href="">Dolce and Gabbana</a></li>
-                                        <li>
-                                            <a href="">Chanel</a></li>
-                                        <li>
-                                            <a href="">Gucci</a></li>
+                                            <a href="search-results.html?kw=冰箱">冰箱</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -276,103 +153,34 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordian" href="#womens">
-                        <span class="badge pull-right">
-                          <i class="fa fa-plus"></i>
-                        </span>Womens</a>
-                                </h4>
-                            </div>
-                            <div id="womens" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul>
-                                        <li>
-                                            <a href="">Fendi</a></li>
-                                        <li>
-                                            <a href="">Guess</a></li>
-                                        <li>
-                                            <a href="">Valentino</a></li>
-                                        <li>
-                                            <a href="">Dior</a></li>
-                                        <li>
-                                            <a href="">Versace</a></li>
-                                    </ul>
-                                </div>
+                                    <a href="search-results.html?kw=女装">女装</a></h4>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a href="#">Kids</a></h4>
+                                    <a href="search-results.html?kw=男装">男装</a</h4>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a href="#">Fashion</a></h4>
+                                    <a href="search-results.html?kw=水果">水果</a</h4>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a href="#">Households</a></h4>
+                                    <a href="search-results.html?kw=肉类">肉类</a</h4>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a href="#">Interiors</a></h4>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a href="#">Clothing</a></h4>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a href="#">Bags</a></h4>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a href="#">Shoes</a></h4>
+                                    <a href="search-results.html?kw=名酒">名酒</a</h4>
                             </div>
                         </div>
                     </div>
-                    <!--/category-products-->
-                    <div class="brands_products">
-                        <!--brands_products-->
-                        <h2>Brands</h2>
-                        <div class="brands-name">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li>
-                                    <a href="">
-                                        <span class="pull-right">(50)</span>Acne</a></li>
-                                <li>
-                                    <a href="">
-                                        <span class="pull-right">(56)</span>Grüne Erde</a></li>
-                                <li>
-                                    <a href="">
-                                        <span class="pull-right">(27)</span>Albiro</a></li>
-                                <li>
-                                    <a href="">
-                                        <span class="pull-right">(32)</span>Ronhill</a></li>
-                                <li>
-                                    <a href="">
-                                        <span class="pull-right">(5)</span>Oddmolly</a></li>
-                                <li>
-                                    <a href="">
-                                        <span class="pull-right">(9)</span>Boudestijn</a></li>
-                                <li>
-                                    <a href="">
-                                        <span class="pull-right">(4)</span>Rösch creative culture</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!--/brands_products-->
                     <div class="shipping text-center">
                         <!--shipping-->
                         <img src="images/home/shipping.jpg" alt="" /></div>
@@ -449,14 +257,14 @@
                     <!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
-                            <li>
-                                <a href="#details" data-toggle="tab">具体信息</a></li>
                             <li class="active">
+                                <a href="#details" data-toggle="tab">具体信息</a></li>
+                            <li>
                                 <a href="#reviews" data-toggle="tab">评论</a></li>
                         </ul>
                     </div>
                     <div class="tab-content">
-                        <div class="tab-pane fade" id="details">
+                        <div class="tab-pane fade active in" id="details">
                             <table class="tm-tableAttr">
                                 <thead>
                                 <tr>
@@ -515,7 +323,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane fade active in" id="reviews">
+                        <div class="tab-pane fade" id="reviews">
                             <div class="col-sm-12">
                                 <ul>
                                     <li>
@@ -588,7 +396,7 @@
                 <!--/category-tab-->
                 <div class="recommended_items">
                     <!--recommended_items-->
-                    <h2 class="title text-center">recommended items</h2>
+                    <h2 class="title text-center">推荐单品</h2>
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="item active">
@@ -686,174 +494,43 @@
         </div>
     </div>
 </section>
+<!--Footer-->
 <footer id="footer">
-    <!--Footer-->
-    <div class="footer-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-2">
-                    <div class="companyinfo">
-                        <h2>
-                            <span>e</span>-shopper</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-                    </div>
-                </div>
-                <div class="col-sm-7">
-                    <div class="col-sm-3">
-                        <div class="video-gallery text-center">
-                            <a href="#">
-                                <div class="iframe-img">
-                                    <img src="images/home/iframe1.png" alt="" /></div>
-                                <div class="overlay-icon">
-                                    <i class="fa fa-play-circle-o"></i>
-                                </div>
-                            </a>
-                            <p>Circle of Hands</p>
-                            <h2>24 DEC 2014</h2></div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="video-gallery text-center">
-                            <a href="#">
-                                <div class="iframe-img">
-                                    <img src="images/home/iframe2.png" alt="" /></div>
-                                <div class="overlay-icon">
-                                    <i class="fa fa-play-circle-o"></i>
-                                </div>
-                            </a>
-                            <p>Circle of Hands</p>
-                            <h2>24 DEC 2014</h2></div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="video-gallery text-center">
-                            <a href="#">
-                                <div class="iframe-img">
-                                    <img src="images/home/iframe3.png" alt="" /></div>
-                                <div class="overlay-icon">
-                                    <i class="fa fa-play-circle-o"></i>
-                                </div>
-                            </a>
-                            <p>Circle of Hands</p>
-                            <h2>24 DEC 2014</h2></div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="video-gallery text-center">
-                            <a href="#">
-                                <div class="iframe-img">
-                                    <img src="images/home/iframe4.png" alt="" /></div>
-                                <div class="overlay-icon">
-                                    <i class="fa fa-play-circle-o"></i>
-                                </div>
-                            </a>
-                            <p>Circle of Hands</p>
-                            <h2>24 DEC 2014</h2></div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="address">
-                        <img src="images/home/map.png" alt="" />
-                        <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer-widget">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-2">
-                    <div class="single-widget">
-                        <h2>Service</h2>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li>
-                                <a href="">Online Help</a></li>
-                            <li>
-                                <a href="">Contact Us</a></li>
-                            <li>
-                                <a href="">Order Status</a></li>
-                            <li>
-                                <a href="">Change Location</a></li>
-                            <li>
-                                <a href="">FAQ’s</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="single-widget">
-                        <h2>Quock Shop</h2>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li>
-                                <a href="">T-Shirt</a></li>
-                            <li>
-                                <a href="">Mens</a></li>
-                            <li>
-                                <a href="">Womens</a></li>
-                            <li>
-                                <a href="">Gift Cards</a></li>
-                            <li>
-                                <a href="">Shoes</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="single-widget">
-                        <h2>Policies</h2>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li>
-                                <a href="">Terms of Use</a></li>
-                            <li>
-                                <a href="">Privecy Policy</a></li>
-                            <li>
-                                <a href="">Refund Policy</a></li>
-                            <li>
-                                <a href="">Billing System</a></li>
-                            <li>
-                                <a href="">Ticket System</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="single-widget">
-                        <h2>About Shopper</h2>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li>
-                                <a href="">Company Information</a></li>
-                            <li>
-                                <a href="">Careers</a></li>
-                            <li>
-                                <a href="">Store Location</a></li>
-                            <li>
-                                <a href="">Affillate Program</a></li>
-                            <li>
-                                <a href="">Copyright</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3 col-sm-offset-1">
-                    <div class="single-widget">
-                        <h2>About Shopper</h2>
-                        <form action="#" class="searchform">
-                            <input type="text" placeholder="Your email address" />
-                            <button type="submit" class="btn btn-default">
-                                <i class="fa fa-arrow-circle-o-right"></i>
-                            </button>
-                            <p>Get the most recent updates from
-                                <br />our site and be updated your self...</p></form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
                 <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-                <p class="pull-right">Designed by
-                    <span>
-                <a target="_blank" href="http://www.themeum.com">Themeum</a></span>
-                </p>
+                <p class="pull-right">Designed by <span><a href="#">Our Team</a></span></p>
+            </div>
+
+            <!-- the row of footer below the copyright row -->
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="contactinfo">
+                        <ul class="nav nav-pills">
+                            <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="social-icons pull-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
+
 </footer>
 <!--/Footer-->
 <script src="js/jquery.js"></script>
@@ -862,6 +539,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/main.js"></script>
+<script src="js/header.js"></script>
 <script type="text/javascript">$("#product_img_show_bar img").click(function() {
     // var imgggg = $(this).children()
     var img_src = $(this).attr("src");
