@@ -54,6 +54,8 @@ public class CategoryService {
         firstCategory.setFirstCategoryName(firstCategoryName);
         firstCategoryMapper.insert(firstCategory);
 
+        sqlSession.close();
+
     }
 
 
@@ -82,6 +84,8 @@ public class CategoryService {
         //更新一级分类
         firstCategoryMapper.updateByPrimaryKeySelective(firstCategory);
 
+        sqlSession.close();
+
     }
 
     /**
@@ -100,6 +104,7 @@ public class CategoryService {
             throw new CategoryServiceException(CategoryServiceException.NO_FIRST_CATEGORYNAME_MESSAGE,CategoryServiceException.NO_FIRST_CATEGORYNAME);
         }
 
+        sqlSession.close();
         return firstCategories;
     }
 
@@ -123,6 +128,7 @@ public class CategoryService {
             throw new CategoryServiceException(CategoryServiceException.NO_SECOND_CATEGORYNAME_MESSAGE,CategoryServiceException.NO_SECOND_CATEGORYNAME);
         }
 
+        sqlSession.close();
         return secondCategories;
 
     }

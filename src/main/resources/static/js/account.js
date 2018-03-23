@@ -10,6 +10,7 @@ $(function () {
         $('#user-info-name').attr('placeholder',username);
         $('#user-info-email').attr('placeholder',useremail);
         if(null != userdate ){
+            userdate = userdate.substring(0,10);
             $('#user-info-date').attr('placeholder',userdate);
         }
         $('#user-info-image').attr('src',userimg);
@@ -78,49 +79,7 @@ $('#choose-image').change(function () {
     })
 
 
-//订单信息
-// <tr>
-// <td>123456798</td>
-// <td class="order-img">
-//     <a href=""><img src="images/cart/one.png" alt=""></a>
-//     </td>
-//     <td>
-//     <h4><a href="">Colorblock Scuba</a></h4>
-// <span>Web ID: 1089772</span>
-// </td>
-// <td>$59</td>
-// <td>1</td>
-// <td>$59</td>
-// <td>已完成</td>
-// <td>
-// <a class="glyphicon glyphicon-trash" href=""></a>
-//     </td>
-//     </tr>
 $(function () {
-    // $.getJSON("url of order ",function (data) {
-    //     var order_id = data.order_id;
-    //     var order_image  = data.image;
-    //     var order_info = data.order_info;
-    //     var order_price = data.order_price;
-    //     var order_mount = data.order_mount;
-    //     var order_status = data.order_status;
-    //
-    //     for(var i = 0; i<data.length;i++){
-    //         var tr = "<tr>";
-    //         tr += "<td>" + order_id + "</td>";
-    //         tr += "<td class = 'order-img'>" + "<a href=''><img alt='' src='" + order_image + "'></a>";
-    //         tr += "</td>" + "<td>";
-    //         tr += "<h4><a href=''>" + order_info + "</a></h4>";
-    //         tr += "<span>Web ID:roysifan</span>";
-    //         tr += "</td>";
-    //         tr += "<td>" + order_price + "</td>";
-    //         tr += "<td>" + order_mount + "</td>";
-    //         tr += "<td>" + order_price * order_mount + "</td>";
-    //         tr += "<td>" + order_status + "</td>";
-    //         tr += "<td>" + "<a class=\'glyphicon glyphicon-trash\'href=\'\'></a></td>";
-    //         tr += "</tr>";
-    //     }
-    // })
     for(var i = 0; i<3;i++){
         var tr = "<tr>";
         if(i == 0){
@@ -141,16 +100,6 @@ $(function () {
     }
 })
 
-//地址管理
-// <tr>
-// <td>张三</td>
-// <td>四川省成都市双流县西航港街道</td>
-// <td>四川大学江安校区</td>
-// <td>621107</td>
-// <td>12345678901</td>
-// <td><a href="">修改</a>|<a href="">删除</a></td>
-// <td>默认地址</td>
-// </tr>
 $(function () {
     $.getJSON("/getUserAddress",function (data) {
         console.log(data);
@@ -159,7 +108,7 @@ $(function () {
             tr += "<td>" + data[i].userId + "</td>";
             tr += "<td>" + data[i].addressInfo + "</td>";
             tr += "<td>" + data[i].phoneNumber + "</td>";
-            tr += "<td>" + "<a href=\"\">修改</a>|<a href=\"\">删除</a>" + "</td>";
+            tr += "<td>" + "<a href=\"javascript:void(0);\">修改</a>|<a href=\"javascript:void(0);\">删除</a>" + "</td>";
             if(data[i].isDefaultAddress == false) {
                 tr += "<td>" + "</td>";
             }
@@ -173,19 +122,7 @@ $(function () {
 
 })
 
-//消息通知
-// <div class="notif">
-//     <div class="notif-status col-sm-1 col-md-1">未读</div>
-//     <div class="col-sm-11 col-md-11">
-//     <div class="notif-head">
-//     <span>管理员001，</span>
-// <span>一小时前</span>
-// </div>
-// <div class="notif-body fa-border">
-//     <p>前言：近年来,随着留学市场的成熟,人们在考虑留学时越来越理性,不再是人云亦云随大流。许多欧洲小语种国家开始受到青睐,这些国家成本较低，大学免收学费及承认中国的学位而成为近年留学的热门国家。伴随互联网的迅猛发展，欧洲留学凭借它低成本、高回报的特…</p>
-// </div>
-// </div>
-// </div>
+
 $(function () {
     $.getJSON("/getUserMessage", function (data) {
         var unread = 0;
@@ -215,33 +152,6 @@ $(function () {
         $('.badge').text(unread);
     })
 })
-
-// //js实现标签栏跳转至对应的窗口
-//     $(function () {
-//         $('#shop-menu > li').click(function () {
-//             //     $('#shop-menu2 > li .active').removeClass('active');
-//             //     console.log($('li .active'));
-//             $('#shop-menu2 > li').each(function () {
-//                 if($(this).hasClass('active')){
-//                     $(this).removeClass('active');
-//                 }
-//             })
-//             $('.tab-content > div').each(function () {
-//                 if($(this).hasClass('active')){
-//                     $(this).removeClass('active');
-//                 }
-//             })
-//
-//             var id = $(this).children('a').attr('href');
-//                 $('#shop-menu2 > li > a').each(function () {
-//                     if ($(this).attr('href') == id) {
-//                         $(this).parent().addClass("active");
-//                         $(id).addClass("active");
-//                     }
-//                 })
-//             // })
-//         })
-//     })
 
 //js实现标签栏跳转至对应的窗口
 $(function () {

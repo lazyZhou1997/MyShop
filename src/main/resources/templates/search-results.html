@@ -139,16 +139,16 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="index.html" style="position: absolute" ><img src="images/home/perfectlogo.png" class="logo-image"/></a>
+                            <a href="/index" style="position: absolute" ><img src="images/home/perfectlogo.png" class="logo-image"/></a>
                         </div>
                     </div>
                     <div class="col-sm-8" style="padding-right: 30px">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="account.html?kw=user-info"  style="background-color: transparent"><i class="fa fa-user"></i><span id="user-name"> 用户名</span></a></li>
-                                <li><a href="account.html?kw=user-orders" style="background-color: transparent"><i class="fa fa-list-alt"></i> 订单</a></li>
-                                <li><a href="account.html?kw=user-notification" style="background-color: transparent"><i class="fa fa-envelope"></i>  消息<span id="notif-no">0</span></a></li>
-                                <li><a href="login.html" style="background-color: transparent"><i class="fa fa-lock"></i> 登入/出</a></li>
+                                <li><a href="/userInfoPage?kw=user-info"  style="background-color: transparent"><i class="fa fa-user"></i><span id="user-name"> 用户名</span></a></li>
+                                <li><a href="/userInfoPage?kw=user-orders" style="background-color: transparent"><i class="fa fa-list-alt"></i> 订单</a></li>
+                                <li><a href="/userInfoPage?kw=user-notification" style="background-color: transparent"><i class="fa fa-envelope"></i> 消息<span id="notif-no">0</span></a></li>
+                                <li><a href="/loginpage" style="background-color: transparent"><i class="fa fa-lock"></i> 登入/出</a></li>
                             </ul>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                     <div class="col-sm-3"></div>
                     <div class="col-sm-5">
                         <div class="search_box">
-                            <input type="text" placeholder="在这里搜索任何项目"/>
+                            <input type="text" placeholder="在这里搜索任何项目" id="search-area"/>
                         </div>
                     </div>
                     <div class="col-sm-2 users-cart">
@@ -170,29 +170,11 @@
                             <a href="cart.html"><i class="fa fa-shopping-cart"></i> 购物车 <span>0</span></a>
                         </div>
                         <div class="users-cart-info">
-                            <div style="display: none;">购物车中还没有商品，赶紧选购吧！</div>
-                            <div class="table-responsive cart-inshort" style="">
+                            <div id="none-tips" style="display: none;">购物车中还没有商品，赶紧选购吧！</div>
+                            <div id="have-info" class="table-responsive cart-inshort" style="">
                                 <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td class="cart-inshort-pic">
-                                            <a href=""><img src="images/cart/one.png" alt=""></a>
-                                        </td>
-                                        <td class="cart-inshort-des">
-                                            <span>Web ID: 1089772</span>
-                                        </td>
-                                        <td class="cart-inshort-pri">
-                                            <span>$59</span>x<span>1</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
+                                    <tbody id="cart-tbody">
+                                    <tr class="cart-tr-template">
                                         <td class="cart-inshort-pic">
                                             <a href=""><img src="images/cart/one.png" alt=""></a>
                                         </td>
@@ -209,9 +191,7 @@
                         </div>
                     </div>
                     <div class="col-sm-2"></div>
-
                 </div>
-
             </div>
         </div><!--/header-bottom-->
         <div class="horizontal"></div>

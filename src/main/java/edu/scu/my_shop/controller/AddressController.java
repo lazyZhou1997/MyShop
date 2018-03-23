@@ -6,6 +6,8 @@ import edu.scu.my_shop.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,17 +23,28 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    @RequestMapping("addUserAddress")
-    public String addUserAddress(@RequestParam("address") Address address) {
+    @PostMapping("addUserAddress")
+    public String addUserAddress(ModelMap modelMap,@RequestParam("address") Address address) {
         if (address == null) {
             return "未知地址";
         }
 
-        addressService.insertAddress(address);
+        String addressId = addressService.insertAddress(address);
+
+        if (address.getIsDefaultAddress()){
+
+            SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            address.setUserId(userDetails.getUserId());
+            address.setAddressId(addressId);
+            addressService.updateAddress(address);
+        }
+
+        modelMap.addAttribute("success", "保存成功");
+
         return "";
     }
 
-    @RequestMapping("setAddressDefault")
+    @PostMapping("setAddressDefault")
     public String setAddressDefault(@RequestParam(value = "addressID", required = false)String addressID) {
 
         if (addressID == null || addressID.equals("")) {

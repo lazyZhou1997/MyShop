@@ -9,7 +9,6 @@ import edu.scu.my_shop.exception.OrderServiceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +28,9 @@ public class OrderService {
     public static String ORDER_STATUS_FINISH = "已完成";
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
+
+    @Autowired
+    private ProductService productService;
 
     /**
      * 将选中的商品放入订单中，并对购物车和库存进行相应操作
@@ -149,6 +151,8 @@ public class OrderService {
         order.setOrderStatus(ORDER_STATUS_CANCELED);
         orderMapper.updateByPrimaryKeySelective(order);
 
+        sqlSession.close();
+
         return;
     }
 
@@ -182,6 +186,7 @@ public class OrderService {
             throw new OrderServiceException(OrderServiceException.NO_ORDERS_MESSAGE, OrderServiceException.NO_ORDERS);
         }
 
+        sqlSession.close();
         return orders;
     }
 
@@ -217,6 +222,7 @@ public class OrderService {
         order.setOrderStatus(ORDER_STATUS_ON_WAY);
         orderMapper.updateByPrimaryKeySelective(order);
 
+        sqlSession.close();
         return;
     }
 
@@ -256,6 +262,7 @@ public class OrderService {
         //设置订单状态为取消
         order.setOrderStatus(ORDER_STATUS_CANCELED);
         orderMapper.updateByPrimaryKeySelective(order);
+        sqlSession.close();
     }
 
     /**
@@ -263,7 +270,7 @@ public class OrderService {
      * @param orderId
      * @return
      */
-    public List<OrderItem> getOrderItemByOrderId(String orderId) {
+    public List<Product> getOrderItemByOrderId(String orderId) {
 
         //检查输入
         if (null == orderId) {
@@ -278,9 +285,22 @@ public class OrderService {
 
         List<OrderItem> orderItems = orderItemMapper.selectByExample(orderItemExample);
 
+        //查找商品
+        List<Product> products = new ArrayList<>();
+        Product product;
+        for (OrderItem orderItem:
+                orderItems) {
+
+            product = productService.searchProductByID(orderItem.getProductId());
+            product.setProductLeftTotals(orderItem.getProductCount());
+
+            products.add(product);
+        }
+
+
         sqlSession.close();
 
-        return orderItems;
+        return products;
 
 
     }
@@ -308,5 +328,50 @@ public class OrderService {
 
         sqlSession.close();
         return orders;
+    }
+
+    /**
+     * 管理员用于获取所有订单
+     * @return
+     */
+    public List<Order> getAllOrder(){
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+
+        List<Order> orders = orderMapper.selectByExample(new OrderExample());
+
+        sqlSession.close();
+        return orders;
+    }
+
+    /**
+     * 根据传入订单状态数组搜索符合状态的订单
+     * @param statuses
+     * @return
+     */
+    public List<Order> searchOrderByOrderStatus(String[] statuses){
+
+
+        //检查输入
+        if (null==statuses||0==statuses.length){
+
+            throw new OrderServiceException(INVALID_INPUT_MESSAGE,INVALID_INPUT);
+        }
+
+        List<String> statusList = Arrays.asList(statuses);
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+
+        OrderExample orderExample = new OrderExample();
+        orderExample.createCriteria().andOrderStatusIn(statusList);
+
+        List<Order> orders = orderMapper.selectByExample(orderExample);
+
+
+        sqlSession.close();
+        return orders;
+
     }
 }
