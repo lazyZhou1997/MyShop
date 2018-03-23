@@ -287,9 +287,14 @@ public class OrderService {
 
         //查找商品
         List<Product> products = new ArrayList<>();
+        Product product;
         for (OrderItem orderItem:
                 orderItems) {
-            products.add(productService.searchProductByID(orderItem.getProductId()));
+
+            product = productService.searchProductByID(orderItem.getProductId());
+            product.setProductLeftTotals(orderItem.getProductCount());
+
+            products.add(product);
         }
 
 

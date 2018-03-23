@@ -59,7 +59,7 @@ public class AddressService {
      * @param address
      */
     @Transactional
-    public void insertAddress(Address address) {
+    public String insertAddress(Address address) {
 
         checkAddress(address);
 
@@ -78,6 +78,8 @@ public class AddressService {
 
         // update to database
         sqlSession.close();
+
+        return addressID;
     }
 
     /**

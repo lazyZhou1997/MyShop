@@ -45,43 +45,44 @@ public class CartController {
     @RequestMapping("productInCart")
     @ResponseBody
     public List<Product> productInCart() {
-        SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = new User(); user.setUserId(userDetails.getUserId());
+        SecurityUser userDetails = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = new User();
+        user.setUserId(userDetails.getUserId());
         List<Product> productList = cartService.getAllProducts(user);
         return productList;
     }
 
     @PostMapping("modifyProductNumber")
     @ResponseBody
-    public String modifyProductNumber(@RequestParam("productID")List<String> productIDList, @RequestParam("productNumber")List<Integer> productNumberList) {
-        SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = new User(); user.setUserId(userDetails.getUserId());
+    public String modifyProductNumber(@RequestParam("productID") List<String> productIDList, @RequestParam("productNumber") List<Integer> productNumberList) {
+        SecurityUser userDetails = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = new User();
+        user.setUserId(userDetails.getUserId());
         cartService.updateProducts(user, productIDList, productNumberList);
         return "";
     }
 
     @GetMapping("deleteProduct")
-    public String deleteProduct(@RequestParam("productID")List<String> productIDList) {
-        SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = new User(); user.setUserId(userDetails.getUserId());
+    public String deleteProduct(@RequestParam("productID") List<String> productIDList) {
+        SecurityUser userDetails = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = new User();
+        user.setUserId(userDetails.getUserId());
         cartService.deleteProducts(user, productIDList);
         return "redirect:cart.html";
     }
 
     @PostMapping("settleAccount")
-    public ModelAndView createOrder(@RequestParam(value = "productID", required = false)List<String> productIDList,
-                                    @RequestParam(value = "quantity", required = false)List<Integer> productNumberList) {
+    public ModelAndView createOrder(@RequestParam(value = "productID", required = false) List<String> productIDList,
+                                    @RequestParam(value = "quantity", required = false) List<Integer> productNumberList) {
         ModelAndView mav = new ModelAndView();
 
         if (productIDList == null || productIDList.isEmpty() || productNumberList == null || productNumberList.isEmpty()) {
             mav.setViewName("cart.html");
             mav.getModelMap().addAttribute("error", "未选中任何商品");
-        }
-        else if (productIDList.size() != productNumberList.size()) {
+        } else if (productIDList.size() != productNumberList.size()) {
             mav.setViewName("cart.html");
             mav.getModelMap().addAttribute("error", "信息错误");
-        }
-        else {
+        } else {
             // check if product exists
             List<Product> productList = new ArrayList<>();
             for (String productID : productIDList) {
@@ -100,5 +101,31 @@ public class CartController {
         }
 
         return mav;
+    }
+
+    /**
+     * 传入商品Id和数量，将商品添加到购物车
+     * @param productId
+     * @param quantity
+     */
+    @PostMapping("/addProductToCart")
+    public void addProductToCart(String productId, int quantity) {
+
+        SecurityUser userDetails = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User user = new User();
+        user.setUserId(userDetails.getUserId());
+
+        //要添加的商品列表
+        List<String> products = new ArrayList<>();
+        products.add(productId);
+
+        //要添加的商品数量列表
+        List<Integer> quantities = new ArrayList<>();
+        quantities.add(quantity);
+
+        cartService.insertProducts(user,products,quantities);
+
+        return;
     }
 }
