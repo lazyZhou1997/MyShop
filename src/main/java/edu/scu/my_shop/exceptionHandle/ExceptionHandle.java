@@ -105,8 +105,9 @@ public class ExceptionHandle {
      * @return
      */
     @ExceptionHandler(OrderServiceException.class)
+    @ResponseBody
     public String handleOrderServiceException(HttpServletRequest request,OrderServiceException e){
-        return null;
+        return e.getMessage();
     }
 
     /**

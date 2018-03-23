@@ -444,6 +444,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/main.js"></script>
+<script src="/js/sweetalert.js"></script>
 <script src="js/payment.js"></script>
 <script th:inline="javascript">
     $(".product-tr-template").hide();
@@ -469,6 +470,38 @@
         reComputeAll();
     }
     $(".product-tr-template").remove();
+
+    // submit order
+    $(".go-btn").click(function () {
+        var addressID = $(".selected").children(".hidden-id").val();
+        var productList = [[${product}]];
+        var productIDList = new Array();
+        for (var i = 0; i < productList.length; i++) {
+            productIDList[i] = productList[i].productId;
+        }
+        $.post(
+             "submitOrder",
+            {
+                productID: productIDList,
+                addressID: addressID
+            },
+            function (result) {
+                if (result == null || result == "") {
+                    swal("", "创建订单成功", "success").then(function () {
+                        // TODO: redirect to index
+                        window.location.href = "userInfoPage";
+                    });
+                }
+                else {
+                    swal("",result, "error").then(function () {
+                        // TODO: redirect to index
+                        window.location.href = "cart.html";
+                    });
+                }
+
+            }
+        );
+    });
 </script>
 </body>
 </html>
