@@ -58,4 +58,17 @@ public class OrderController {
     public List<Product> getOrderItems(@RequestParam("orderID") String orderID) {
         return orderService.getOrderItemByOrderId(orderID);
     }
+
+    /**
+     * 传入orderId将订单变为已支付状态
+     * @param orderId
+     * @return
+     */
+    @PostMapping("payOrderByOrderId")
+    @ResponseBody
+    public String payOrderByOrderId(String orderId){
+        orderService.payOrderByOrderId(orderId);
+
+        return "";
+    }
 }

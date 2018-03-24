@@ -267,6 +267,7 @@ public class OrderService {
 
     /**
      * 根据订单id获取订单项
+     *
      * @param orderId
      * @return
      */
@@ -288,7 +289,7 @@ public class OrderService {
         //查找商品
         List<Product> products = new ArrayList<>();
         Product product;
-        for (OrderItem orderItem:
+        for (OrderItem orderItem :
                 orderItems) {
 
             product = productService.searchProductByID(orderItem.getProductId());
@@ -332,9 +333,10 @@ public class OrderService {
 
     /**
      * 管理员用于获取所有订单
+     *
      * @return
      */
-    public List<Order> getAllOrder(){
+    public List<Order> getAllOrder() {
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
@@ -347,16 +349,17 @@ public class OrderService {
 
     /**
      * 根据传入订单状态数组搜索符合状态的订单
+     *
      * @param statuses
      * @return
      */
-    public List<Order> searchOrderByOrderStatus(String[] statuses){
+    public List<Order> searchOrderByOrderStatus(String[] statuses) {
 
 
         //检查输入
-        if (null==statuses||0==statuses.length){
+        if (null == statuses || 0 == statuses.length) {
 
-            throw new OrderServiceException(INVALID_INPUT_MESSAGE,INVALID_INPUT);
+            throw new OrderServiceException(INVALID_INPUT_MESSAGE, INVALID_INPUT);
         }
 
         List<String> statusList = Arrays.asList(statuses);
@@ -373,5 +376,42 @@ public class OrderService {
         sqlSession.close();
         return orders;
 
+    }
+
+    /**
+     * 传入orderId，将订单变为已支付状态
+     *
+     * @param orderId
+     */
+    public void payOrderByOrderId(String orderId) {
+
+        //检查输入
+        if (null == orderId) {
+
+            throw new OrderServiceException(INVALID_INPUT_MESSAGE, INVALID_INPUT);
+        }
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+
+        Order order = orderMapper.selectByPrimaryKey(orderId);
+
+        //判断订单是否存在
+        if (null == order) {
+            throw new OrderServiceException(OrderServiceException.NO_ORDERS_MESSAGE, OrderServiceException.NO_ORDERS);
+        }
+
+        //判断订单是否未支付
+        if (!ORDER_STATUS_NO_PAYMENT.equals(order.getOrderStatus())){
+            throw new OrderServiceException(OrderServiceException.NO_UNPAY_MESSAGE,OrderServiceException.NO_UNPAY);
+        }
+
+        //更新订单状态为已支付
+        order.setOrderStatus(ORDER_STATUS_HAS_PAYMENT);
+        orderMapper.updateByPrimaryKey(order);
+
+        sqlSession.close();
+
+        return;
     }
 }

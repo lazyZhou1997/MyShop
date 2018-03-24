@@ -1,52 +1,52 @@
 //user info
 $(function () {
-    $.getJSON("/getUserInfo",function(data){
+    $.getJSON("/getUserInfo", function (data) {
         var username = data.data.userName;
         var userimg = data.data.headImg;
         var useremail = data.data.userId;
         var userdate = data.data.birthday;
         console.log(username);
         // 打印用户信息
-        $('#user-info-name').attr('placeholder',username);
-        $('#user-info-email').attr('placeholder',useremail);
-        if(null != userdate ){
-            userdate = userdate.substring(0,10);
-            $('#user-info-date').attr('placeholder',userdate);
+        $('#user-info-name').attr('placeholder', username);
+        $('#user-info-email').attr('placeholder', useremail);
+        if (null != userdate) {
+            userdate = userdate.substring(0, 10);
+            $('#user-info-date').attr('placeholder', userdate);
         }
-        $('#user-info-image').attr('src',userimg);
+        $('#user-info-image').attr('src', userimg);
     })
 })
 
 function check() {
- var username = $('#user-info-name').val();
- var userdate = $('#user-info-date').val();
- var userpsw1 = $('#user-info-psw1').val();
- var userpsw2 = $('#user-info-psw2').val();
- var DATE_FORMAT = /^[0-9]{4}-[0-1]?[0-9]{1}-[0-3]?[0-9]{1}$/; //日期的正则表达式
- //对输入内容的判断
- //至少得输入一项
- if(!username && !userdate && !userpsw1 && !userpsw2) {
-     swal("", "请至少修改一项内容", "warning");
-     return false;
- }
- //密码得一样
- else if(userpsw2 != userpsw1){
-     swal("","两次密码输入不一致，请重试","error");
-     return false;
- }
- //输入的格式不能错
- else if(userdate && !DATE_FORMAT.test(userdate)){
-     swal("","输入的日期格式有误，请按照xxxx-xx-xx的格式输入","error");
-     return false;
- }
+    var username = $('#user-info-name').val();
+    var userdate = $('#user-info-date').val();
+    var userpsw1 = $('#user-info-psw1').val();
+    var userpsw2 = $('#user-info-psw2').val();
+    var DATE_FORMAT = /^[0-9]{4}-[0-1]?[0-9]{1}-[0-3]?[0-9]{1}$/; //日期的正则表达式
+    //对输入内容的判断
+    //至少得输入一项
+    if (!username && !userdate && !userpsw1 && !userpsw2) {
+        swal("", "请至少修改一项内容", "warning");
+        return false;
+    }
+    //密码得一样
+    else if (userpsw2 != userpsw1) {
+        swal("", "两次密码输入不一致，请重试", "error");
+        return false;
+    }
+    //输入的格式不能错
+    else if (userdate && !DATE_FORMAT.test(userdate)) {
+        swal("", "输入的日期格式有误，请按照xxxx-xx-xx的格式输入", "error");
+        return false;
+    }
 
 }
 
 function checkAddress() {
     var address = $('input[name = addressInfo]').val();
     var phone = $('input[name = phoneNumber]').val();
-    if(!address || !phone){
-        swal("","请将信息输入完整","warning");
+    if (!address || !phone) {
+        swal("", "请将信息输入完整", "warning");
         return false;
     }
 
@@ -65,60 +65,62 @@ $('#choose-image').change(function () {
     //         }
     //     });
     //     return false;
-        //     event.preventDefault();
-        //     var form = $(this);
-        //     console.log(form);
-        //     // mulitipart form,如文件上传类
-        //     var formData = new FormData(this);
-        //     console.log(formData);
-        //     $.ajax({
-        //         type: form.attr('method'),
-        //         url: form.attr('action'),
-        //         data: formData,
-        //         mimeType: "multipart/form-data",
-        //         contentType: false,
-        //         cache: false,
-        //         processData: false
-        //         }).success(function () {
-        //             swal("","sd","success");
-        //         }).fail(function (jqXHR, textStatus, errorThrown) {
-        //             swal("","sd","error");
-        //         });
-        // });
-    })
+    //     event.preventDefault();
+    //     var form = $(this);
+    //     console.log(form);
+    //     // mulitipart form,如文件上传类
+    //     var formData = new FormData(this);
+    //     console.log(formData);
+    //     $.ajax({
+    //         type: form.attr('method'),
+    //         url: form.attr('action'),
+    //         data: formData,
+    //         mimeType: "multipart/form-data",
+    //         contentType: false,
+    //         cache: false,
+    //         processData: false
+    //         }).success(function () {
+    //             swal("","sd","success");
+    //         }).fail(function (jqXHR, textStatus, errorThrown) {
+    //             swal("","sd","error");
+    //         });
+    // });
+})
 
 //order
 $(function () {
     var status = ""
     var order_number = 1;
-    $.getJSON("/getUserOrders",function (data) {
-        for(var i=0;i<data.length;i++){
+    $.getJSON("/getUserOrders", function (data) {
+        for (var i = 0; i < data.length; i++) {
             status = data[i].orderStatus;
-            $.post("/getOrderItems",{
-                orderID : data[i].orderId
-            },function (DATA) {
-                for(var j = 0;j<DATA.length;j++){
+            var orderID = data[i].orderId;
+            $.post("/getOrderItems", {
+                orderID: data[i].orderId
+            }, function (DATA) {
+                for (var j = 0; j < DATA.length; j++) {
                     var tr = "<tr>";
-                    if(0 == j){
+                    if (0 == j) {
                         tr += "<td rowspan='" + DATA.length + "'>" + order_number + "</td>";
                         order_number++;
                     }
                     tr += "<td>";
-                    tr += "<h4><a href='productdetails?productID=" + DATA[j].productId +"'>" + DATA[j].productName + "</a></h4>";
-                    tr += "<span>" + DATA[j].productDescription +"</span>";
+                    tr += "<h4><a href='productdetails?productID=" + DATA[j].productId + "'>" + DATA[j].productName + "</a></h4>";
+                    tr += "<span>" + DATA[j].productDescription + "</span>";
                     tr += "</td>";
                     tr += "<td>" + DATA[j].productPrice + "</td>";
                     tr += "<td>" + DATA[j].productLeftTotals + "</td>";
-                    tr += "<td>" + DATA[j].productPrice*DATA[j].productLeftTotals + "</td>";
-                    if(0 == j){
-                        if(status == "已付款"){
-                        tr += "<td rowspan='" + DATA.length + "'>" + status + "</td>";}
+                    tr += "<td>" + DATA[j].productPrice * DATA[j].productLeftTotals + "</td>";
+                    if (0 == j) {
+                        if (status == "已付款") {
+                            tr += "<td rowspan='" + DATA.length + "'>" + "<button id='"+  orderID +  "' onclick='pay(this)' style=\"margin-right:20px;\"  class=\"btn mini btn-success\"><i class=\"fa fa-edit\"></i>" + status + "</button></td>";
+                        }
                         else {
 
-                            tr += "<td rowspan='" + DATA.length + "'>" + "<button  onclick='pay()' style=\"margin-right:20px;background-color: #FE980F;\"  class=\"btn mini btn-success\"><i class=\"fa fa-edit\"></i>"+ status + "</button></td>";
+                            tr += "<td rowspan='" + DATA.length + "'>" + "<button id='"+  orderID +  "' onclick='pay(this)' style=\"margin-right:20px;\"  class=\"btn mini btn-warning\"><i class=\"fa fa-edit\"></i>" + status + "</button></td>";
                         }
                     }
-                    if(0 == j){
+                    if (0 == j) {
                         tr += "<td rowspan='" + DATA.length + "'>" + "<a class=\'glyphicon glyphicon-trash\'href=\'\'></a></td>";
                     }
 
@@ -149,17 +151,34 @@ $(function () {
     })
 })
 
-function pay() {
+function pay(obj) {
+    var btn = $(obj);
+    var id = btn.attr("id");
     swal({
-            title: "Ajax请求示例",
-            text: "提交运行ajax请求",
-            type: "info",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            showLoaderOnConfirm: true,
-        },
-        function(){
-            console.log("Test");
+        title: "确认付款",
+        text: "请确认您的付款",
+        type: "info",
+        showCancelButton: true,
+        closeOnConfirm: false,
+        showLoaderOnConfirm: true,
+    }).then(function (value) {
+        $.post(
+                "payOrderByOrderId",
+                {orderId: id},
+                function (result) {
+                    if(result == null || result == "") {
+                        //TODO
+                        btn.text("已付款");
+                        btn.removeClass("btn-warning");
+                        btn.addClass("btn-success");
+                        btn.prop("disabled", true);
+                        swal("", "付款成功", "success");
+                    }
+                    else {
+                        swal("", result, "error");
+                    }
+                }
+            );
         });
 }
 
