@@ -150,6 +150,17 @@ $(function () {
 })
 
 function pay() {
+    swal({
+            title: "Ajax请求示例",
+            text: "提交运行ajax请求",
+            type: "info",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+        },
+        function(){
+            console.log("Test");
+        });
 }
 
 

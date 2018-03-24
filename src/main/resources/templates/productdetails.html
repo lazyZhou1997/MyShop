@@ -115,13 +115,13 @@
                                 <div class="panel-body">
                                     <ul>
                                         <li>
-                                            <a href="search-results.html?kw=电脑">电脑</a</li>
+                                            <a href="search-results.html?kw=电脑">电脑</a></li>
                                         <li>
                                             <a href="search-results.html?kw=平板">平板</a></li>
                                         <li>
-                                            <a href="search-results.html?kw=手机">手机</a</li>
+                                            <a href="search-results.html?kw=手机">手机</a></li>
                                         <li>
-                                            <a href="search-results.html?kw=相机">相机</a</li>
+                                            <a href="search-results.html?kw=相机">相机</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
                                         <li>
                                             <a href="search-results.html?kw=电视">电视</a></li>
                                         <li>
-                                            <a href="search-results.html?kw=空调">空调</a</li>
+                                            <a href="search-results.html?kw=空调">空调</a></li>
                                         <li>
                                             <a href="search-results.html?kw=洗衣机">洗衣机</a></li>
                                         <li>
@@ -159,25 +159,25 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a href="search-results.html?kw=男装">男装</a</h4>
+                                    <a href="search-results.html?kw=男装">男装</a></h4>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a href="search-results.html?kw=水果">水果</a</h4>
+                                    <a href="search-results.html?kw=水果">水果</a></h4>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a href="search-results.html?kw=肉类">肉类</a</h4>
+                                    <a href="search-results.html?kw=肉类">肉类</a></h4>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a href="search-results.html?kw=名酒">名酒</a</h4>
+                                    <a href="search-results.html?kw=名酒">名酒</a></h4>
                             </div>
                         </div>
                     </div>
@@ -190,15 +190,18 @@
                 <div class="product-details">
                     <!--product-details-->
                     <div class="col-sm-5">
-                        <div class="view-product">
-                            <img src="images/product-details/1.jpg" width="100%" height="100%" th:src="${productImages.get(0)}" alt="" id="mdzz_img" />
-                            <h3>ZOOM</h3></div>
+                        <div class="view-product fa-border">
+                            <img src="images/product-details/1.jpg" th:src="${productImages.get(0).get(0)}" alt="" id="mdzz_img" />
+                        </div>
                         <div id="similar-product" class="carousel slide" data-ride="carousel">
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" id="product_img_show_bar">
-                                <div class="item active">
-                                    <img th:each="productImage:${productImages}" src="images/product-details/similar2.jpg" th:src="*{productImage}" alt="">
-                                    </div>
+                                <!--<div class="item active">-->
+                                    <!--<img th:each="productImage:${productImages}" src="images/product-details/similar2.jpg" th:src="*{productImage}" alt="">-->
+                                    <!--</div>-->
+                                <div class="item active" th:each="my_productImage:${productImages}">
+                                    <img th:each="productImage:${my_productImage}" src="images/product-details/similar2.jpg" th:src="*{productImage}" alt="">
+                                </div>
                                 <!--<div class="item">-->
                                     <!--<img src="images/product-details/similar1.jpg" alt="">-->
                                     <!--<img src="images/product-details/similar2.jpg" alt="">-->
@@ -404,9 +407,9 @@
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="images/home/recommend1.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
+                                                <img th:src="${tuijian.get(0).getComputerImage()}" alt="" />
+                                                <h2 th:text="${tuijian.get(0).getComputer().getProductPrice()}">$56</h2>
+                                                <p th:text="${tuijian.get(0).getComputer().getProductName()}">Easy Polo Black Edition</p>
                                                 <button type="button" class="btn btn-default add-to-cart">
                                                     <i class="fa fa-shopping-cart"></i>Add to cart</button>
                                             </div>
@@ -417,9 +420,9 @@
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="images/home/recommend2.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
+                                                <img th:src="${tuijian.get(1).getComputerImage()}" alt="" />
+                                                <h2 th:text="${tuijian.get(1).getComputer().getProductPrice()}">$56</h2>
+                                                <p th:text="${tuijian.get(1).getComputer().getProductName()}">Easy Polo Black Edition</p>
                                                 <button type="button" class="btn btn-default add-to-cart">
                                                     <i class="fa fa-shopping-cart"></i>Add to cart</button>
                                             </div>
@@ -430,9 +433,9 @@
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="images/home/recommend3.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
+                                                <img th:src="${tuijian.get(2).getComputerImage()}" alt="" />
+                                                <h2 th:text="${tuijian.get(2).getComputer().getProductPrice()}">$56</h2>
+                                                <p th:text="${tuijian.get(2).getComputer().getProductName()}">Easy Polo Black Edition</p>
                                                 <button type="button" class="btn btn-default add-to-cart">
                                                     <i class="fa fa-shopping-cart"></i>Add to cart</button>
                                             </div>
@@ -445,9 +448,9 @@
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="images/home/recommend1.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
+                                                <img th:src="${tuijian.get(3).getComputerImage()}" alt="" />
+                                                <h2 th:text="${tuijian.get(3).getComputer().getProductPrice()}">$56</h2>
+                                                <p th:text="${tuijian.get(3).getComputer().getProductName()}">Easy Polo Black Edition</p>
                                                 <button type="button" class="btn btn-default add-to-cart">
                                                     <i class="fa fa-shopping-cart"></i>Add to cart</button>
                                             </div>
@@ -458,9 +461,9 @@
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="images/home/recommend2.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
+                                                <img th:src="${tuijian.get(4).getComputerImage()}" alt="" />
+                                                <h2 th:text="${tuijian.get(4).getComputer().getProductPrice()}">$56</h2>
+                                                <p th:text="${tuijian.get(4).getComputer().getProductName()}">Easy Polo Black Edition</p>
                                                 <button type="button" class="btn btn-default add-to-cart">
                                                     <i class="fa fa-shopping-cart"></i>Add to cart</button>
                                             </div>
@@ -471,9 +474,9 @@
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="images/home/recommend3.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
+                                                <img th:src="${tuijian.get(5).getComputerImage()}" alt="" />
+                                                <h2 th:text="${tuijian.get(5).getComputer().getProductPrice()}">$56</h2>
+                                                <p th:text="${tuijian.get(5).getComputer().getProductName()}">Easy Polo Black Edition</p>
                                                 <button type="button" class="btn btn-default add-to-cart">
                                                     <i class="fa fa-shopping-cart"></i>Add to cart</button>
                                             </div>
@@ -541,7 +544,8 @@
 <script src="js/main.js"></script>
 <script src="js/header.js"></script>
 <script src="js/sweetalert.js"></script>
-<script type="text/javascript">$("#product_img_show_bar img").click(function() {
+<script type="text/javascript">
+    $("#product_img_show_bar img").click(function() {
     // var imgggg = $(this).children()
     var img_src = $(this).attr("src");
     $("#product_img_show_bar img").each(function() {
@@ -561,7 +565,13 @@ $(".cart_quantity_down").click(function () {
     }
 })
 </script>
-<style type="text/css">#product_img_show_bar img { width: 84px; height: 85px; } #mdzz_img { width: 200px; height: 380px; } .thumbnail { width: 84px; height: 85px; }</style></body>
+<style type="text/css">
+    #product_img_show_bar img { width: 84px; height: 85px; }
+    #mdzz_img { max-width: 100%; max-height: 100%;}
+
+    .view-product{height:365px;line-height: 365px;}
+</style>
+</body>
 
 
 <script th:inline="javascript">
