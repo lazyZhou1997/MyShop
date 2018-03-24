@@ -38,6 +38,7 @@ public class ExceptionHandle {
     @ExceptionHandler(ChangeUserInfoException.class)
     @ResponseBody
     public String handleChangeUserInfoException(HttpServletRequest request, ChangeUserInfoException e){
+        e.printStackTrace();
         return e.getMessage();
     }
 
@@ -48,10 +49,10 @@ public class ExceptionHandle {
      * @return
      */
     @ExceptionHandler(FileException.class)
-    @ResponseBody
     public String handleFileException(HttpServletRequest request, FileException e){
+
         e.printStackTrace();
-        return e.getMessage();
+        return null;
     }
 
     /**
@@ -63,6 +64,7 @@ public class ExceptionHandle {
     @ExceptionHandler(ManageUserException.class)
     public String handleManageUserException(HttpServletRequest request, ManageUserException e){
 
+        e.printStackTrace();
         return null;
     }
 
@@ -92,6 +94,7 @@ public class ExceptionHandle {
     @ExceptionHandler(CartException.class)
     @ResponseBody
     public String handleCartException(HttpServletRequest request, CartException e) {
+        e.printStackTrace();
         return e.getMessage();
     }
 
@@ -104,6 +107,7 @@ public class ExceptionHandle {
     @ExceptionHandler(OrderServiceException.class)
     @ResponseBody
     public String handleOrderServiceException(HttpServletRequest request,OrderServiceException e){
+        e.printStackTrace();
         return e.getMessage();
     }
 
@@ -115,6 +119,7 @@ public class ExceptionHandle {
      */
     @ExceptionHandler(AddressException.class)
     public String handleAddressException(HttpServletRequest request, AddressException e) {
+        e.printStackTrace();
         return null;
     }
 
@@ -126,6 +131,7 @@ public class ExceptionHandle {
      */
     @ExceptionHandler(MessageException.class)
     public String handleMessageException(HttpServletRequest request, MessageException e) {
+        e.printStackTrace();
         return null;
     }
 
@@ -137,7 +143,8 @@ public class ExceptionHandle {
      */
      @ExceptionHandler({CategoryServiceException.class})
     public String handleCategoryServiceException(HttpServletRequest request,CategoryServiceException e){
- 
+
+         e.printStackTrace();
         return null;
     }
 
@@ -149,6 +156,7 @@ public class ExceptionHandle {
      */
     @ExceptionHandler(CommentException.class)
     public String handleCommentException(HttpServletRequest request, CommentException e) {
+        e.printStackTrace();
         return null;
     }
 }

@@ -29,6 +29,9 @@ public class ProductService {
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
 
+    @Autowired
+    private FileService fileService;
+
     /**
      * Validate all information that a product needs <b>EXCEPT</b> ID.
      * @param product
@@ -288,6 +291,13 @@ public class ProductService {
 
             //抛出查询结果为空异常
             products = null;
+        }
+
+        //获取商品图片
+        List<String> images;
+        for (Product product:
+             products) {
+            product.setIamges(fileService.getProductImagesURL(product.getProductId()));
         }
 
         sqlSession.close();

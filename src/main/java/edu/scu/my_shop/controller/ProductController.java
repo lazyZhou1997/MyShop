@@ -38,13 +38,22 @@ public class ProductController {
         return productList;
     }
 
+    /**
+     * 添加商品
+     * @param product
+     * @return
+     */
     @PostMapping("addProduct")
     public String insertProduct(Product product) {
-        System.err.println(product.getProductName());
         productService.insertProduct(product);
         return "product/toList.html";
     }
 
+    /**
+     * 更新商品
+     * @param product
+     * @return
+     */
     @PostMapping("updateProductInfo")
     public String updateProduct(Product product) {
         if (product == null || product.getProductId() == null ) {
@@ -55,6 +64,12 @@ public class ProductController {
         return "redirect:product/toEdit.html?productID="+product.getProductId();
     }
 
+
+    /**
+     * 删除商品
+     * @param productID
+     * @return
+     */
     @PostMapping("adminDeleteProduct")
     @ResponseBody
     public String deleteProduct(@RequestParam("productID")String productID) {

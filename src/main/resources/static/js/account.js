@@ -1,6 +1,6 @@
 //user info
 $(function () {
-    $.getJSON("http://localhost:8080/getUserInfo",function(data){
+    $.getJSON("/getUserInfo",function(data){
         var username = data.data.userName;
         var userimg = data.data.headImg;
         var useremail = data.data.userId;
@@ -47,6 +47,7 @@ function checkAddress() {
     var phone = $('input[name = phoneNumber]').val();
     if(!address || !phone){
         swal("","请将信息输入完整","warning");
+        return false;
     }
 
 }
@@ -165,6 +166,7 @@ $(function () {
 
 })
 
+//message
 
 $(function () {
     $.getJSON("/getUserMessage", function (data) {
@@ -222,4 +224,12 @@ $(function () {
             $(id).addClass("active");
         }
     })
+    if(!arg){
+        $('#shop-menu2 > li > a').each(function () {
+            if ($(this).attr('href') == "#user-info") {
+                $(this).parent().addClass("active");
+                $("#user-info").addClass("active");
+            }
+        })
+    }
 })

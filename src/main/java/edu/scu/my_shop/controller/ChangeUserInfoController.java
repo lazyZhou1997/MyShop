@@ -57,12 +57,14 @@ public class ChangeUserInfoController {
             user.setUserName(null);
         }
 
+        System.out.println(user.getBirthday());
+
         changeUserInfoService.changeUserInfo(user);
 
         //登录成功处理
         modelMap.addAttribute("success","修改成功");
 
-        return "redirect:userInfoPage?kw=user-info";
+        return "account";
     }
 
     /**
@@ -78,18 +80,19 @@ public class ChangeUserInfoController {
         //当前用户
         User user = changeUserInfoService.getUserInfoByUserId(userDetails.getUserId());
 
+
         //隐藏信息
         user.setUserPassword(null);
         user.setRole(null);
 
         //设置头像
         user.setHeadImg(fileService.getUserImageURL(user.getUserId()));
-
         //封装当前用户
         Result result = new Result();
         result.setCode(200);
         result.setData(user);
 
+        System.out.println(user.getBirthday());
         return result;
     }
 }

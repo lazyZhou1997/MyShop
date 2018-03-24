@@ -23,29 +23,34 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    @PostMapping("addUserAddress")
-    public String addUserAddress(ModelMap modelMap,@RequestParam("address") Address address) {
-        if (address == null) {
-            return "未知地址";
-        }
+    @PostMapping("/addUserAddress")
+    @ResponseBody
+    public String addUserAddress(Address address, String defaultAddress, ModelMap modelMap) {
 
+        SecurityUser userDetails = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        address.setUserId(userDetails.getUserId());
+        address.setIsDefaultAddress(false);//设置为不是默认地址
+
+        //插入数据库，并且获取地址id
         String addressId = addressService.insertAddress(address);
 
-        if (address.getIsDefaultAddress()){
+        address.setAddressId(addressId);
 
-            SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            address.setUserId(userDetails.getUserId());
-            address.setAddressId(addressId);
+        //设置为是默认地址
+        if (null == defaultAddress) {
+
+            System.out.println("reach!");
+            address.setIsDefaultAddress(true);
             addressService.updateAddress(address);
         }
 
         modelMap.addAttribute("success", "保存成功");
 
-        return "";
+        return "account";
     }
 
     @PostMapping("setAddressDefault")
-    public String setAddressDefault(@RequestParam(value = "addressID", required = false)String addressID) {
+    public String setAddressDefault(@RequestParam(value = "addressID", required = false) String addressID) {
 
         if (addressID == null || addressID.equals("")) {
             return "未知地址";
@@ -67,7 +72,7 @@ public class AddressController {
     @RequestMapping("getUserAddress")
     @ResponseBody
     public List<Address> getUserAddress() {
-        SecurityUser userDetails =  (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        SecurityUser userDetails = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Address> addressList = addressService.getAllAddresses(userDetails.getUserId());
         return addressList;
     }

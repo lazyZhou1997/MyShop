@@ -108,8 +108,8 @@ public class CartController {
      * @param productId
      * @param quantity
      */
-    @PostMapping("/addProductToCart")
-    public void addProductToCart(String productId, int quantity) {
+    @PostMapping(value = "/addProductToCart")
+    public String addProductToCart(String productId, int quantity) {
 
         SecurityUser userDetails = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -126,6 +126,6 @@ public class CartController {
 
         cartService.insertProducts(user,products,quantities);
 
-        return;
+        return "index";
     }
 }
