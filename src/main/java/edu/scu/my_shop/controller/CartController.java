@@ -109,6 +109,7 @@ public class CartController {
      * @param quantity
      */
     @PostMapping(value = "/addProductToCart")
+    @ResponseBody
     public String addProductToCart(String productId, int quantity) {
 
         SecurityUser userDetails = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -126,6 +127,6 @@ public class CartController {
 
         cartService.insertProducts(user,products,quantities);
 
-        return "index";
+        return "";
     }
 }

@@ -46,7 +46,7 @@ public class ProductController {
     @PostMapping("addProduct")
     public String insertProduct(Product product) {
         productService.insertProduct(product);
-        return "";
+        return "product/toList.html";
     }
 
     /**
@@ -55,30 +55,30 @@ public class ProductController {
      * @return
      */
     @PostMapping("updateProductInfo")
-    @ResponseBody
     public String updateProduct(Product product) {
         if (product == null || product.getProductId() == null ) {
             // TODO: return to page or return string
-            return "未知商品";
+            return "cart.html";
         }
         productService.updateProduct(product);
-        return "";
+        return "redirect:product/toEdit.html?productID="+product.getProductId();
     }
+
 
     /**
      * 删除商品
      * @param productID
      * @return
      */
-    @PostMapping("deleteProduct")
+    @PostMapping("adminDeleteProduct")
     @ResponseBody
     public String deleteProduct(@RequestParam("productID")String productID) {
-
-        productService.deleteProduct(productID);
+        if (productID == null) {
+            // TODO: return to page or return string
+            return "未知商品";
+        }
         fileService.deleteAllProductImages(productID);
-
-
-
+        productService.deleteProduct(productID);
         return "";
     }
 

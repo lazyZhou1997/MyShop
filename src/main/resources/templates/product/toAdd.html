@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
-<html lang="cn">
-<head>
+<html lang="cn"><head>
     <meta charset="UTF-8">
-    <title>编辑商品</title>
+    <title>添加商品</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
@@ -30,7 +27,7 @@
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <a href="#">编辑商品</a>
+                <a href="#">添加商品</a>
             </li>
         </ul>
     </div>
@@ -39,21 +36,15 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-reorder"></i>
-                    编辑商品
+                    添加商品
                 </div>
             </div>
             <div class="portlet-body">
-                <form role="form" class="form-horizontal" method="post" action="../updateProductInfo">
-                    <div class="control-group form-group">
-                        <label class="control-label col-sm-2">商品ID：</label>
-                        <div class="controls">
-                            <input id="input-id" name="productId" type="text" class="m-wrap large" disabled>
-                        </div>
-                    </div>
+                <form role="form" class="form-horizontal" method="post" action="../addProduct">
                     <div class="control-group form-group">
                         <label class="control-label col-sm-2">商品名称：</label>
                         <div class="controls">
-                            <input id="input-name" name="productName" type="text" class="m-wrap large">
+                            <input name="productName" type="text" class="m-wrap large">
                         </div>
                     </div>
                     <div class="control-group form-group">
@@ -61,16 +52,16 @@
                         <div class="controls">
                             <div class="input-prepend">
                                 <span class="add-on">￥</span>
-                                <input id="input-price" name="productPrice" type="text" class="m-wrap small">
+                                <input name="productPrice" type="text" class="m-wrap small">
                             </div>
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <label class="control-label col-sm-2">总量：</label>
                         <div class="controls">
-                            <input id="input-left-total" name="productLeftTotals" type="text" class="m-wrap large">
+                            <input name="productLeftTotals" type="text" class="m-wrap large">
                         </div>
-                    </div>
+                    </div>                    
                     <div class="control-group form-group">
                         <label class="control-label col-sm-2">所属二级分类：</label>
                         <div class="controls">
@@ -79,40 +70,37 @@
                         </div>
                     </div>
 
-                    <div class="control-group form-group">
-                        <label class="control-label col-sm-2">商品图片：</label>
-                        <div class="controls col-sm-10">
-                            <div class="fileupload fileupload-new" data-provides="fileupload">
-                                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                    <img id="product-img" src="" alt="">
-                                </div>
-                                <div class="fileupload-preview fileupload-exists thumbnail"
-                                     style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                    <!--<div class="control-group form-group">-->
+                        <!--<label class="control-label col-sm-2">商品图片：</label>-->
+                        <!--<div class="controls col-sm-10">-->
+                            <!--<div class="fileupload fileupload-new" data-provides="fileupload">-->
+                                <!--<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">-->
+                                    <!--<img src="" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>-->
                                 <!--<div>-->
 											<!--<span class="btn btn-file">-->
 												<!--<span class="fileupload-new">选择图片</span>-->
 												<!--<span class="fileupload-exists">换一张</span>-->
-												<!--<input id="input-file" name="image" type="file" class="default">-->
+												<!--<input name="image" type="file" class="default">-->
 											<!--</span>-->
                                     <!--<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">移除</a>-->
                                 <!--</div>-->
-                            </div>
-                        </div>
-                    </div>
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
                     <div class="control-group form-group">
                         <label class="control-label col-sm-2">商品描述：</label>
                         <div class="controls">
-                            <textarea id="textarea-description" name="productDescription" class="m-wrap large" rows="4"></textarea>
+                            <textarea name="productDescription" class="m-wrap large" rows="4"></textarea>
                         </div>
                     </div>
 
                     <div class="form-actions">
                         <div class="col-sm-2"></div>
-                        <button type="submit" class="btn blue"><i class="fa fa-check"></i>确定</button>
-                         
-                        <button type="button" onclick="javascript:window.location.href='toList.html';" class="btn"><i
-                                class="fa fa-times"></i>返回
+                        <button type="submit" class="btn blue"><i class="fa fa-check"></i>确定</button> 
+                        <button type="button" onclick="javascript:window.location.href='toList.html';" class="btn"><i class="fa fa-times"></i>返回
                         </button>
                     </div>
                 </form>
@@ -120,6 +108,8 @@
         </div>
     </div>
 </div>
+
+
 <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery-migrate-1.2.1.min.js"></script>
 <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
@@ -133,103 +123,14 @@
 <script type="text/javascript" src="../js/jquery.pagination.js"></script>
 <script type="text/javascript" src="../js/app.js"></script>
 <script type="text/javascript">
-    //	<![CDATA[
-    $(function () {
-        App.init();
-        var msg = null;
-        if (msg) {
-            alert(msg);
-        }
-
-
-        //加载分类列表
-        $.ajax({
-            url: "../classification/list.do?type=2&pageindex=-1",
-            type: "get",
-            success: function (result) {
-                if (result.state == 0) {
-                    showData(result.data);
-                } else {
-                    alert(result.message);
-                }
-            }
-        });
-
-    });
-
-    function showData(data) {
-        var select = $("[name='csid']");
-        var csid = select.val();
-        if (!data || !data.length > 0) {
-            return;
-        }
-        for (var i = 0; i < data.length; i++) {
-            if (csid == data[i].id) {
-                continue;
-            }
-            var option = $("<option></option>");
-            option.attr("value", data[i].id);
-            option.text(data[i].cname);
-            select.append(option);
-        }
-    }
-
-    function update() {
-        if (!confirm("确定更新商品信息？")) {
-            return;
-        }
-
-        $.ajax({
-            cache: true,
-            type: "POST",
-            url: "update.do",
-            data: $('.form-horizontal').serialize(),// 你的formid
-            async: false,
-            error: function (request) {
-                alert("Connection error");
-            },
-            success: function (result) {
-                if (result.state == 0) {
-                    alert("修改成功！");
-                } else {
-                    alert(result.message);
-                }
-            }
-        });
-    }
-
-</script>
-<script th:inline="javascript">
-    var product = [[${product}]];
-    var categoryID = product.secondCategoryId;
-    $("#input-id").val(product.productId);
-    $("#input-name").val(product.productName);
-    $("#input-price").val(product.productPrice);
-    $("#input-left-total").val(product.productLeftTotals);
-    $("#textarea-description").val(product.productDescription);
-
     $.get(
         "../getAllCategory",
         function (result) {
             for (var i = 0; i < result.length; i++) {
-
-                if (result[i].secondCategoryId == categoryID) {
-                    $("#category").append('<option value="' + result[i].secondCategoryId + '" selected>'+ result[i].secondCategoryName + '</option>');
-                }
-                else {
-                    $("#category").append('<option value="' + result[i].secondCategoryId + '">'+ result[i].secondCategoryName + '</option>');
-                }
+                $("#category").append('<option value="' + result[i].secondCategoryId + '">'+ result[i].secondCategoryName + '</option>');
             }
         }
     );
-
-    $.get(
-        "../productImageInCart",
-        {productID:product.productId},
-        function (result) {
-            $("#product-img").attr("src", result);
-        }
-    );
 </script>
-</body>
-</html>
+
+</body></html>
