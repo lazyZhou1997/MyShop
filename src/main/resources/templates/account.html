@@ -88,6 +88,10 @@
 		#choose-image{
 			display: none;
 		}
+
+		#order-table .description{
+			width: 390px;
+		}
     </style>
 </head><!--/head-->
 
@@ -251,7 +255,7 @@
 									<div class="col-sm-2"></div>
 									<div class="col-sm-10">
 										<span>
-											<input type="checkbox" class="form-control,checkbox" name="isDefaultAddress">
+											<input type="radio" value="true" class="form-control,checkbox" name="defaultAddress">
 											设置为默认收货地址
 										</span>
 									</div>
@@ -332,7 +336,7 @@
     <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/main.js"></script>
 	<script src="js/account.js"></script>
-	<script src="js/sweetalert.js"></script>
+	<script src="js/sweetalert2.js"></script>
 	<script src="js/header.js"></script>
 	<script th:inline="javascript">
 

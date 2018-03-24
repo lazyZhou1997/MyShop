@@ -24,9 +24,9 @@ public class AddressController {
     private AddressService addressService;
 
     @PostMapping("/addUserAddress")
-    @ResponseBody
     public String addUserAddress(Address address, String defaultAddress, ModelMap modelMap) {
 
+        System.out.println(defaultAddress);
         SecurityUser userDetails = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         address.setUserId(userDetails.getUserId());
         address.setIsDefaultAddress(false);//设置为不是默认地址
@@ -37,7 +37,7 @@ public class AddressController {
         address.setAddressId(addressId);
 
         //设置为是默认地址
-        if (null == defaultAddress) {
+        if (null != defaultAddress) {
 
             System.out.println("reach!");
             address.setIsDefaultAddress(true);

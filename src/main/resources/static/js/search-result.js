@@ -35,7 +35,6 @@ $(function () {
                 // }
                 div += "<h2>" + data[j].productPrice + "</h2>";
                 div += "<p>" + name + " </p>";
-                div += "<a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>";
                 div += "</div>";
                 div += "</div>";
                 div += "</div>";

@@ -90,27 +90,33 @@ $('#choose-image').change(function () {
 //order
 $(function () {
     var status = ""
+    var order_number = 1;
     $.getJSON("/getUserOrders",function (data) {
         for(var i=0;i<data.length;i++){
             status = data[i].orderStatus;
             $.post("/getOrderItems",{
                 orderID : data[i].orderId
             },function (DATA) {
-                console.log(DATA);
                 for(var j = 0;j<DATA.length;j++){
                     var tr = "<tr>";
                     if(0 == j){
-                        tr += "<td rowspan='" + DATA.length + "'>" + j+1 + "</td>";
+                        tr += "<td rowspan='" + DATA.length + "'>" + order_number + "</td>";
+                        order_number++;
                     }
                     tr += "<td>";
-                    tr += "<h4><a href=''>" + DATA[j].productName + "</a></h4>";
+                    tr += "<h4><a href='productdetails?productID=" + DATA[j].productId +"'>" + DATA[j].productName + "</a></h4>";
                     tr += "<span>" + DATA[j].productDescription +"</span>";
                     tr += "</td>";
                     tr += "<td>" + DATA[j].productPrice + "</td>";
-                    tr += "<td>" + "3" + "</td>";
-                    tr += "<td>" + DATA[j].productPrice*3 + "</td>";
+                    tr += "<td>" + DATA[j].productLeftTotals + "</td>";
+                    tr += "<td>" + DATA[j].productPrice*DATA[j].productLeftTotals + "</td>";
                     if(0 == j){
-                        tr += "<td rowspan='" + DATA.length + "'>" + status + "</td>";
+                        if(status == "已付款"){
+                        tr += "<td rowspan='" + DATA.length + "'>" + status + "</td>";}
+                        else {
+
+                            tr += "<td rowspan='" + DATA.length + "'>" + "<button  onclick='pay()' style=\"margin-right:20px;background-color: #FE980F;\"  class=\"btn mini btn-success\"><i class=\"fa fa-edit\"></i>"+ status + "</button></td>";
+                        }
                     }
                     if(0 == j){
                         tr += "<td rowspan='" + DATA.length + "'>" + "<a class=\'glyphicon glyphicon-trash\'href=\'\'></a></td>";
@@ -142,6 +148,12 @@ $(function () {
         // }
     })
 })
+
+function pay() {
+}
+
+
+
 
 //address
 $(function () {

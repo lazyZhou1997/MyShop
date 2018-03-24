@@ -203,6 +203,10 @@
         .cart_info .table.table-condensed thead tr {
             height: 51px;
         }
+
+        .cart_menu .description{
+            width: 725px;
+        }
     </style>
 </head><!--/head-->
 
@@ -295,7 +299,7 @@
                     </li>
                 </ul>
                 <div class="btn-bar">
-                    <a class="moreAddrBtn" href="">使用其它地址</a>
+                    <a class="moreAddrBtn" href="/userInfoPage?kw=user-address">使用其它地址</a>
                 </div>
             </div>
         </div>
@@ -464,7 +468,7 @@
                 if (result == null || result == "") {
                     swal("", "创建订单成功", "success").then(function () {
                         // TODO: redirect to index
-                        window.location.href = "userInfoPage?kw=#user-order";
+                        window.location.href = "userInfoPage?kw=user-orders";
                     });
                 }
                 else {
