@@ -133,4 +133,12 @@ public class CategoryService {
 
     }
 
+    public List<SecondCategory> getAllSecondCategory() {
+        SecondCategoryExample secondCategoryExample = new SecondCategoryExample();
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SecondCategoryMapper secondCategoryMapper = sqlSession.getMapper(SecondCategoryMapper.class);
+        List<SecondCategory>  secondCategoryList = secondCategoryMapper.selectByExample(secondCategoryExample);
+        sqlSession.close();
+        return secondCategoryList;
+    }
 }

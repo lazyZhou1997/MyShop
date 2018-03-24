@@ -39,31 +39,31 @@ public class ProductController {
     }
 
     @PostMapping("addProduct")
-    public String insertProduct(@RequestParam("product")Product product) {
+    public String insertProduct(Product product) {
+        System.err.println(product.getProductName());
         productService.insertProduct(product);
-        return "";
+        return "product/toList.html";
     }
 
     @PostMapping("updateProductInfo")
-    @ResponseBody
-    public String updateProduct(@RequestParam("product")Product product) {
+    public String updateProduct(Product product) {
         if (product == null || product.getProductId() == null ) {
             // TODO: return to page or return string
-            return "未知商品";
+            return "cart.html";
         }
         productService.updateProduct(product);
-        return "";
+        return "redirect:product/toEdit.html?productID="+product.getProductId();
     }
 
-    @PostMapping("deleteProduct")
+    @PostMapping("adminDeleteProduct")
     @ResponseBody
     public String deleteProduct(@RequestParam("productID")String productID) {
         if (productID == null) {
             // TODO: return to page or return string
             return "未知商品";
         }
-        productService.deleteProduct(productID);
         fileService.deleteAllProductImages(productID);
+        productService.deleteProduct(productID);
         return "";
     }
 

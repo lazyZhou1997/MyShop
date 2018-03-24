@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
 <html lang="cn"><head>
     <meta charset="UTF-8">
     <title>订单列表</title>
@@ -43,14 +45,12 @@
                     <thead>
                     <tr>
                         <th>订单编号</th>
-                        <th>订单金额</th>
-                        <th>收货人</th>
+                        <th>收货人ID</th>
                         <th>订单状态</th>
                         <th>订单时间</th>
-                        <th width="50%">订单详情</th>
                     </tr>
                     </thead>
-                    <tbody><tr style=""><td>1</td><td>￥8888</td><td>小明</td><td><span style="border-radius: 5px !important;" class="label label-success">订单完成</span></td><td><span class="label label-default" style="border-radius: 5px !important;">2017-11-26 03:23:48</span></td><td><div style="margin:0;" class="portlet box green"><div id="detail_0" onmouseenter="getDetail(1,'detail_0')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div></td></tr><tr style=""><td>2</td><td>￥17998</td><td>tom</td><td><span style="border-radius: 5px !important;" class="label label-info">等待收货</span></td><td><span class="label label-default" style="border-radius: 5px !important;">2017-11-26 06:10:39</span></td><td><div style="margin:0;" class="portlet box green"><div id="detail_1" onmouseenter="getDetail(2,'detail_1')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div></td></tr><tr style=""><td>3</td><td>￥6077</td><td>Catalina</td><td><button onclick="send(3,this)" class="btn red">发货</button></td><td><span class="label label-default" style="border-radius: 5px !important;">2017-11-26 06:52:44</span></td><td><div style="margin:0;" class="portlet box green"><div id="detail_2" onmouseenter="getDetail(3,'detail_2')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div></td></tr><tr style=""><td>4</td><td>￥8999</td><td>tomcat</td><td><span style="border-radius: 5px !important;" class="label label-success">订单完成</span></td><td><span class="label label-default" style="border-radius: 5px !important;">2017-11-26 07:35:01</span></td><td><div style="margin:0;" class="portlet box green"><div id="detail_3" onmouseenter="getDetail(4,'detail_3')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div></td></tr><tr style=""><td>5</td><td>￥5999</td><td>Hfb</td><td><span style="border-radius: 5px !important;" class="label label-info">等待收货</span></td><td><span class="label label-default" style="border-radius: 5px !important;">2017-11-26 10:53:14</span></td><td><div style="margin:0;" class="portlet box green"><div id="detail_4" onmouseenter="getDetail(5,'detail_4')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div></td></tr><tr style=""><td>6</td><td>￥12998</td><td>邓俊文</td><td><span style="border-radius: 5px !important;" class="label label-important">未付款</span></td><td><span class="label label-default" style="border-radius: 5px !important;">2017-11-30 07:54:28</span></td><td><div style="margin:0;" class="portlet box green"><div id="detail_5" onmouseenter="getDetail(6,'detail_5')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div></td></tr><tr style=""><td>7</td><td>￥8888</td><td>来了</td><td><button onclick="send(7,this)" class="btn red">发货</button></td><td><span class="label label-default" style="border-radius: 5px !important;">2018-03-08 09:29:39</span></td><td><div style="margin:0;" class="portlet box green"><div id="detail_6" onmouseenter="getDetail(7,'detail_6')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div></td></tr><tr style=""><td>8</td><td>￥8999</td><td>test</td><td><button onclick="send(8,this)" class="btn red">发货</button></td><td><span class="label label-default" style="border-radius: 5px !important;">2018-03-09 17:29:31</span></td><td><div style="margin:0;" class="portlet box green"><div id="detail_7" onmouseenter="getDetail(8,'detail_7')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div></td></tr><tr style=""><td>9</td><td>￥8999</td><td>12</td><td><button onclick="send(9,this)" class="btn red">发货</button></td><td><span class="label label-default" style="border-radius: 5px !important;">2018-03-11 22:15:12</span></td><td><div style="margin:0;" class="portlet box green"><div id="detail_8" onmouseenter="getDetail(9,'detail_8')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div></td></tr><tr style=""><td>10</td><td>￥3999</td><td>嘿嘿嘿</td><td><span style="border-radius: 5px !important;" class="label label-success">订单完成</span></td><td><span class="label label-default" style="border-radius: 5px !important;">2018-03-14 22:25:54</span></td><td><div style="margin:0;" class="portlet box green"><div id="detail_9" onmouseenter="getDetail(10,'detail_9')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div></td></tr><tr style=""><td>11</td><td>￥8888</td><td>Jay</td><td><button onclick="send(11,this)" class="btn red">发货</button></td><td><span class="label label-default" style="border-radius: 5px !important;">2018-03-20 17:27:21</span></td><td><div style="margin:0;" class="portlet box green"><div id="detail_10" onmouseenter="getDetail(11,'detail_10')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div></td></tr><tr style=""><td>12</td><td>￥26775</td><td>adminadmin</td><td><button onclick="send(12,this)" class="btn red">发货</button></td><td><span class="label label-default" style="border-radius: 5px !important;">2018-03-20 23:44:40</span></td><td><div style="margin:0;" class="portlet box green"><div id="detail_11" onmouseenter="getDetail(12,'detail_11')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div></td></tr><tr style=""><td>13</td><td>￥5999</td><td>wangweiye</td><td><button onclick="send(13,this)" class="btn red">发货</button></td><td><span class="label label-default" style="border-radius: 5px !important;">2018-03-22 11:49:35</span></td><td><div style="margin:0;" class="portlet box green"><div id="detail_12" onmouseenter="getDetail(13,'detail_12')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div></td></tr><tr style=""><td>14</td><td>￥8999</td><td>期望</td><td><button onclick="send(14,this)" class="btn red">发货</button></td><td><span class="label label-default" style="border-radius: 5px !important;">2018-03-22 16:42:07</span></td><td><div style="margin:0;" class="portlet box green"><div id="detail_13" onmouseenter="getDetail(14,'detail_13')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div></td></tr></tbody>
+                    <tbody></tbody>
                 </table>
                 <div id="Pagination" class="pagination align_right"><span class="current prev">前一页</span><span class="current">1</span><span class="current next">后一页</span></div>
             </div>
@@ -69,44 +69,12 @@
 <script type="text/javascript" src="../js/app.js"></script>
 <script type="text/javascript" src="../js/jquery.pagination.js"></script>
 <script type="text/javascript">
-//    <![CDATA[
-    var pagetotal;
-    $(function () {
-        App.init();
-        $.ajax({
-            url: "getTotal.do",
-            type: "get",
-            success: function (result) {
-                if (result.state == 0) {
-                    pagetotal = result.data;
-                    $("#Pagination").pagination(pagetotal, {
-                        num_edge_entries: 1, //边缘页数
-                        num_display_entries: 5, //主体页数
-                        callback: pageselectCallback,
-                        items_per_page: 15, //每页显示7项
-                        prev_text: "前一页",
-                        next_text: "后一页"
-                    });
-                } else {
-                    alert(result.message);
-                }
-            }
-        });
-    });
-
-    function pageselectCallback(page_index, jq) {
-        $.ajax({
-            type: "get",
-            url: "list.do?pageindex=" + page_index,
-            success: function (result) {
-                if (result.state == 0) {
-                    showList(result.data);
-                } else {
-                    alert(result.message);
-                }
-            }
-        });
-    }
+    $.get(
+        "../getAllOrder",
+        function (result) {
+            showList(result);
+        }
+    );
 
     function showList(data) {
         if (!data || !data.length > 0) {
@@ -116,25 +84,24 @@
         var tbody = $("#orderTable tbody").eq(0);
         tbody.html("");
         for (var i = 0; i < data.length; i++) {
+            var date = data[i].orderDate;
+            var dateFormat = $.datepicker.formatDate('yy-mm-dd', new Date(date));
             var tr = $("<tr style='display:none;'></tr>");
-            tr.append($("<td></td>").text(data[i].id));
-            tr.append($("<td></td>").text("￥" + data[i].total));
-            tr.append($("<td></td>").text(data[i].name == null ? '' : data[i].name));
+            tr.append($("<td></td>").text(data[i].orderId));
+            tr.append($("<td></td>").text(data[i].userId));
             var state = data[i].state;
-            if (state == 1) {
-                tr.append($("<td></td>").html('<span style="border-radius: 5px !important;" class="label label-important">未付款</span>'));
-            } else if (state == 2) {
-                tr.append($("<td></td>").html("<button onclick='send(" + data[i].id + ",this)' class='btn red'>发货</button>"));
-            } else if (state == 3) {
-                tr.append($("<td></td>").html('<span style="border-radius: 5px !important;" class="label label-info">等待收货</span>'));
-            } else if (state == 4) {
-                tr.append($("<td></td>").html('<span style="border-radius: 5px !important;" class="label label-success">订单完成</span>'));
+            if (state == "待付款") {
+                tr.append($("<td></td>").html('<span style="border-radius: 5px !important;" class="label label-primary">待付款</span>'));
+            } else if (state == "已付款") {
+                tr.append($("<td></td>").html('<span style="border-radius: 5px !important;" class="label label-info">已付款</span>'));
+            } else if (state == "正在运送") {
+                tr.append($("<td></td>").html('<span style="border-radius: 5px !important;" class="label label-warning">正在运送</span>'));
+            } else if (state == "已取消") {
+                tr.append($("<td></td>").html('<span style="border-radius: 5px !important;" class="label label-default">已取消</span>'));
             } else {
-                tr.append($("<td></td>").html('<span style="border-radius: 5px !important;" class="label label-default">未知状态</span>'));
+                tr.append($("<td></td>").html('<span style="border-radius: 5px !important;" class="label label-success">已完成</span>'));
             }
-            tr.append($("<td></td>").html('<span class="label label-default" style="border-radius: 5px !important;">' + data[i].orderTime + '</span>'));
-            tr.append($("<td></td>")
-                .append($('<div style="margin:0;" class="portlet box green"><div id="detail_' + i + '" onmouseenter="getDetail(' + data[i].id + ',\'detail_' + i + '\')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div>')));
+            tr.append($("<td></td>").html('<span class="label label-default" style="border-radius: 5px !important;">' + dateFormat + '</span>'));
             tbody.append(tr);
             tr.fadeIn();
         }

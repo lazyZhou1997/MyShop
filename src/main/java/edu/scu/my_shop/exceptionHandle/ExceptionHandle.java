@@ -48,9 +48,10 @@ public class ExceptionHandle {
      * @return
      */
     @ExceptionHandler(FileException.class)
+    @ResponseBody
     public String handleFileException(HttpServletRequest request, FileException e){
-
-        return null;
+        e.printStackTrace();
+        return e.getMessage();
     }
 
     /**
