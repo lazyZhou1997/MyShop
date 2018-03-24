@@ -31,6 +31,7 @@ public class AddressService {
      * Address cannot be null.
      * user ID cannot be null.
      * user ID must be found in user table.
+     *
      * @param address
      */
     private void checkAddress(Address address) {
@@ -56,6 +57,7 @@ public class AddressService {
     /**
      * Insert an address into database.
      * If addressId already exists it will be automatically ignored.
+     *
      * @param address
      */
     @Transactional
@@ -63,7 +65,7 @@ public class AddressService {
 
         checkAddress(address);
 
-        if (address.getAddressInfo() == null || address.getPhoneNumber() == null) {
+        if (null == address || address.getAddressInfo() == null || address.getPhoneNumber() == null) {
             throw new AddressException(ADDRESS_EMPTY_MESSAGE, ADDRESS_EMPTY);
         }
 
@@ -111,6 +113,7 @@ public class AddressService {
     /**
      * Delete address from database.
      * Address not exists will be ignored.
+     *
      * @param address
      */
     @Transactional
@@ -127,6 +130,7 @@ public class AddressService {
     /**
      * Get all address of user.
      * It will not return null but an empty list
+     *
      * @param userID
      */
     @Transactional
@@ -147,6 +151,7 @@ public class AddressService {
 
     /**
      * Check if address exists.
+     *
      * @param addressID
      * @return
      */

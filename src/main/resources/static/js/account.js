@@ -166,6 +166,7 @@ $(function () {
 
 })
 
+//message
 
 $(function () {
     $.getJSON("/getUserMessage", function (data) {
@@ -223,4 +224,12 @@ $(function () {
             $(id).addClass("active");
         }
     })
+    if(!arg){
+        $('#shop-menu2 > li > a').each(function () {
+            if ($(this).attr('href') == "#user-info") {
+                $(this).parent().addClass("active");
+                $("#user-info").addClass("active");
+            }
+        })
+    }
 })

@@ -2,9 +2,11 @@ package edu.scu.my_shop.controller;
 
 import edu.scu.my_shop.entity.Product;
 import edu.scu.my_shop.entity.ProductWithImage;
+import edu.scu.my_shop.entity.SecurityUser;
 import edu.scu.my_shop.service.FileService;
 import edu.scu.my_shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -52,6 +54,15 @@ public class LoginController {
 
     @RequestMapping(value = {"/index","/"})
     public String indexShowProduct(Model model) {
+
+        //获取用户信息
+        SecurityUser userDetail = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        //如果是管理员，则跳转到管理员界面
+        if (userDetail.getRole()){
+            return "admin";
+        }
+
 
         String[] ID = {"Av7yd1bCsKdy0Tx66j6kmpEHEhjTdchmn7QJJmNt9HYnKS3EDO", "QKZDcx97eVbAMGocGBlNn2wv9cMJcgFrxQlfPMKONVn5ad5Kb9", "qz0tG4n27DTunWh8R2yx6C86iEQy4tc1m1vWC8tAUK7mPyfMoe", "SOXPyLwLdOlP9IhU2nJusILZSZggGi2Zk3sicMxLUHMiPOKaK1", "WLjkLuSIrT4UQ5hZL8uKoUoylVZV9m9w5jgMxitVOwwUL3rT2g"};
         List<List<Product>> computers = productService.searchProductByCategorys(ID, 0, 4);

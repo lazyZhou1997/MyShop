@@ -26,9 +26,6 @@ public class AddressController {
     @PostMapping("/addUserAddress")
     @ResponseBody
     public String addUserAddress(Address address, String defaultAddress, ModelMap modelMap) {
-        if (address == null) {
-            return "未知地址";
-        }
 
         SecurityUser userDetails = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         address.setUserId(userDetails.getUserId());
@@ -49,7 +46,7 @@ public class AddressController {
 
         modelMap.addAttribute("success", "保存成功");
 
-        return "111";
+        return "account";
     }
 
     @PostMapping("setAddressDefault")
