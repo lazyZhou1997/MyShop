@@ -540,6 +540,7 @@
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/main.js"></script>
 <script src="js/header.js"></script>
+<script src="js/sweetalert.js"></script>
 <script type="text/javascript">$("#product_img_show_bar img").click(function() {
     // var imgggg = $(this).children()
     var img_src = $(this).attr("src");
@@ -577,7 +578,7 @@ $(".cart_quantity_down").click(function () {
                 quantity : productNumer
             },function (data) {
 
-                alert('成功');
+                swal("","成功添加到购物车","success");
 
             })
 

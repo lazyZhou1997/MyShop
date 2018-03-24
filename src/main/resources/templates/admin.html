@@ -416,6 +416,26 @@
 
 
 <!-- END BODY -->
+<script th:inline="javascript">
+
+    var errormessage = [[${error}]];
+    errorDialog(errormessage);
+
+    var successmessage = [[${success}]];
+    successDialog(successmessage);
+
+    function errorDialog(errormessage) {
+        if (null != errormessage) {
+            swal("", errormessage.toString(), "error");
+        }
+    }
+
+    function successDialog(successmessage) {
+        if (null != successmessage) {
+            swal("", successmessage.toString(), "success");
+        }
+    }
+</script>
 
 </body>
 </html>
