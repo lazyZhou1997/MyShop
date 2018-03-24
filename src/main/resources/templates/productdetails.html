@@ -577,9 +577,12 @@ $(".cart_quantity_down").click(function () {
                 productId :productId,
                 quantity : productNumer
             },function (data) {
-
-                swal("","成功添加到购物车","success");
-
+                if (data == null || data == "") {
+                    swal("", "成功添加到购物车", "success");
+                }
+                else{
+                    swal("", data, "error");
+                }
             })
 
     })

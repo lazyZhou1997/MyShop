@@ -94,7 +94,6 @@ public class ExceptionHandle {
     @ExceptionHandler(CartException.class)
     @ResponseBody
     public String handleCartException(HttpServletRequest request, CartException e) {
-        e.printStackTrace();
         return e.getMessage();
     }
 
